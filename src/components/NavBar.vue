@@ -5,8 +5,8 @@
     </div>
     <div class="links-nav">
       <router-link to="/" class="links-nav">Home</router-link> 
-      <router-link to="/" class="links-nav">About</router-link> 
-      <router-link to="/" class="links-nav">+Popular Books</router-link>
+      <router-link to="/about-me" class="links-nav">About Me</router-link> 
+      <router-link to="/popular-books" class="links-nav">+Popular Books</router-link>
       <button class="btn-login">Login</button>
     </div>
   </nav>
@@ -27,6 +27,11 @@
   text-decoration: none;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.links-nav a:hover {
+  padding-bottom: 5px;
+  border-bottom: 2px solid #FCBA03;
 }
 
 .img-logo {

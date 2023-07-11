@@ -5,9 +5,9 @@
             <p>Vitória da Conquista, BA</p>
         </div>
         <div class="social-media">
-            <a href=""><img src="../assets/linkedin.png" alt=""></a>
-            <a href=""><img src="../assets/instagram.png" alt=""></a>
-            <a href=""><img src="../assets/github.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/rafaelasantoss/" target="_blank"><img src="../assets/linkedin.png" alt="linkedin"></a>
+            <a href="https://www.instagram.com/rafaa_vs23/" target="_blank"><img src="../assets/instagram.png" alt="instagram"></a>
+            <a href="https://github.com/rafaelams17/" target="_blank"><img src="../assets/github.png" alt="github"></a>
         </div>
     </div>
 </template>

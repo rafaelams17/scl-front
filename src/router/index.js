@@ -6,23 +6,21 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-    children: [
-      {
-        path: '/about-me',
-        name: 'about-me',
-        component: function () {
-          return import(/* webpackChunkName: "about-me" */ '../components/AboutMe.vue')
-        }
-      },
-      {
-        path: '/popular-books',
-        name: 'popular-books',
-        component: function () {
-          return import(/* webpackChunkName: "popular-books" */ '../components/PopularBooks.vue')
-        }
-      } 
-    ]
-  }
+  }, 
+  {
+    path: '/about-me',
+    name: 'about-me',
+    component: function () {
+      return import(/* webpackChunkName: "about-me" */ '../components/AboutMe.vue')
+    }
+  },
+  {
+    path: '/popular-books',
+    name: 'popular-books',
+    component: function () {
+      return import(/* webpackChunkName: "popular-books" */ '../components/PopularBooks.vue')
+    }
+  } 
   
 ]
 
