@@ -32,6 +32,7 @@
 .links-nav a:hover {
   padding-bottom: 5px;
   border-bottom: 2px solid #FCBA03;
+  transition: .5s;
 }
 
 .img-logo {
