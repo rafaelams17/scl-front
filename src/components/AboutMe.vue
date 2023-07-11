@@ -27,22 +27,40 @@
 }
 
 .title-h1 {
+  font-size: 3.5em;
+  font-weight: 500;
+  width: 50%;
+  margin: 0 auto;
   text-align: center;
 }
 
 .img-me {
-  width: 100%;
+  width: 400px;
   object-fit: cover;
   object-position: right;
 }
 
 .title-h3 {
+  font-size: 2em;
   text-align: center;
   text-decoration: underline;
+  margin-bottom: 2%;
 }
 
 .description-about-me {
   text-align: center;
-  margin: 50px;
+  font-size: larger;
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+
+@media screen and (max-width: 870px) {
+.title-h1 {
+  font-size: 2em;
+}
+  .img-me {
+    width: 100%;
+  }
 }
 </style>

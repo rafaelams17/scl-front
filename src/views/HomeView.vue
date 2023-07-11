@@ -71,6 +71,4 @@ import PopularBooks from "../components/PopularBooks.vue";
   width: 50%;
 }
 
-
-
 </style>

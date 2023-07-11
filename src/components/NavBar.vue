@@ -3,11 +3,11 @@
     <div>
       <img class="img-logo" alt="Books logo" src="../assets/logo.png">
     </div>
-    <div class="links-nav">
+    <div>
       <router-link to="/" class="links-nav">Home</router-link> 
       <router-link to="/about-me" class="links-nav">About Me</router-link> 
       <router-link to="/popular-books" class="links-nav">+Popular Books</router-link>
-      <button class="btn-login">Login</button>
+      <a href="https://google.com" target="_blank"><button class="btn-login">Login</button></a>
     </div>
   </nav>
 </template>
@@ -23,13 +23,14 @@
 }
 .links-nav {
   color: #FCBA03;
+  font-weight: 500;
   font-size: 1em;
   text-decoration: none;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.links-nav a:hover {
+.links-nav:hover {
   padding-bottom: 5px;
   border-bottom: 2px solid #FCBA03;
   transition: .5s;
@@ -47,6 +48,12 @@ div .btn-login {
   border: none;
   padding-left: 50px;
   padding-right: 50px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
+.btn-login:hover {
+  background-color: #fbd15bf6;
+  transition: .5s;
+}
 </style>
