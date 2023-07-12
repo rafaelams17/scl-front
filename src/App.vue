@@ -19,6 +19,8 @@ import Footer from './components/Footer.vue';
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   text-decoration: none;
+  background-color: #000;
+  color: #FCBA03;
 }
 
 </style>

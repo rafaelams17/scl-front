@@ -12,7 +12,7 @@
 import DescBooks from "../components/DescBooks.vue";
 
 const hp = {
-  src: "/img/harry-potter.png", 
+  src: "/img/harry-potter.svg", 
   alt: 'Livros de Harry Potter',
   subtitle: 'A Saga Harry Potter', 
   description: 'A história de Harry Potter, é uma fantasia que nos livros você sente medo e nos filmes você sente algo mais leve, amo como a autora deixa muitas pontas para você viajar na história e querer saber mais. Tanto que ela faz histórias adicionais para aumentar ainda mais a sua imaginação.',
@@ -20,15 +20,15 @@ const hp = {
 }
 
 const anne = {
-  src: "/img/anne.png", 
+  src: "/img/anne.svg", 
   alt: 'O Diário de Anne Frank',
   subtitle: 'O Diário de Anne Frank', 
-  description: 'É a história de menina Judaica que viveu o Holocasto, um dos piores acontecimento que ocorreu no mundo. Ela conta em seu diário, como ela e sua família viveu nesse momento.É um dos livros que eu quero ler ainda.',
+  description: 'É a história de menina Judaica que viveu o Holocasto, um dos piores acontecimento que ocorreu no mundo. Em meio à Segunda Guerra Mundial, Anne Frank foi também uma adolescente comum. Não muito diferente das garotas do século XXI, tinha seus sonhos e conflitos íntimos. Queria viajar pelo mundo e se tornar jornalista e escritora. Confinada no Anexo Secreto, um esconderijo onde esteve por mais de dois anos, entre outros sentimentos descobriu ali seu primeiro amor. É um dos livros que eu quero ler ainda.',
   href: 'https://www.amazon.com/-/pt/dp/6586181550/ref=sr_1_2?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3E898AIETP66J&keywords=diario+de+anne+frank&qid=1689097245&s=books&sprefix=diario+de+anne+frank%2Cstripbooks-intl-ship%2C216&sr=1-2', 
 }
 
 const prince = {
-  src: "/img/the-little-prince.png", 
+  src: "/img/the-little-prince.svg", 
   alt: 'Livro do Pequeno Principe',
   subtitle: 'O Pequeno Príncipe', 
   description: 'É uma história fascinante, eu sou apaixonada, o pequeno principe tem o poder de te ensinar a amar as pequenas coisas e com muita delicadeza. Ao ler, você percebe que o autor debate questões filosoficas, a inocência e a fantasia, e como as pessoas crescem e abandona a infância.',
@@ -39,6 +39,6 @@ const prince = {
 <style scoped>
 h1 {
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 30px;
 }
 </style>

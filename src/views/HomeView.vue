@@ -7,8 +7,8 @@
       </h1>
       <p class="autor">Oprah Winfrey</p>
     </div>
-    <div>
-      <img class="img-girl-books" src="../assets/book-main.png" alt="books" />
+    <div class="img-girl-books">
+      <img class="teste" src="../assets/book-girl.svg" alt="books" />
     </div>
     <div class="text-citacao">
       <h1 class="citacao">
@@ -24,8 +24,8 @@
       </p>
     </div>
     <div>
-      <AboutMe />
       <popular-books /> <!-- O mesmo que <PopularBooks />-->
+      <!-- <AboutMe /> -->
     </div>
   </div>
 </template>
@@ -52,10 +52,12 @@ import PopularBooks from "../components/PopularBooks.vue";
   font-size: 15px;
 }
 .img-girl-books {
-  width: 100%;
-  object-fit: cover;
-  object-position: bottom;
+  text-align: center;
   margin-bottom: 10px;
+}
+
+.teste {
+  width: 70%;
 }
 .container {
   display: flex;

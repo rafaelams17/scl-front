@@ -1,11 +1,9 @@
 <template>
-  <div>
+  <div class="background">
     <div id="about-section">
-      <div class="title-h1">
-        <p>Olá, eu sou Rafaela Santos Desenvolvedora Front-End</p>
-      </div>
+      <h1>Olá, eu sou Rafaela Santos. Desenvolvedora Front-end.</h1>
       <div>
-        <img class="img-me" src="../assets/me.png" alt="">
+        <img class="img-me" src="../assets/me.svg" alt="Minha foto">
       </div>
     </div>
     <div class="description">
@@ -19,6 +17,13 @@
 </script>
 
 <style scoped>
+.background {
+  background-color: #000;
+  color: #FCBA03;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
 #about-section {
   display: flex;
   flex-direction: row;
@@ -26,17 +31,17 @@
   align-items: center;
 }
 
-.title-h1 {
+h1 {
   font-size: 3.5em;
-  font-weight: 500;
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   text-align: center;
 }
 
 .img-me {
+  margin-right: 100px;
   width: 400px;
-  object-fit: cover;
+  object-position: cover;
   object-position: right;
 }
 

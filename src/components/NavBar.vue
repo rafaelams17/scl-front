@@ -5,7 +5,6 @@
     </div>
     <div>
       <router-link to="/" class="links-nav">Home</router-link> 
-      <router-link to="/about-me" class="links-nav">About Me</router-link> 
       <router-link to="/popular-books" class="links-nav">+Popular Books</router-link>
       <a href="https://google.com" target="_blank"><button class="btn-login">Login</button></a>
     </div>
@@ -20,6 +19,7 @@
   background: #000;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-bottom: solid #fcba03 2px;
 }
 .links-nav {
   color: #FCBA03;
