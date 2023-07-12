@@ -25,7 +25,7 @@
     </div>
     <div>
       <AboutMe />
-      <PopularBooks />
+      <popular-books /> <!-- O mesmo que <PopularBooks />-->
     </div>
   </div>
 </template>
@@ -51,7 +51,6 @@ import PopularBooks from "../components/PopularBooks.vue";
   text-align: right;
   font-size: 15px;
 }
-
 .img-girl-books {
   width: 100%;
   object-fit: cover;
@@ -70,5 +69,4 @@ import PopularBooks from "../components/PopularBooks.vue";
   padding: 10px;
   width: 50%;
 }
-
 </style>
