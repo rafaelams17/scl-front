@@ -2,14 +2,14 @@
   <div class="container">
     <!-- Imagem da Capa do Livro -->
     <div>
-      <img :src="src" :alt="alt" />
+      <img :src="props.src" :alt="props.alt" />
     </div>
     <!-- Descrição do Livro -->
-    <div class="teste">
-      <h2>{{ subtitle }}</h2>
-      <p class="description">{{ description }}</p>
+    <div class="container-second">
+      <h2>{{ props.subtitle }}</h2>
+      <p class="description">{{ props.description }}</p>
       <div class="center-btn">
-        <a :href="href" target="_blank" class="btn-leia-mais">Compre Agora</a>
+        <a :href="props.href" target="_blank" class="btn-leia-mais">Compre Agora</a>
       </div>
     </div>
   </div>
@@ -52,8 +52,7 @@ const props = defineProps({
   margin-bottom: 20px;
   padding: 20px;
 }
-
-.teste {
+.container-second {
   padding-left: 10px;
 }
 .description {
@@ -64,7 +63,6 @@ const props = defineProps({
   margin-top: 30px;
   text-align: center;
 }
-
 .btn-leia-mais {
   background-color: #fcba03;
   color: #000;
@@ -77,10 +75,9 @@ const props = defineProps({
   font-weight: bold;
   box-shadow: 2px 4px 4px rgba(252, 186, 3, 0.412);
 }
-
 .btn-leia-mais:hover {
   background-color: #e9cb7a;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: 0.6s ease;
 }
 </style>

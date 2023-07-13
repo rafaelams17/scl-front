@@ -1,41 +1,77 @@
 <template>
-  <div class="home">
-    <div class="text-citacao">
-      <div class="container">
-      <h1 class="text-description">
-        Organize as suas leituras com a gente, cadastre os seus livros favoritos
-        para ter mais controle da sua vida literária!
-      </h1>
+  <div class="container" id="mudar-tema" @click="darkLight()">
+    <h1 class="text-description">
+      Organize as suas leituras com a gente, cadastre os seus livros favoritos
+      para ter mais controle da sua vida literária!
+    </h1>
+
+    <i id="mode-icon" class="fa-solid fa-sun"></i>
+
+    <div class="center-img">
+      <img class="img-girl-books" src="../assets/book-girl.svg" alt="books" />
     </div>
-    <div class="img-girl-books">
-      <img class="teste" src="../assets/book-girl.svg" alt="books" />
-    </div>
-      <h2 class="citacao">
-        "A leitura é a chave que abre a porta para um mundo de descobertas,
-        imaginação e crescimento pessoal."
-      </h2>
-      <p class="autor">Oprah Winfrey</p>
-    </div>    
-    <div>
-      <popular-books /> <!-- O mesmo que <PopularBooks />-->
-      <!-- <AboutMe /> -->
-    </div>
+
+    <h2 class="citacao">
+      "A leitura é a chave que abre a porta para um mundo de descobertas,
+      imaginação e crescimento pessoal."
+    </h2>
+    <p class="autor">Oprah Winfrey</p>
+
+    <popular-books id="section-popular-books" />
+    <!-- O mesmo que <PopularBooks />-->
   </div>
 </template>
 
 <script setup>
-import AboutMe from "../components/AboutMe.vue";
 import PopularBooks from "../components/PopularBooks.vue";
+
+function darkLight() {
+  const mode = document.getElementById("mode-icon");
+  mode.addEventListener("click", () => {
+    if (mode.classList.contains("fa-sun")) {
+      mode.classList.remove("fa-sun");
+      mode.classList.add("fa-moon");
+      return;
+    } 
+      mode.classList.add("fa-sun");
+      mode.classList.remove("fa-moon");
+  });
+}
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Linden+Hill&display=swap");
-
-.text-citacao {
-  font-family: "Linden Hill", serif;
+.container {
   margin: 2%;
 }
-
+.text-description {
+  text-align: center;
+  /* font-weight: bold; */
+  border: 3px solid #fcba03;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+#mode-icon {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  font-size: 20px;
+}
+.dark#mudar-tema {
+  color: #000;
+  background-color: #fff;
+}
+.dark#mudar-tema i {
+  color: #fcba03;
+}
+.center-img {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.img-girl-books {
+  width: 70%;
+}
 .citacao {
   font-weight: normal;
   text-align: center;
@@ -43,25 +79,5 @@ import PopularBooks from "../components/PopularBooks.vue";
 .autor {
   text-align: right;
   font-size: 15px;
-}
-.img-girl-books {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.teste {
-  width: 70%;
-}
-.container {
-  display: flex;
-  justify-content: center;
-}
-.text-description {
-  text-align: center;
-  /* font-weight: bold; */
-  border: 3px solid #FCBA03;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 30px;
 }
 </style>

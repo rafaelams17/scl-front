@@ -1,19 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-const routes = [
+const routes = [ 
   {
     path: '/',
     name: 'home',
     component: HomeView,
+    children: [
+      {
+        path: 'section-popular-books', 
+        component: function () {
+            return import(/* webpackChunkName: "section-popular-books" */ '../components/PopularBooks.vue')
+        }
+      }
+    ]
   },
   {
-    path: '/popular-books',
-    name: 'popular-books',
+    path: '/login',
+    name: 'login',
     component: function () {
-      return import(/* webpackChunkName: "popular-books" */ '../components/PopularBooks.vue')
+      return import(/* webpackChunkName: "login" */ '../pages/LoginPage.vue')
     }
-  } 
+  }
 ]
 
 const router = createRouter({

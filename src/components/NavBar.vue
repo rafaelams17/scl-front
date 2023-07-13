@@ -1,45 +1,60 @@
 <template>
   <nav class="nav-bar">
     <div>
-      <img class="img-logo" alt="Books logo" src="../assets/logo.svg">
+      <img class="logo" alt="Books logo" src="../assets/logo.svg">
     </div>
     <div>
       <router-link to="/" class="links-nav">Home</router-link> 
-      <router-link to="/popular-books" class="links-nav">+Popular Books</router-link>
-      <a href="https://google.com" target="_blank"><button class="btn-login">Login</button></a>
+      <router-link to="#section-popular-books" @click="scrollToSection('#section-popular-books')" class="links-nav">+Popular Books</router-link>
+      <button @click="navigateToLogin()" class="btn-login">Login</button>
     </div>
   </nav>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function navigateToLogin() {
+  router.push('/login'); // acessar a rota com Router Vue
+};
+function scrollToSection (sectionId){
+  const element = document.querySelector(sectionId); 
+  if(element) {
+    element.scrollIntoView( {
+     behavior: 'smooth',
+     block: 'start'
+    });
+  }
+}
+</script>
 
 <style scoped>
 .nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #000;
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: solid #fcba03 2px;
 }
 .links-nav {
-  color: #FCBA03;
   font-weight: 500;
   font-size: 1em;
   text-decoration: none;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-right: 30px;
 }
-
 .links-nav:hover {
   padding-bottom: 5px;
-  border-bottom: 2px solid #FCBA03;
+  margin-bottom: 10px;
+  border-bottom: #fcba03 solid 2px;
   transition: .5s;
 }
-
-.img-logo {
+.logo {
   padding-left: 50px;
 }
-div .btn-login {
+.btn-login {
   background-color: #FCBA03;
   color: #000;
   font-size: 16px;
@@ -51,7 +66,6 @@ div .btn-login {
   cursor: pointer;
   margin-right: 10px;
 }
-
 .btn-login:hover {
   background-color: #fbd15bf6;
   transition: .5s;
