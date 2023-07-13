@@ -1,28 +1,21 @@
 <template>
   <div class="home">
     <div class="text-citacao">
-      <h1 class="citacao">
-        "A leitura é a chave que abre a porta para um mundo de descobertas,
-        imaginação e crescimento pessoal."
+      <div class="container">
+      <h1 class="text-description">
+        Organize as suas leituras com a gente, cadastre os seus livros favoritos
+        para ter mais controle da sua vida literária!
       </h1>
-      <p class="autor">Oprah Winfrey</p>
     </div>
     <div class="img-girl-books">
       <img class="teste" src="../assets/book-girl.svg" alt="books" />
     </div>
-    <div class="text-citacao">
-      <h1 class="citacao">
-        "A leitura é a ponte que conecta o passado ao presente e nos prepara
-        para o futuro." 
-      </h1>
-      <p class="autor">Ursula K. Le</p>
-    </div>
-    <div class="container">
-      <p class="text-description">
-        Organize as suas leituras com a gente, cadastre os seus livros favoritos
-        para ter mais controle da sua vida literária!
-      </p>
-    </div>
+      <h2 class="citacao">
+        "A leitura é a chave que abre a porta para um mundo de descobertas,
+        imaginação e crescimento pessoal."
+      </h2>
+      <p class="autor">Oprah Winfrey</p>
+    </div>    
     <div>
       <popular-books /> <!-- O mesmo que <PopularBooks />-->
       <!-- <AboutMe /> -->
@@ -65,10 +58,10 @@ import PopularBooks from "../components/PopularBooks.vue";
 }
 .text-description {
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   border: 3px solid #FCBA03;
-  border-radius: 50px;
-  padding: 10px;
-  width: 50%;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 30px;
 }
 </style>

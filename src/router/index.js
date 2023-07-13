@@ -6,13 +6,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-  }, 
-  {
-    path: '/about-me',
-    name: 'about-me',
-    component: function () {
-      return import(/* webpackChunkName: "about-me" */ '../components/AboutMe.vue')
-    }
   },
   {
     path: '/popular-books',
@@ -21,7 +14,6 @@ const routes = [
       return import(/* webpackChunkName: "popular-books" */ '../components/PopularBooks.vue')
     }
   } 
-  
 ]
 
 const router = createRouter({
