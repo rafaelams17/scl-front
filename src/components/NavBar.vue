@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-bar">
+  <nav v-if="(route.path == '/')" class="nav-bar">
     <div>
       <img class="logo" alt="Books logo" src="../assets/logo.svg">
     </div>
@@ -12,9 +12,10 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
+const route = useRoute();
 
 function navigateToLogin() {
   router.push('/login'); // acessar a rota com Router Vue

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div v-if="(route.path == '/')" class="footer">
     <div class="text-footer">
       <p>&copy; 2023 por Rafaela Santos</p>
       <p>Vitória da Conquista, BA</p>
@@ -18,7 +18,11 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+</script>
 
 <style scoped>
 .footer {

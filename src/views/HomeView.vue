@@ -58,13 +58,6 @@ function darkLight() {
   cursor: pointer;
   font-size: 20px;
 }
-.dark#mudar-tema {
-  color: #000;
-  background-color: #fff;
-}
-.dark#mudar-tema i {
-  color: #fcba03;
-}
 .center-img {
   text-align: center;
   margin-bottom: 20px;
@@ -78,6 +71,7 @@ function darkLight() {
 }
 .autor {
   text-align: right;
+  margin-right: 10%;
   font-size: 15px;
 }
 </style>
