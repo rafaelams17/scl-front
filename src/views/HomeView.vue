@@ -5,7 +5,7 @@
       para ter mais controle da sua vida literária!
     </h1>
 
-    <i id="mode-icon" class="fa-solid fa-sun"></i>
+    <i id="mode-icon" class="fa-solid fa-sun" title="Escolha o Modo"></i>
 
     <div class="center-img">
       <img class="img-girl-books" src="../assets/book-girl.svg" alt="books" />
@@ -56,7 +56,7 @@ function darkLight() {
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 30px;
 }
 .center-img {
   text-align: center;
