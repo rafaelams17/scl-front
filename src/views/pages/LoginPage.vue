@@ -1,33 +1,37 @@
 <template>
-  <img src="../../assets/logo.svg" alt="" />
-  <h1>Log In</h1>
-  <p>
-    Don't have account?<a href="#" @click="teste()">Create an account</a>
-  </p>
-  <form>
-    <label for="user">Username</label>
-    <input
-      type="text"
-      name="user"
-      id="user"
-      placeholder="Digite o seu usuário ..."
-    />
+  <div class="container">
+    <div class="container-title">
+      <img src="../../assets/logo.svg" alt="" />
+      <h1>Log In</h1>
+    </div>
 
-    <label for="password">Password</label>
-    <input
-      type="password"
-      name="password"
-      id="password"
-      placeholder="Digite sua senha ... "
-    />
+    <div class="container-create">
+      <p>Don't have account?</p>
+      <a href="#" @click="teste()">Create an account</a>
+    </div>
 
-    <a href="#">Forget Password?</a>
-
-    <input type="submit" value="Sign In" />
-  </form>
-  <button type="button" @click="backToHome()">
-    <i class="fa-solid fa-chevron-left"></i>Back
-  </button>
+    <form class="container-form">
+      <label for="user">Username</label>
+      <input
+        type="text"
+        name="user"
+        id="user"
+        placeholder="User ... "
+      />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password ... "
+      />
+      <a class="container-forget" href="#">Forget Password?</a>
+      <input class="btn-submit" type="submit" value="Sign In" />
+    </form>
+    <button class="btn-back" type="button" @click="backToHome()">
+      <i class="fa-solid fa-chevron-left"></i>Back
+    </button>
+  </div>
 </template>
 
 <script setup>
@@ -45,57 +49,64 @@ function teste() {
 </script>
 
 <style scoped>
-/* @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+
 * {
-  background: #fff;
+  background: #1b1a17;
 }
 .container {
-  height: 100vh;
-  width: 90%;
+  height: 85vh;
+  width: 350px;
   margin: 0 auto;
   margin-bottom: 5%;
   margin-top: 5%;
+  border-style: inset;
+  border: 2px solid #fcba03;
+  border-radius: 15px;
 }
-.container img {
+.container-title {
   display: flex;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15%;
+  border-radius: 15px;
 }
-.container h1 {
-  color: #000;
-  font-size: 3em;
-  text-align: center;
+.container-title img {
+  width: 60px;
 }
-.create {
-  padding-left: 20px;
-}
-.container p,
-a {
+.container-create {
   font-size: 12px;
-  color: #000;
-  text-align: center;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 5px;
 }
-.input-form {
-  padding: 10px;
-  margin-bottom: 5px;
-  width: 100%;
-  border: none;
-  border-bottom: 2px solid #fcba03;
+.container-create a:hover {
+  color: #faebd7;
+  transition: .5s;
 }
 .container-form {
-  margin-left: 30%;
-  margin-right: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
-.container-form label {
-  color: #000;
+.container-form #user, #password {
+  border: none;
+  border-bottom: 2px solid #fcba03;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
-.container-form a {
-  display: block;
-  float: right;
-  padding-top: 5px;
-  margin-right: 10px;
-  color: #000;
-  font-size: 0.8em;
+.container-forget {
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+.container-forget:hover {
+  color: aliceblue;
+  transition: .5s;
 }
 .btn-submit {
   padding-left: 30px;
@@ -109,8 +120,12 @@ a {
   font-size: 16px;
   cursor: pointer;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10%;
+}
+.btn-submit:hover {
+  transition: .5s;
+  background-color: #fbd15bf6;
 }
 .btn-back {
   padding-left: 20px;
@@ -120,12 +135,12 @@ a {
   border: 2px solid #fcba03;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.193);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
-  text-align: ;
+  margin-left: 10px;
 }
 .btn-back i {
   background-color: #000;
   padding-right: 10px;
-} */
+} 
 </style>
