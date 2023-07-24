@@ -1,33 +1,28 @@
 <template>
   <div class="container">
     <form class="container-form">
-        <div class="container-title">
-      <img src="../../assets/logo.svg" alt="" />
-      <h1>Log In</h1>
-    </div>
+      <div class="container-title">
+        <img src="../../assets/logo.svg" alt="" />
+        <h1>Reset your password</h1>
+      </div>
 
-    <div class="container-create">
-      <p>Don't have account?</p>
-      <a href="#" @click="registerUser()">Create an account</a>
-    </div>
-      <label for="user">Username</label>
-      <input
-        type="text"
-        name="user"
-        id="user"
-        placeholder="User ... "
-      />
-      <label for="password">Password</label>
+      <label for="password">New Password</label>
       <input
         type="password"
-        name="password"
-        id="password"
-        placeholder="Password ... "
+        name="newPassword"
+        id="newPassword"
+        placeholder="New Password ... "
       />
-      <a class="container-forget" href="#" @click="forgetPassword()">Forget Password?</a>
-      <input class="btn-submit" type="submit" value="Sign In" />
-      <button class="btn-back" type="button" @click="backToHome()">
-          <i class="fa-solid fa-chevron-left"></i>Back
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        placeholder="Confirm Password ... "
+      />
+      <input class="btn-submit" type="submit" value="Reset Password" />
+      <button class="btn-back" type="button" @click="backToLogin()">
+        <i class="fa-solid fa-chevron-left"></i>Back
       </button>
     </form>
   </div>
@@ -38,15 +33,9 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-// voltar para página home
-function backToHome() {
-  router.push("/");
-}
-function registerUser() {
-    router.push("/register");
-}
-function forgetPassword() {
-  router.push('/forget-password');
+// voltar para página login
+function backToLogin() {
+  router.push("/login");
 }
 </script>
 
@@ -60,65 +49,43 @@ function forgetPassword() {
   width: 500px;
   margin: 0 auto;
   margin-top: 10%;
-  border-radius: 15px;
-
 }
 .container-title {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 20px;
   padding-top: 15%;
   border-radius: 15px;
 }
 .container-title h1 {
-  font-size: 2.5em;
+  padding-bottom: 20px;
 }
 .container-title img {
   width: 60px;
-}
-.container-create {
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
-  margin-top: 5px;
-}
-.container-create a:hover {
-  color: #faebd7;
-  transition: .5s;
 }
 .container-form {
   display: flex;
   flex-direction: column;
   height: 600px;
-  font-size: 18px;
   margin: 0 auto;
   padding: 10px;
+  border-radius: 15px;
   border-radius: 15px;
   border: 2px solid #fcba03;
 }
 .container-form label {
   font-size: 16px;
 }
-.container-form #user, #password {
+.container-form #newPassword,
+#confirmPassword {
   border: none;
   border-bottom: 2px solid #fcba03;
   font-size: 16px;
   margin-top: 2%;
   margin-bottom: 2%;
 }
-.container-forget {
-  font-size: 14px;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 5px;
-}
-.container-forget:hover {
-  color: aliceblue;
-  transition: .5s;
-}
+
 .btn-submit {
   padding-left: 30px;
   padding-right: 30px;
@@ -136,7 +103,7 @@ function forgetPassword() {
   margin-bottom: 10%;
 }
 .btn-submit:hover {
-  transition: .5s;
+  transition: 0.5s;
   background-color: #fbd15bf6;
 }
 .btn-back {
@@ -152,7 +119,7 @@ function forgetPassword() {
 .btn-back i {
   background-color: #000;
   padding-right: 10px;
-} 
+}
 @media screen and (max-width: 600px) {
   .container {
     width: 450px;
@@ -168,15 +135,10 @@ function forgetPassword() {
     width: 350px;
   }
   .container-title h1 {
-    font-size: 35px;
+    font-size: 24px;
   }
   .container-form label {
     font-size: 14px;
-  }
-  .container-create {
-    font-size: 12px;
-    gap: 5px;
-    padding-bottom: 10px;
   }
 }
 </style>

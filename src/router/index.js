@@ -21,6 +21,20 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "login" */ '../views/pages/LoginPage.vue')
     }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: function () {
+      return import(/* webpackChunkName: "login" */ '../views/pages/RegisterPage.vue')
+    }
+  },
+  {
+    path: '/forget-password',
+    name: 'forget-password',
+    component: function () {
+      return import(/* webpackChunkName: "login" */ '../views/pages/ForgetPassword.vue')
+    }
   }
 ]
 
