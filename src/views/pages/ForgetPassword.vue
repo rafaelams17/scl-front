@@ -124,10 +124,16 @@ function backToLogin() {
   .container {
     width: 450px;
   }
+  .container-title h1 {
+    font-size: 24px;
+  }
 }
 @media screen and (max-width: 500px) {
   .container {
-    width: 400px;
+    width: 350px;
+  }
+  .container-title h1 {
+    font-size: 26px;
   }
 }
 @media screen and (max-width: 400px) {
@@ -139,6 +145,17 @@ function backToLogin() {
   }
   .container-form label {
     font-size: 14px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .container {
+    width: 250px;
+  }
+  .container-title h1 {
+    font-size: 20px;
+  }
+  .container-form label {
+    font-size: 12px;
   }
 }
 </style>

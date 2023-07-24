@@ -27,7 +27,7 @@
       <a class="container-forget" href="#" @click="forgetPassword()">Forget Password?</a>
       <input class="btn-submit" type="submit" value="Sign In" />
       <button class="btn-back" type="button" @click="backToHome()">
-          <i class="fa-solid fa-chevron-left"></i>Back
+          <i class="fa-solid fa-chevron-left"></i>Home
       </button>
     </form>
   </div>
