@@ -61,7 +61,6 @@ function backToLogin() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 26px;
   padding-top: 5%;
   border-radius: 15px;
 }
@@ -71,7 +70,7 @@ function backToLogin() {
 .container-form {
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 650px;
   font-size: 18px;
   margin: 0 auto;
   padding: 10px;
