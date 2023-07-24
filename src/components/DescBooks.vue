@@ -1,15 +1,17 @@
 <template>
   <div class="container">
     <!-- Imagem da Capa do Livro -->
-    <div>
-      <img :src="props.src" :alt="props.alt" />
-    </div>
+
+    <img :src="props.src" :alt="props.alt" />
+
     <!-- Descrição do Livro -->
     <div class="container-second">
       <h2>{{ props.subtitle }}</h2>
       <p class="description">{{ props.description }}</p>
       <div class="center-btn">
-        <a :href="props.href" target="_blank" class="btn-leia-mais">Compre Agora</a>
+        <a :href="props.href" target="_blank" class="btn-leia-mais"
+          >Compre Agora</a
+        >
       </div>
     </div>
   </div>
@@ -47,7 +49,7 @@ const props = defineProps({
   border: #fcba03 solid 2px;
   border-radius: 20px;
   margin: 0 auto;
-  width: 60%;
+  width: 800px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
@@ -79,5 +81,46 @@ const props = defineProps({
   background-color: #e9cb7a;
   cursor: pointer;
   transition: 0.6s ease;
+}
+@media screen and (max-width: 900px) {
+  .container {
+    width: 700px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+  }
+  .container img {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .container {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .container {
+    width: 280px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .container {
+    width: 250px;
+  }
 }
 </style>

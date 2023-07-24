@@ -45,12 +45,13 @@ function darkLight() {
   margin: 2%;
 }
 .text-description {
+  font-size: 28px;
   text-align: center;
   /* font-weight: bold; */
   border: 3px solid #fcba03;
   border-radius: 20px;
   padding: 20px;
-  margin-bottom: 15px;
+  margin: 20px;
 }
 #mode-icon {
   display: flex;
@@ -73,5 +74,15 @@ function darkLight() {
   text-align: right;
   margin-right: 10%;
   font-size: 15px;
+}
+@media screen and (max-width: 700px) {
+  .text-description, .citacao {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .text-description {
+    font-size: 14px;
+  }
 }
 </style>

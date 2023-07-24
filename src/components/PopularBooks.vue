@@ -40,4 +40,9 @@ h1 {
   text-align: center;
   margin-top: 30px;
 }
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 24px;
+  }
+}
 </style>

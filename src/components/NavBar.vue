@@ -1,37 +1,54 @@
 <template>
-  <nav v-if="(route.path == '/')" class="nav-bar">
+  <nav v-if="route.path == '/'" class="nav-bar">
     <div>
-      <img class="logo" alt="Books logo" src="../assets/logo.svg">
+      <img class="logo" alt="Books logo" src="../assets/logo.svg" />
     </div>
-    <div>
-      <router-link to="/" class="links-nav">Home</router-link> 
-      <router-link to="#section-popular-books" @click="scrollToSection('#section-popular-books')" class="links-nav">+Popular Books</router-link>
+    <div class="navBar">
+      <i class="fa-solid fa-bars" id="mobile-menu"></i>
+      <router-link to="/" class="links-nav">Home</router-link>
+      <router-link
+        to="#section-popular-books"
+        @click="scrollToSection('#section-popular-books')"
+        class="links-nav"
+        >+Popular Books</router-link
+      >
       <button @click="navigateToLogin()" class="btn-login">Login</button>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
+const mobileMenu = document.querySelector('#mobile-menu');
+
+function showMenu(){
+  mobileMenu.addEventListener('click', () => {
+    mobileMenu.classList.toggle('bx-x');
+    navBar.classList.toggle('active');
+});
+}
 
 function navigateToLogin() {
-  router.push('/login'); // acessar a rota com Router Vue
-};
-function scrollToSection (sectionId){
-  const element = document.querySelector(sectionId); 
-  if(element) {
-    element.scrollIntoView( {
-     behavior: 'smooth',
-     block: 'start'
+  router.push("/login"); // acessar a rota com Router Vue
+}
+function scrollToSection(sectionId) {
+  const element = document.querySelector(sectionId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
     });
   }
 }
 </script>
 
 <style scoped>
+#mobile-menu {
+  display: none;
+}
 .nav-bar {
   display: flex;
   justify-content: space-between;
@@ -50,13 +67,13 @@ function scrollToSection (sectionId){
   padding-bottom: 5px;
   margin-bottom: 10px;
   border-bottom: #fcba03 solid 2px;
-  transition: .5s;
+  transition: 0.5s;
 }
 .logo {
   padding-left: 50px;
 }
 .btn-login {
-  background-color: #FCBA03;
+  background-color: #fcba03;
   color: #000;
   font-size: 16px;
   border-radius: 30px;
@@ -69,6 +86,11 @@ function scrollToSection (sectionId){
 }
 .btn-login:hover {
   background-color: #fbd15bf6;
-  transition: .5s;
+  transition: 0.5s;
+}
+@media screen and (max-width: 600px) {
+  #mobile-menu {
+    display: block;
+  }
 }
 </style>
