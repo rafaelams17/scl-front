@@ -43,7 +43,7 @@ function backToHome() {
   router.push("/");
 }
 function registerUser() {
-    router.push("/register");
+  router.push("/register");
 }
 function forgetPassword() {
   router.push('/forget-password');
@@ -57,7 +57,7 @@ function forgetPassword() {
   background: #1b1a17;
 }
 .container {
-  width: 500px;
+  width: 50vh;
   margin: 0 auto;
   border-radius: 15px;
 }
@@ -72,6 +72,7 @@ function forgetPassword() {
   font-size: 2.5em;
 }
 .container-title img {
+  padding-top: 10%;
   width: 60px;
 }
 .container-create {
@@ -90,7 +91,7 @@ function forgetPassword() {
 .container-form {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 80vh;
   font-size: 18px;
   margin: 0 auto;
   padding: 10px;
@@ -152,20 +153,9 @@ function forgetPassword() {
   background-color: #000;
   padding-right: 10px;
 } 
-@media screen and (max-width: 600px) {
-  .container {
-    width: 450px;
-  }
-}
-@media screen and (max-width: 500px) {
-  .container {
-    width: 400px;
-  }
-}
+
 @media screen and (max-width: 400px) {
-  .container {
-    width: 350px;
-  }
+  
   .container-title h1 {
     font-size: 35px;
   }

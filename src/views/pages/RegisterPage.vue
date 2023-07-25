@@ -54,7 +54,7 @@ function backToLogin() {
 }
 .container {
   border-radius: 15px;
-  width: 450px;
+  width: 50vh;
   margin: 0 auto;
 }
 .container-title {
@@ -67,19 +67,19 @@ function backToLogin() {
   font-size: 1.5em;
 }
 .container-title img {
+  padding-top: 10%;
   width: 60px;
 }
 .container-form {
   display: flex;
   flex-direction: column;
-  height: 560px;
-  font-size: 18px;
+  height: 80vh;
   margin: 0 auto;
   padding: 10px;
   border-radius: 15px;
   border: 2px solid #fcba03;
   margin-bottom: 5%;
-  margin-top: 3%;
+  margin-top: 8%;
 }
 .container-form label {
   font-size: 16px;
@@ -129,23 +129,14 @@ function backToLogin() {
   background-color: #000;
   padding-right: 10px;
 }
-@media screen and (max-width: 600px) {
-  .container {
-    width: 450px;
-  }
-}
+
 @media screen and (max-width: 500px) {
-  .container {
-    width: 350px;
-  }
+
   .container-title h1 {
     font-size: 26px;
   }
 }
 @media screen and (max-width: 400px) {
-  .container {
-    width: 350px;
-  }
   .container-title h1 {
     font-size: 24px;
   }
@@ -154,9 +145,6 @@ function backToLogin() {
   }
 }
 @media screen and (max-width: 300px) {
-  .container {
-    width: 250px;
-  }
   .container-title h1 {
     font-size: 20px;
   }

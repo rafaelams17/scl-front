@@ -46,14 +46,13 @@ function backToLogin() {
   background: #1b1a17;
 }
 .container {
-  width: 500px;
+  width: 50vh;
   margin: 0 auto;
 }
 .container-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 20px;
   padding-top: 5%;
   border-radius: 15px;
 }
@@ -61,12 +60,14 @@ function backToLogin() {
   padding-bottom: 20px;
 }
 .container-title img {
+  padding-top: 10%;
+
   width: 60px;
 }
 .container-form {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 60vh;
   margin: 0 auto;
   padding: 10px;
   border-radius: 15px;
@@ -121,25 +122,18 @@ function backToLogin() {
   padding-right: 10px;
 }
 @media screen and (max-width: 600px) {
-  .container {
-    width: 450px;
-  }
+
   .container-title h1 {
     font-size: 24px;
   }
 }
 @media screen and (max-width: 500px) {
-  .container {
-    width: 350px;
-  }
+
   .container-title h1 {
     font-size: 26px;
   }
 }
 @media screen and (max-width: 400px) {
-  .container {
-    width: 350px;
-  }
   .container-title h1 {
     font-size: 24px;
   }
@@ -148,9 +142,7 @@ function backToLogin() {
   }
 }
 @media screen and (max-width: 300px) {
-  .container {
-    width: 250px;
-  }
+
   .container-title h1 {
     font-size: 20px;
   }
