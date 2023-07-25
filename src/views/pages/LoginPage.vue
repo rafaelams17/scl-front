@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="container-form">
+    <form class="container-form" @submit="signIn">
         <div class="container-title">
       <img src="../../assets/logo.svg" alt="" />
       <h1>Log In</h1>
@@ -47,6 +47,10 @@ function registerUser() {
 }
 function forgetPassword() {
   router.push('/forget-password');
+}
+async function signIn(e) {
+  e.preventDefault();
+  router.push('/admin');
 }
 </script>
 

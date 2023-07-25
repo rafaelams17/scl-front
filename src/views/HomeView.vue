@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="mudar-tema" @click="darkLight()">
+  <div class="container" id="back" @click="darkLight()">
     <p class="text-description">
       Organize as suas leituras com a gente, cadastre os seus livros favoritos
       para ter mais controle da sua vida literária!
@@ -19,6 +19,9 @@
 
     <popular-books id="section-popular-books" />
     <!-- O mesmo que <PopularBooks />-->
+    <div id="icon-up" @click="backToStart('#back')">
+      <i class="fa-solid fa-chevron-left fa-rotate-90"></i>
+    </div>
   </div>
 </template>
 
@@ -36,6 +39,15 @@ function darkLight() {
     mode.classList.add("fa-sun");
     mode.classList.remove("fa-moon");
   });
+}
+function backToStart(sectionId) {
+  const element = document.querySelector(sectionId);
+  if (element) {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 }
 </script>
 
@@ -71,6 +83,17 @@ function darkLight() {
   text-align: right;
   margin-right: 10%;
   font-size: 12px;
+}
+#icon-up {
+  text-align: right;
+}
+#icon-up i {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #fcba03;
+  border: 2px solid #000;
+  border-radius: 50%;
+  color: #000;
 }
 @media screen and (max-width: 700px) {
   .text-description {
