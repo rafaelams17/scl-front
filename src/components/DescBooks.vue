@@ -134,5 +134,8 @@ const props = defineProps({
   .container {
     width: 250px;
   }
+  .center-btn {
+    font-size: 14px;
+  }
 }
 </style>
