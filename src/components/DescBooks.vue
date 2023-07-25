@@ -54,6 +54,9 @@ const props = defineProps({
   margin-bottom: 20px;
   padding: 20px;
 }
+.container h2 {
+  font-size: 20px;
+}
 .container-second {
   padding-left: 10px;
 }
@@ -97,6 +100,11 @@ const props = defineProps({
     width: 50%;
     margin: 0 auto;
   }
+  .container h2 {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+  }
 }
 @media screen and (max-width: 700px) {
   .container {
@@ -116,6 +124,10 @@ const props = defineProps({
 @media screen and (max-width: 400px) {
   .container {
     width: 280px;
+  }
+  .container h2 {
+    font-size: 18px;
+    text-align: center;
   }
 }
 @media screen and (max-width: 300px) {

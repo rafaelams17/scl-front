@@ -59,15 +59,13 @@ function forgetPassword() {
 .container {
   width: 500px;
   margin: 0 auto;
-  margin-top: 10%;
   border-radius: 15px;
-
 }
 .container-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15%;
+  padding-top: 5%;
   border-radius: 15px;
 }
 .container-title h1 {
@@ -92,12 +90,13 @@ function forgetPassword() {
 .container-form {
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 500px;
   font-size: 18px;
   margin: 0 auto;
   padding: 10px;
   border-radius: 15px;
   border: 2px solid #fcba03;
+  margin-top: 8%;
 }
 .container-form label {
   font-size: 16px;

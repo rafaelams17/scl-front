@@ -3,8 +3,7 @@
     <div>
       <img class="logo" alt="Books logo" src="../assets/logo.svg" />
     </div>
-    <div class="navBar">
-      <i class="fa-solid fa-bars" id="mobile-menu"></i>
+    <div>
       <router-link to="/" class="links-nav">Home</router-link>
       <router-link
         to="#section-popular-books"
@@ -22,14 +21,6 @@ import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
-const mobileMenu = document.querySelector('#mobile-menu');
-
-function showMenu(){
-  mobileMenu.addEventListener('click', () => {
-    mobileMenu.classList.toggle('bx-x');
-    navBar.classList.toggle('active');
-});
-}
 
 function navigateToLogin() {
   router.push("/login"); // acessar a rota com Router Vue
@@ -46,9 +37,6 @@ function scrollToSection(sectionId) {
 </script>
 
 <style scoped>
-#mobile-menu {
-  display: none;
-}
 .nav-bar {
   display: flex;
   justify-content: space-between;
@@ -89,8 +77,11 @@ function scrollToSection(sectionId) {
   transition: 0.5s;
 }
 @media screen and (max-width: 600px) {
-  #mobile-menu {
-    display: block;
+  .links-nav {
+    display: none;
+  }
+  .btn-login{
+    font-size: 14px;
   }
 }
 </style>

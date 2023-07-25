@@ -1,9 +1,9 @@
 <template>
   <div class="container" id="mudar-tema" @click="darkLight()">
-    <h1 class="text-description">
+    <p class="text-description">
       Organize as suas leituras com a gente, cadastre os seus livros favoritos
       para ter mais controle da sua vida literária!
-    </h1>
+    </p>
 
     <i id="mode-icon" class="fa-solid fa-sun" title="Escolha o Modo"></i>
 
@@ -11,10 +11,10 @@
       <img class="img-girl-books" src="../assets/book-girl.svg" alt="books" />
     </div>
 
-    <h2 class="citacao">
+    <p id="citacao">
       "A leitura é a chave que abre a porta para um mundo de descobertas,
       imaginação e crescimento pessoal."
-    </h2>
+    </p>
     <p class="autor">Oprah Winfrey</p>
 
     <popular-books id="section-popular-books" />
@@ -32,9 +32,9 @@ function darkLight() {
       mode.classList.remove("fa-sun");
       mode.classList.add("fa-moon");
       return;
-    } 
-      mode.classList.add("fa-sun");
-      mode.classList.remove("fa-moon");
+    }
+    mode.classList.add("fa-sun");
+    mode.classList.remove("fa-moon");
   });
 }
 </script>
@@ -45,13 +45,11 @@ function darkLight() {
   margin: 2%;
 }
 .text-description {
-  font-size: 28px;
+  background-color: #fcba03;
+  color: #000;
+  margin: 15px;
+  padding: 15px;
   text-align: center;
-  /* font-weight: bold; */
-  border: 3px solid #fcba03;
-  border-radius: 20px;
-  padding: 20px;
-  margin: 20px;
 }
 #mode-icon {
   display: flex;
@@ -66,23 +64,20 @@ function darkLight() {
 .img-girl-books {
   width: 70%;
 }
-.citacao {
-  font-weight: normal;
+#citacao {
   text-align: center;
 }
 .autor {
   text-align: right;
   margin-right: 10%;
-  font-size: 15px;
+  font-size: 12px;
 }
 @media screen and (max-width: 700px) {
-  .text-description, .citacao {
-    font-size: 20px;
-  }
-}
-@media screen and (max-width: 600px) {
   .text-description {
-    font-size: 14px;
+    font-size: 1em;
+  }
+  #mode-icon {
+    font-size: 20px;
   }
 }
 </style>

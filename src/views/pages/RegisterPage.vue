@@ -53,16 +53,18 @@ function backToLogin() {
   background: #1b1a17;
 }
 .container {
-  width: 500px;
+  border-radius: 15px;
+  width: 450px;
   margin: 0 auto;
-  margin-top: 10%;
 }
 .container-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 5%;
   border-radius: 15px;
+}
+.container-title h1{
+  font-size: 1.5em;
 }
 .container-title img {
   width: 60px;
@@ -70,14 +72,14 @@ function backToLogin() {
 .container-form {
   display: flex;
   flex-direction: column;
-  height: 650px;
+  height: 560px;
   font-size: 18px;
   margin: 0 auto;
   padding: 10px;
   border-radius: 15px;
-  border-radius: 15px;
   border: 2px solid #fcba03;
-  margin-bottom: 15%;
+  margin-bottom: 5%;
+  margin-top: 3%;
 }
 .container-form label {
   font-size: 16px;
@@ -107,7 +109,7 @@ function backToLogin() {
   width: 90%;
   margin: 0 auto;
   margin-top: 20px;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 .btn-submit:hover {
   transition: 0.5s;
