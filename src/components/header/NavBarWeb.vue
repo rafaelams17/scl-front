@@ -1,7 +1,7 @@
 <template>
   <nav v-if="route.path == '/'" class="nav-bar">
     <div>
-      <img class="logo" alt="Books logo" src="../assets/logo.svg" />
+      <img class="logo" alt="Books logo" src="../../assets/logo.svg" />
     </div>
     <div>
       <router-link to="/" class="links-nav">Home</router-link>

@@ -1,25 +1,12 @@
 <template>
-  <NavBar />
-  <router-view />
-  <Footer /> 
+  <MainLayout />
 </template>
 
 <script setup>
-import NavBar from './components/NavBar.vue';
-import Footer from './components/Footer.vue';
+import MainLayout from './layouts/MainLayout.vue';
 
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sarala&display=swap');
-* {
-  margin: 0;
-  padding:  0;
-  font-family: 'Poppins', Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-  text-decoration: none;
-  background-color: #000;
-  color: #fcba03;
-}
 
 </style>

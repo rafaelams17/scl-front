@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import DescBooks from "../components/DescBooks.vue";
+import DescBooks from "../contentWeb/DescBooks.vue";
 
 const hp = {
   src: "/img/harry-potter.svg", 

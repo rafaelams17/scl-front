@@ -6,13 +6,13 @@
     </div>
     <div class="social-media">
       <a href="https://www.linkedin.com/in/rafaelasantoss/" target="_blank"
-        ><img src="../assets/linkedin.svg" alt="linkedin"
+        ><img src="../../assets/linkedin.svg" alt="linkedin"
       /></a>
       <a href="https://www.instagram.com/rafaa_vs23/" target="_blank"
-        ><img src="../assets/instagram.svg" alt="instagram"
+        ><img src="../../assets/instagram.svg" alt="instagram"
       /></a>
       <a href="https://github.com/rafaelams17/" target="_blank"
-        ><img src="../assets/github.svg" alt="github"
+        ><img src="../../assets/github.svg" alt="github"
       /></a>
     </div>
   </div>

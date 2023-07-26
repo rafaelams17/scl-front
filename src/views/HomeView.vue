@@ -1,8 +1,7 @@
 <template>
   <div class="container" id="back" @click="darkLight()">
     <p class="text-description">
-      Organize as suas leituras com a gente, cadastre os seus livros favoritos
-      para ter mais controle da sua vida literária!
+      {{ description }}
     </p>
 
     <i id="mode-icon" class="fa-solid fa-sun" title="Escolha o Modo"></i>
@@ -11,11 +10,8 @@
       <img class="img-girl-books" src="../assets/book-girl.svg" alt="books" />
     </div>
 
-    <p id="citacao">
-      "A leitura é a chave que abre a porta para um mundo de descobertas,
-      imaginação e crescimento pessoal."
-    </p>
-    <p class="autor">Oprah Winfrey</p>
+    <p id="citacao">"{{ citacao }}"</p>
+    <p class="autor">{{ author }}</p>
 
     <popular-books id="section-popular-books" />
     <!-- O mesmo que <PopularBooks />-->
@@ -26,7 +22,13 @@
 </template>
 
 <script setup>
-import PopularBooks from "../components/PopularBooks.vue";
+import PopularBooks from "../components/contentWeb/PopularBooks.vue";
+
+const description =
+  "Organize as suas leituras com a gente, cadastre os seus livros favoritos para ter mais controle da sua vida literária!";
+const citacao =
+  "A leitura é a chave que abre a porta para um mundo de descobertas, imaginação e crescimento pessoal.";
+const author = "Oprah Winfrey";
 
 function darkLight() {
   const mode = document.getElementById("mode-icon");
@@ -62,6 +64,7 @@ function backToStart(sectionId) {
   margin: 15px;
   padding: 15px;
   text-align: center;
+  font-size: 20px;
 }
 #mode-icon {
   display: flex;

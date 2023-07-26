@@ -50,7 +50,7 @@ function forgetPassword() {
 }
 async function signIn(e) {
   e.preventDefault();
-  router.push('/admin');
+  router.push('/book');
 }
 </script>
 

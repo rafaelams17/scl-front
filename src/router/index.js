@@ -10,7 +10,7 @@ const routes = [
       {
         path: 'section-popular-books', 
         component: function () {
-            return import(/* webpackChunkName: "section-popular-books" */ '../components/PopularBooks.vue');
+          return import(/* webpackChunkName: "section-popular-books" */ '../components/contentWeb/PopularBooks.vue');
         }
       }
     ]
@@ -19,29 +19,38 @@ const routes = [
     path: '/login',
     name: 'login',
     component: function () {
-      return import(/* webpackChunkName: "login" */ '../views/pages/LoginPage.vue');
+      return import(/* webpackChunkName: "login" */ '../components/user/LoginPage.vue');
     }
   },
   {
     path: '/register',
     name: 'register',
     component: function () {
-      return import(/* webpackChunkName: "register" */ '../views/pages/RegisterPage.vue');
+      return import(/* webpackChunkName: "register" */ '../components/user/RegisterPage.vue');
     }
   },
   {
     path: '/forget-password',
     name: 'forget-password',
     component: function () {
-      return import(/* webpackChunkName: "forget-password" */ '../views/pages/ForgetPassword.vue');
+      return import(/* webpackChunkName: "forget-password" */ '../components/user/ForgetPassword.vue');
     }
   },
   {
-    path: '/admin',
-    name: 'admin',
+    path: '/book',
+    name: 'book',
     component: function () {
-      return import(/* webpackChunkName: "admin" */ '../layouts/MainLayout.vue');
-    }
+      return import(/* webpackChunkName: "book" */ '../layouts/BookLayout.vue');
+    },
+    children: [
+      {
+        path: '', 
+        name: 'dashboard',
+        component: function () {
+            return import(/* webpackChunkName: "dashboard" */ '../views/DashboardView.vue');
+        }
+      }
+    ]
   }
 ]
 
