@@ -2,13 +2,11 @@
   <div id="container">
     <NavBarBook />
     <router-view />
-    <FooterBook />
   </div>
 </template>
 
 <script setup>
 import NavBarBook from "../components/header/NavBarBook.vue";
-import FooterBook from "../components/footer/FooterBook.vue";
 
 </script>
 

@@ -1,29 +1,37 @@
 <template>
   <div class="container">
-    <form class="container-form">
-      <div class="container-title">
-        <img src="../../assets/logo.svg" alt="" />
+    <form class="form">
+      <a href="#" @click="backToLogin()" title="Login"
+        ><i id="backHome" class="fa-solid fa-arrow-left"></i
+      ></a>
+      <div class="title-main">
+        <i class="fa-brands fa-pushed"></i>
         <h1>Reset your password</h1>
       </div>
 
-      <label for="password">New Password</label>
-      <input
-        type="password"
-        name="newPassword"
-        id="newPassword"
-        placeholder="New Password ... "
-      />
-      <label for="confirmPassword">Confirm Password</label>
-      <input
-        type="password"
-        name="confirmPassword"
-        id="confirmPassword"
-        placeholder="Confirm Password ... "
-      />
-      <input class="btn-submit" type="submit" value="Reset Password" />
-      <button class="btn-back" type="button" @click="backToLogin()">
-        <i class="fa-solid fa-chevron-left"></i>Back
-      </button>
+      <div class="campo-user">
+        <p>Please Enter Your Email Address To Verification, if you have account.</p>
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" name="email" id="email" placeholder="Email" />
+
+        <div v-if="email">
+          <i class="fa-solid fa-lock"></i>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <i class="fa-solid fa-lock"></i>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="Confirm Password"
+        />
+        </div>
+      </div>
+      <input class="btn-submit" type="submit" value="Send" />
     </form>
   </div>
 </template>
@@ -31,6 +39,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 
+const email = false;
 const router = useRouter();
 
 // voltar para página login
@@ -43,111 +52,91 @@ function backToLogin() {
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 
 * {
-  background: #1b1a17;
+  background-color: #fff;
+  color: #000;
 }
 .container {
-  width: 50vh;
   margin: 0 auto;
+  width: 80vh;
+  height: 80vh;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
-.container-title {
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.title-main {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 5%;
-  border-radius: 15px;
 }
-.container-title h1 {
-  padding-bottom: 20px;
+.title-main h1 {
+  font-size: 30px;
 }
-.container-title img {
-  padding-top: 10%;
-
-  width: 60px;
+.title-main i {
+  font-size: 25px;
 }
-.container-form {
-  display: flex;
-  flex-direction: column;
-  height: 60vh;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 15px;
-  border-radius: 15px;
-  border: 2px solid #fcba03;
-  margin-top: 8%;
-}
-.container-form label {
-  font-size: 16px;
-}
-.container-form #newPassword,
+#email, #password,
 #confirmPassword {
+  display: flex;
+  width: 100%;
   border: none;
   border-bottom: 2px solid #fcba03;
-  font-size: 16px;
   margin-top: 2%;
   margin-bottom: 2%;
 }
-
+#email:focus, #password:focus, #confirmPassword:focus  {
+  outline: none;
+}
+.campo-user {
+  margin: 0 auto;
+  width: 60%;
+  margin-bottom: 20px;
+}
+.campo-user p {
+  font-size: 12px;
+  text-align: center;
+}
 .btn-submit {
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50px;
-  border: none;
   background-color: #fcba03;
   color: #000;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.193);
-  font-weight: 500;
-  font-size: 16px;
-  cursor: pointer;
-  width: 90%;
+  border: none;
+  width: 60%;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 10%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
 }
 .btn-submit:hover {
   transition: 0.5s;
-  background-color: #fbd15bf6;
+  background-color: #fbcd01;
 }
-.btn-back {
-  border-radius: 50px;
-  background-color: #000;
-  border: 2px solid #fcba03;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.193);
-  font-weight: 600;
-  font-size: 14px;
+#backHome{
+  padding: 20px;
   cursor: pointer;
-  width: 100px;
+  font-size: 20px;
 }
-.btn-back i {
-  background-color: #000;
-  padding-right: 10px;
+@media screen and (max-width: 750px) {
+  .container {
+    width: 60vh;
+    margin-top: 15%;
+  }
+  .campo-user {
+    width: 80%;
+  }
 }
 @media screen and (max-width: 600px) {
-
-  .container-title h1 {
-    font-size: 24px;
+  .container {
+    width: 100%;
+    height: 80vh;
   }
-}
-@media screen and (max-width: 500px) {
-
-  .container-title h1 {
-    font-size: 26px;
-  }
-}
-@media screen and (max-width: 400px) {
-  .container-title h1 {
-    font-size: 24px;
-  }
-  .container-form label {
-    font-size: 14px;
-  }
-}
-@media screen and (max-width: 300px) {
-
-  .container-title h1 {
-    font-size: 20px;
-  }
-  .container-form label {
-    font-size: 12px;
+  .campo-user {
+    width: 80%;
   }
 }
 </style>

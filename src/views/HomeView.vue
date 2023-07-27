@@ -16,7 +16,7 @@
     <popular-books id="section-popular-books" />
     <!-- O mesmo que <PopularBooks />-->
     <div id="icon-up" @click="backToStart('#back')">
-      <i class="fa-solid fa-chevron-left fa-rotate-90"></i>
+      <i class="fa-solid fa-arrow-up"></i>
     </div>
   </div>
 </template>
@@ -95,7 +95,7 @@ function backToStart(sectionId) {
   padding: 10px;
   background-color: #fcba03;
   border: 2px solid #000;
-  border-radius: 50%;
+  border-radius: 100%;
   color: #000;
 }
 @media screen and (max-width: 700px) {

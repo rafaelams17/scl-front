@@ -1,36 +1,35 @@
 <template>
   <div class="container">
-    <form class="container-form">
-      <div class="container-title">
-        <img src="../../assets/logo.svg" alt="" />
+    <form class="form">
+      <a href="#" @click="backToLogin()" title="Login"
+        ><i id="backHome" class="fa-solid fa-arrow-left"></i
+      ></a>
+      <div class="title-main">
+        <i class="fa-brands fa-pushed"></i>
         <h1>Create Account</h1>
       </div>
 
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" placeholder="Name ... " />
-      <label for="user">Username</label>
-      <input type="text" name="user" id="user" placeholder="Username ... " />
-      <label for="email">E-mail</label>
-      <input type="email" name="email" id="email" placeholder="Email ..." />
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Password ... "
-      />
-      <label for="confirmPassword">Confirm Password</label>
-      <input
-        type="password"
-        name="confirmPassword"
-        id="confirmPassword"
-        placeholder="Confirm Password ... "
-      />
-
+      <div class="campo-user">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" name="name" id="name" placeholder="Name" />        
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" name="email" id="email" placeholder="Email" />
+        <i class="fa-solid fa-lock"></i>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <i class="fa-solid fa-lock"></i>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="Confirm Password"
+        />
+      </div>
       <input class="btn-submit" type="submit" value="Sign Up" />
-      <button class="btn-back" type="button" @click="backToLogin()">
-        <i class="fa-solid fa-chevron-left"></i>Back
-      </button>
     </form>
   </div>
 </template>
@@ -50,106 +49,89 @@ function backToLogin() {
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 
 * {
-  background: #1b1a17;
+  background-color: #fff;
+  color: #000;
 }
 .container {
-  border-radius: 15px;
-  width: 50vh;
   margin: 0 auto;
+  width: 80vh;
+  height: 80vh;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
-.container-title {
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.title-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 15px;
+  padding-top: 5%;
 }
-.container-title h1{
-  font-size: 1.5em;
+.title-main h1 {
+  font-size: 30px;
 }
-.container-title img {
-  padding-top: 10%;
-  width: 60px;
+.title-main i {
+  font-size: 25px;
 }
-.container-form {
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 15px;
-  border: 2px solid #fcba03;
-  margin-bottom: 5%;
-  margin-top: 8%;
-}
-.container-form label {
-  font-size: 16px;
-}
-.container-form #user,
 #name,
 #email,
 #password,
 #confirmPassword {
+  display: flex;
+  width: 100%;
   border: none;
   border-bottom: 2px solid #fcba03;
-  font-size: 16px;
   margin-top: 2%;
   margin-bottom: 2%;
 }
+#name:focus, #email:focus, #password:focus, #confirmPassword:focus  {
+  outline: none;
+}
+.campo-user {
+  margin: 0 auto;
+  width: 60%;
+  margin-bottom: 20px;
+}
 .btn-submit {
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50px;
-  border: none;
   background-color: #fcba03;
   color: #000;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.193);
-  font-weight: 500;
-  font-size: 16px;
-  cursor: pointer;
-  width: 90%;
+  border: none;
+  width: 60%;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 5%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
 }
 .btn-submit:hover {
   transition: 0.5s;
-  background-color: #fbd15bf6;
+  background-color: #fbcd01;
 }
-.btn-back {
-  border-radius: 50px;
-  background-color: #000;
-  border: 2px solid #fcba03;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.193);
-  font-weight: 600;
-  font-size: 14px;
+#backHome{
+  padding: 20px;
   cursor: pointer;
-  width: 100px;
+  font-size: 20px;
 }
-.btn-back i {
-  background-color: #000;
-  padding-right: 10px;
-}
-
-@media screen and (max-width: 500px) {
-
-  .container-title h1 {
-    font-size: 26px;
+@media screen and (max-width: 750px) {
+  .container {
+    width: 60vh;
+    margin-top: 15%;
+  }
+  .campo-user {
+    width: 80%;
   }
 }
-@media screen and (max-width: 400px) {
-  .container-title h1 {
-    font-size: 24px;
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: 80vh;
   }
-  .container-form label {
-    font-size: 14px;
-  }
-}
-@media screen and (max-width: 300px) {
-  .container-title h1 {
-    font-size: 20px;
-  }
-  .container-form label {
-    font-size: 12px;
+  .campo-user {
+    width: 80%;
   }
 }
 </style>

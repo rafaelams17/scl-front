@@ -1,34 +1,32 @@
 <template>
   <div class="container">
-    <form class="container-form" @submit="signIn">
-        <div class="container-title">
-      <img src="../../assets/logo.svg" alt="" />
-      <h1>Log In</h1>
-    </div>
-
-    <div class="container-create">
-      <p>Don't have account?</p>
-      <a href="#" @click="registerUser()">Create an account</a>
-    </div>
-      <label for="user">Username</label>
-      <input
-        type="text"
-        name="user"
-        id="user"
-        placeholder="User ... "
-      />
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Password ... "
-      />
-      <a class="container-forget" href="#" @click="forgetPassword()">Forget Password?</a>
+    <form class="form" @submit="signIn">
+      <a href="#" @click="backToHome()" title="Home"
+        ><i id="backHome" class="fa-solid fa-house"></i
+      ></a>
+      <div class="title-main">
+        <i class="fa-brands fa-pushed"></i>
+        <h1>Log In</h1>
+      </div>
+      <div class="create-account">
+        <p>Don't have account?</p>
+        <a href="#" @click="registerUser()">Create an account</a>
+      </div>
+      <div class="campo-user">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" name="email" id="email" placeholder="Email" />
+        <i class="fa-solid fa-lock"></i>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+      </div>
+      <a class="forget-password" href="#" @click="forgetPassword()"
+        >Forget Password?</a
+      >
       <input class="btn-submit" type="submit" value="Sign In" />
-      <button class="btn-back" type="button" @click="backToHome()">
-          <i class="fa-solid fa-chevron-left"></i>Home
-      </button>
     </form>
   </div>
 </template>
@@ -46,11 +44,11 @@ function registerUser() {
   router.push("/register");
 }
 function forgetPassword() {
-  router.push('/forget-password');
+  router.push("/forget-password");
 }
 async function signIn(e) {
   e.preventDefault();
-  router.push('/book');
+  router.push("/book");
 }
 </script>
 
@@ -58,118 +56,117 @@ async function signIn(e) {
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 
 * {
-  background: #1b1a17;
+  background-color: #fff;
+  color: #000;
 }
 .container {
-  width: 50vh;
   margin: 0 auto;
-  border-radius: 15px;
+  width: 80vh;
+  height: 80vh;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
-.container-title {
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.title-main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 30px;
   padding-top: 5%;
-  border-radius: 15px;
 }
-.container-title h1 {
-  font-size: 2.5em;
-}
-.container-title img {
-  padding-top: 10%;
-  width: 60px;
-}
-.container-create {
-  font-size: 14px;
+.create-account {
   display: flex;
   justify-content: center;
   gap: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
+  font-size: 14px;
   margin-top: 5px;
+  margin-bottom: 15px;
 }
-.container-create a:hover {
-  color: #faebd7;
-  transition: .5s;
+.create-account a:hover {
+  color: #fca103;
+  transition: 0.5s;
 }
-.container-form {
+.title-main h1 {
+  font-size: 35px;
+}
+.title-main i {
+  font-size: 25px;
+}
+#email,
+#password {
   display: flex;
-  flex-direction: column;
-  height: 80vh;
-  font-size: 18px;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 15px;
-  border: 2px solid #fcba03;
-  margin-top: 8%;
-}
-.container-form label {
-  font-size: 16px;
-}
-.container-form #user, #password {
+  width: 100%;
   border: none;
   border-bottom: 2px solid #fcba03;
-  font-size: 16px;
   margin-top: 2%;
   margin-bottom: 2%;
 }
-.container-forget {
-  font-size: 14px;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 5px;
+#email:focus,
+#password:focus {
+  outline: none;
 }
-.container-forget:hover {
-  color: aliceblue;
-  transition: .5s;
+.campo-user {
+  margin: 0 auto;
+  width: 60%;
+}
+.forget-password {
+  font-size: 12px;
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.forget-password:hover {
+  color: #fca103;
+  transition: 0.5s;
 }
 .btn-submit {
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50px;
-  border: none;
   background-color: #fcba03;
   color: #000;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.193);
-  font-weight: 500;
-  font-size: 16px;
-  cursor: pointer;
-  width: 90%;
+  border: none;
+  width: 60%;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 10%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
 }
 .btn-submit:hover {
-  transition: .5s;
-  background-color: #fbd15bf6;
+  transition: 0.5s;
+  background-color: #fbcd01;
 }
-.btn-back {
-  border-radius: 50px;
-  background-color: #000;
-  border: 2px solid #fcba03;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.193);
-  font-weight: 600;
-  font-size: 14px;
+#backHome {
+  padding: 20px;
   cursor: pointer;
-  width: 100px;
+  font-size: 20px;
 }
-.btn-back i {
-  background-color: #000;
-  padding-right: 10px;
-} 
-
-@media screen and (max-width: 400px) {
-  
-  .container-title h1 {
-    font-size: 35px;
+@media screen and (max-width: 750px) {
+  .container {
+    width: 60vh;
+    margin-top: 15%;
   }
-  .container-form label {
-    font-size: 14px;
+  .campo-user {
+    width: 80%;
   }
-  .container-create {
-    font-size: 12px;
-    gap: 5px;
-    padding-bottom: 10px;
+  .forget-password {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: 80vh;
+  }
+  .campo-user {
+    width: 80%;
+  }
+  .forget-password {
+    width: 80%;
   }
 }
 </style>
