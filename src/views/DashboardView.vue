@@ -1,18 +1,16 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Seus livros favoritos!</h1>
-    <p class="text-cadastro">
+    <p v-if="isEmpty">
       Sua lista está vazia, clique no botão cadastrar para começar a preencher
       sua lista.
     </p>
-    <div id="center-btn">
-      <router-link to="/register-book">Cadastrar</router-link>
-    </div>
+    <router-link to="/register-book" id="center-btn">Cadastrar</router-link>
   </div>
 </template>
 
 <script setup>
-
+const isEmpty = true;
 // funcão para cadastrar os livros
 function cadastro() {
   console.log("Teste");
@@ -25,7 +23,23 @@ function cadastro() {
   background-color: #fff;
   color: #000;
 }
-#container {
-  height: 100vh;
+.container {
+  text-align: center;
+}
+.container h1 {
+  margin: 10px;
+}
+.container p {
+  margin-bottom: 30px;
+}
+#center-btn {
+  padding: 2px 50px 2px 50px;
+  background-color: #fcba03;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+#center-btn:hover {
+  transition: 0.5s;
+  background-color: #fbcd01;
 }
 </style>

@@ -49,6 +49,13 @@ const routes = [
         component: function () {
             return import(/* webpackChunkName: "dashboard" */ '../views/DashboardView.vue');
         }
+      }, 
+      {
+        path: '/register-book', 
+        name: 'register-book',
+        component: function () {
+            return import(/* webpackChunkName: "register-book" */ '../components/book/RegisterBook.vue');
+        }
       }
     ]
   }
