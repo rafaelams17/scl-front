@@ -8,6 +8,7 @@
 <script setup>
 import NavBarBook from "../components/header/NavBarBook.vue";
 
+
 </script>
 
 <style scoped>

@@ -60,7 +60,7 @@
       />
 
       <div class="btn">
-        <button type="submit" class="submit">Cadastrar</button>
+        <button type="submit" class="submit">{{ btnSubmit }}</button>
         <button type="reset" class="reset">Cancelar</button>
       </div>
 
@@ -77,6 +77,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const title = "Cadastre seus livros";
+const btnSubmit = 'Cadastrar';
 
 function backToDashboard() {
   router.push("/book");
@@ -159,7 +160,7 @@ textarea {
 }
 .btn .reset:hover {
   transition: 0.5s;
-  background-color: #fbcd01;
+  border: 2px solid #000;
 }
 #backHome {
   margin-top: 5%;

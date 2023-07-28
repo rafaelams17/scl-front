@@ -56,6 +56,13 @@ const routes = [
         component: function () {
             return import(/* webpackChunkName: "register-book" */ '../components/book/RegisterBook.vue');
         }
+      }, 
+      {
+        path: '/edit-book', 
+        name: 'edit-book',
+        component: function () {
+            return import(/* webpackChunkName: "edit-book" */ '../components/book/EditBook.vue');
+        }
       }
     ]
   }
