@@ -5,9 +5,9 @@
       <p>+knowledge</p>
     </div>
 
-    <div class="container-second">
+    <div class="container-second" v-if="route.path == '/book'">
       <p>Seja bem-vindo, <em>{{ user }}</em>!</p>
-        <i
+        <i 
         title="Log Out"
           id="icon-logout"
           class="fa-solid fa-right-from-bracket"
@@ -18,9 +18,10 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 const user = "Rafaela";
 
 // voltar para página login

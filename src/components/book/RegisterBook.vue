@@ -61,12 +61,10 @@
 
       <div class="btn">
         <button type="submit" class="submit">{{ btnSubmit }}</button>
-        <button type="reset" class="reset">Cancelar</button>
+        <button type="reset" class="reset" @click="backToDashboard()">
+          Cancelar
+        </button>
       </div>
-
-      <a href="#" @click="backToDashboard()" title="Login"
-        ><i id="backHome" class="fa-solid fa-arrow-left"></i
-      ></a>
     </form>
   </div>
 </template>
@@ -77,7 +75,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const title = "Cadastre seus livros";
-const btnSubmit = 'Cadastrar';
+const btnSubmit = "Cadastrar";
 
 function backToDashboard() {
   router.push("/book");
@@ -109,6 +107,8 @@ textarea {
 }
 .form label {
   margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
 }
 #titulo,
 #autor,
@@ -162,7 +162,22 @@ textarea {
   transition: 0.5s;
   border: 2px solid #000;
 }
-#backHome {
-  margin-top: 5%;
+@media screen and (max-width: 750px) {
+  .container {
+    width: 100%;
+    margin: 20px;
+  }
+  .container h1 {
+    font-size: 1.5em;
+  }
+  #titulo,
+  #autor,
+  #quantPage,
+  #editora,
+  #sinopse,
+  #anoPubli {
+    width: 80%;
+  }
 }
+
 </style>

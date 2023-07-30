@@ -25,6 +25,7 @@ function cadastro() {
 }
 .container {
   text-align: center;
+  height: 150vh;
 }
 .container h1 {
   margin: 10px;

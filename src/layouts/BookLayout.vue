@@ -18,6 +18,6 @@ import NavBarBook from "../components/header/NavBarBook.vue";
   color: #000;
 }
 #container {
-  height: 100vh;
+  height: 150vh;
 }
 </style>
