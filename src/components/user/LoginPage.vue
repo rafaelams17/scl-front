@@ -14,13 +14,14 @@
       </div>
       <div class="campo-user">
         <i class="fa-solid fa-envelope"></i>
-        <input type="email" name="email" id="email" placeholder="Email" />
+        <input type="email" name="email" id="email" placeholder="Email" v-model="form.email"/>
         <i class="fa-solid fa-lock"></i>
         <input
           type="password"
           name="password"
           id="password"
           placeholder="Password"
+          v-model="form.password"
         />
       </div>
       <a class="forget-password" href="#" @click="forgetPassword()"
@@ -35,20 +36,32 @@
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const form = {
+  email: "",
+  password: ""
+}
 
 // voltar para página home
 function backToHome() {
   router.push("/");
 }
+// cadastrar um usuário
 function registerUser() {
   router.push("/register");
 }
+// recuperar a senha de um usuário
 function forgetPassword() {
   router.push("/forget-password");
 }
+// realizar o login do usuário
 async function signIn(e) {
   e.preventDefault();
-  router.push("/book");
+  if(form.email == "" && form.password == "") {
+    console.log('Campos vazios! Preencha corretamente os campos.');
+  } else if(form.email && form.password){
+    console.log("E-mail: " + form.email + "\nSenha" + form.password);
+    router.push("/book");
+  }
 }
 </script>
 
