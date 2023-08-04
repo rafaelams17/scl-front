@@ -14,7 +14,13 @@
       </div>
       <div class="campo-user">
         <i class="fa-solid fa-envelope"></i>
-        <input type="email" name="email" id="email" placeholder="Email" v-model="form.email"/>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          v-model="form.email"
+        />
         <i class="fa-solid fa-lock"></i>
         <input
           type="password"
@@ -34,18 +40,14 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { api } from "boot/axios"
+import  api  from "../../../axios";
+import { onMounted } from "vue";
 
-console.log(api);
 const router = useRouter();
 const form = {
   email: "",
-  password: ""
-}
-
-async function buscarDados(){
-  const data = await api
-}
+  password: "",
+};
 
 // voltar para página home
 function backToHome() {
@@ -62,13 +64,27 @@ function forgetPassword() {
 // realizar o login do usuário
 async function signIn(e) {
   e.preventDefault();
-  if(form.email == "" && form.password == "") {
-    console.log('Campos vazios! Preencha corretamente os campos.');
-  } else if(form.email && form.password){
+  if (form.email == "" && form.password == "") {
+    console.log("Campos vazios! Preencha corretamente os campos.");
+  } else if (form.email && form.password) {
     console.log("E-mail: " + form.email + "\nSenha" + form.password);
     router.push("/book");
   }
 }
+
+async function buscarDados(){
+  try {
+    const { data } = await api.get("/user");
+
+    // const email = data[0].email;
+    console.log(data);
+  } catch (e) {
+    console.log(e);
+  }
+}
+onMounted(async () => {
+  buscarDados();
+});
 </script>
 
 <style scoped>
