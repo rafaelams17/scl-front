@@ -34,11 +34,17 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { api } from "boot/axios"
 
+console.log(api);
 const router = useRouter();
 const form = {
   email: "",
   password: ""
+}
+
+async function buscarDados(){
+  const data = await api
 }
 
 // voltar para página home
