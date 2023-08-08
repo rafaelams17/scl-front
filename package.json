@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^2.9.1",
     "axios": "^1.4.0",
     "vue": "^3.2.13",
     "vue-axios": "^3.5.2",

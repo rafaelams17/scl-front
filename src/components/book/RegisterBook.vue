@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <form class="form">
+    <form class="form" @submit="singIn()">
       <label for="titulo">Título</label>
       <input
         type="text"

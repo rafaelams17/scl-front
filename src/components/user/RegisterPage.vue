@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="form">
+    <form class="form" @submit.prevent="signUp()">
       <a href="#" @click="backToLogin()" title="Login"
         ><i id="backHome" class="fa-solid fa-arrow-left"></i
       ></a>
@@ -11,14 +11,29 @@
 
       <div class="campo-user">
         <i class="fa-solid fa-user"></i>
-        <input type="text" name="name" id="name" placeholder="Name" />        
+        <input
+          type="text"
+          name="name"
+          id="name"
+          v-model="form.name"
+          placeholder="Name"
+        />
+
         <i class="fa-solid fa-envelope"></i>
-        <input type="email" name="email" id="email" placeholder="Email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          v-model="form.email"
+          placeholder="Email"
+        />
+
         <i class="fa-solid fa-lock"></i>
         <input
           type="password"
           name="password"
           id="password"
+          v-model="form.password"
           placeholder="Password"
         />
         <i class="fa-solid fa-lock"></i>
@@ -26,19 +41,95 @@
           type="password"
           name="confirmPassword"
           id="confirmPassword"
+          v-model="confirmPassword"
           placeholder="Confirm Password"
         />
       </div>
       <input class="btn-submit" type="submit" value="Sign Up" />
     </form>
+    <Message :msg="msg" v-show="msg" />
   </div>
 </template>
 
 <script setup>
+import Message from "../Message.vue";
 import { useRouter } from "vue-router";
+import api from "../../../axios";
+import { computed, ref } from "vue";
+
+const msg = ref(null);
+
+const form = ref({
+  name: "",
+  email: "",
+  password: "",
+});
+const confirmPassword = ref("");
 
 const router = useRouter();
 
+// criar um usuário
+async function signUp() {
+  try {
+    // verificar se os campos estão vazios
+    if (
+      !form.value.name &&
+      !form.value.email &&
+      !form.value.password &&
+      !confirmPassword.value
+    ) {
+      this.msg = "Campos vazios! Preencha os campos corretamente!";
+      setTimeout(() => (this.msg = ""), 2000);
+    } else {
+      // pegar os dados da API
+      const { data } = await api.get("/user");
+      let userExists = false;
+
+      // verifica se o usuário já existe
+      for (var i = 0; i < data.length; i++) {
+        if (form.value.email == data[i].email) {
+          userExists = true;
+        }
+      }
+
+      if (userExists) {
+        this.msg = "O usuário já existe!";
+        setTimeout(() => (this.msg = ""), 2000);
+        // se caso o usuário não exista, ele é armazenado no DB
+      } else {
+        // Criação do Usuário!
+        if (form.value.password === confirmPassword.value) {
+          const { data } = await api.post("/user", form.value);
+          this.msg = "O usuário criado com sucesso!";
+          setTimeout(() => (this.msg = ""), 2000);
+
+          // retornar para login
+          setTimeout(() => (this.msg = "Volte para a tela de login!"), 2500);
+          setTimeout(() => (this.msg = ""), 4000);
+          console.log(data);
+
+          // limpar os campos
+          form.value.name = "";
+          form.value.email = "";
+          form.value.password = "";
+          confirmPassword.value = "";
+        } else {
+          this.msg = "As senhas informadas não coincidem!";
+          setTimeout(() => (this.msg = ""), 2000);
+          form.value.password = "";
+          confirmPassword.value = "";
+        }
+      }
+    }
+  } catch (error) {
+    if (error.response) {
+      console.log("Server responded with:", error.response.data);
+      console.log("HTTP status code:", error.response.status);
+    } else {
+      console.log("Error details:", error.message);
+    }
+  }
+}
 // voltar para página login
 function backToLogin() {
   router.push("/login");
@@ -86,7 +177,10 @@ function backToLogin() {
   margin-top: 2%;
   margin-bottom: 2%;
 }
-#name:focus, #email:focus, #password:focus, #confirmPassword:focus  {
+#name:focus,
+#email:focus,
+#password:focus,
+#confirmPassword:focus {
   outline: none;
 }
 .campo-user {
@@ -111,7 +205,7 @@ function backToLogin() {
   transition: 0.5s;
   background-color: #fbcd01;
 }
-#backHome{
+#backHome {
   padding: 20px;
   cursor: pointer;
   font-size: 20px;
