@@ -73,13 +73,13 @@ async function signUp() {
   try {
     // verificar se os campos estão vazios
     if (
-      !form.value.name &&
-      !form.value.email &&
-      !form.value.password &&
+      !form.value.name ||
+      !form.value.email ||
+      !form.value.password ||
       !confirmPassword.value
     ) {
-      this.msg = "Campos vazios! Preencha os campos corretamente!";
-      setTimeout(() => (this.msg = ""), 2000);
+      msg.value = "Campos vazios! Preencha os campos corretamente!";
+      setTimeout(() => (msg.value = ""), 2000);
     } else {
       // pegar os dados da API
       const { data } = await api.get("/user");
@@ -93,19 +93,19 @@ async function signUp() {
       }
 
       if (userExists) {
-        this.msg = "O usuário já existe!";
-        setTimeout(() => (this.msg = ""), 2000);
+        msg.value = "O usuário já existe!";
+        setTimeout(() => (msg.value = ""), 2000);
         // se caso o usuário não exista, ele é armazenado no DB
       } else {
         // Criação do Usuário!
         if (form.value.password === confirmPassword.value) {
           const { data } = await api.post("/user", form.value);
-          this.msg = "O usuário criado com sucesso!";
-          setTimeout(() => (this.msg = ""), 2000);
+          msg.value = "O usuário criado com sucesso!";
+          setTimeout(() => (msg.value = ""), 2000);
 
           // retornar para login
-          setTimeout(() => (this.msg = "Volte para a tela de login!"), 2500);
-          setTimeout(() => (this.msg = ""), 4000);
+          setTimeout(() => (msg.value = "Volte para a tela de login!"), 2500);
+          setTimeout(() => (msg.value = ""), 4000);
           console.log(data);
 
           // limpar os campos
@@ -114,8 +114,8 @@ async function signUp() {
           form.value.password = "";
           confirmPassword.value = "";
         } else {
-          this.msg = "As senhas informadas não coincidem!";
-          setTimeout(() => (this.msg = ""), 2000);
+          msg.value = "As senhas informadas não coincidem!";
+          setTimeout(() => (msg.value = ""), 2000);
           form.value.password = "";
           confirmPassword.value = "";
         }

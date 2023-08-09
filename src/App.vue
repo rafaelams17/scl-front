@@ -1,6 +1,5 @@
 <template>
   <MainLayout />
-  <notifications />
 </template>
 
 <script setup>

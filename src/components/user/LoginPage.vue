@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="form" @submit="signIn">
+    <form class="form" @submit.prevent="signIn()">
       <a href="#" @click="backToHome()" title="Home"
         ><i id="backHome" class="fa-solid fa-house"></i
       ></a>
@@ -35,19 +35,23 @@
       >
       <input class="btn-submit" type="submit" value="Sign In" />
     </form>
+    <Message :msg="msg" v-show="msg" />
   </div>
 </template>
 
 <script setup>
 import { useRouter } from "vue-router";
-import  api  from "../../../axios";
-import { onMounted } from "vue";
+import api from "../../../axios";
+import { onMounted, ref } from "vue";
+import Message from "../Message.vue";
+
+const msg = ref(null);
 
 const router = useRouter();
-const form = {
+const form = ref({
   email: "",
   password: "",
-};
+});
 
 // voltar para página home
 function backToHome() {
@@ -61,30 +65,35 @@ function registerUser() {
 function forgetPassword() {
   router.push("/forget-password");
 }
+
 // realizar o login do usuário
-async function signIn(e) {
-  e.preventDefault();
-  if (form.email == "" && form.password == "") {
-    console.log("Campos vazios! Preencha corretamente os campos.");
-  } else if (form.email && form.password) {
-    console.log("E-mail: " + form.email + "\nSenha" + form.password);
-    router.push("/book");
-  }
-}
-
-async function buscarDados(){
+async function signIn() {
   try {
-    const { data } = await api.get("/user");
+    const { data } = await api.get("/user"); // para extrair os dados do formulário
 
-    // const email = data[0].email;
-    console.log(data);
-  } catch (e) {
-    console.log(e);
+    for (var i = 0; i < data.length; i++) {
+      if (
+        form.value.email === data[i].email &&
+        form.value.password === data[i].password
+      ) {
+        router.push("/"); // realiza o login
+      } else if (!form.value.email || !form.value.password) {
+        msg.value = "Campos vazios! Preencha os campos corretamente!";
+        setTimeout(() => (msg.value = ""), 2000);
+      } else {
+        msg.value = "Usuário ou senha inválido!";
+        setTimeout(() => (msg.value = ""), 2000);
+      }
+    }
+  } catch (error) {
+    if (error.response) {
+      console.log("Server responded with:", error.response.data);
+      console.log("HTTP status code:", error.response.status);
+    } else {
+      console.log("Error details:", error.message);
+    }
   }
 }
-onMounted(async () => {
-  buscarDados();
-});
 </script>
 
 <style scoped>
