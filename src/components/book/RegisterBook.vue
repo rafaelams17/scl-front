@@ -1,57 +1,76 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <form class="form" @submit="singIn()">
-      <label for="titulo">Título</label>
+    <form class="form" @submit.prevent.stop="registerBook()">
+      <label for="titulo"
+        >Título <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="text"
         name="titulo"
         id="titulo"
         placeholder="Digite o nome do livro"
+        v-model="form.titulo"
       />
 
-      <label for="autor">Autor</label>
+      <label for="autor">Autor <span class="campo-obrigatorio">*</span></label>
       <input
         type="text"
         name="autor"
         id="autor"
         placeholder="Digite o(a) autor(a) do livro"
+        v-model="form.autor"
       />
 
-      <label for="quantPage">Quantidade de página</label>
+      <label for="quantPage"
+        >Quantidade de página <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="number"
         name="quantPage"
         id="quantPage"
         placeholder="Digite a quantidade de página do livro"
+        v-model="form.quantPage"
       />
 
-      <label for="sinopse">Sinopse</label>
+      <label for="sinopse"
+        >Sinopse <span class="campo-obrigatorio">*</span></label
+      >
       <textarea
         rows="5"
         cols="33"
         name="sinopse"
         id="sinopse"
         placeholder="Informe a sinopse do livro de forma breve"
+        v-model="form.sinopse"
       ></textarea>
 
-      <label for="editora">Editora</label>
+      <label for="editora"
+        >Editora <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="text"
         name="editora"
         id="editora"
         placeholder="Digite a Editora do livro"
+        v-model="form.sinopse"
       />
 
-      <label for="anoPubli">Ano de publicação</label>
+      <label for="anoPubli"
+        >Ano de publicação <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="number"
         name="anoPubli"
         id="anoPubli"
         placeholder="Digite o ano de publicação do livro"
+        v-model="form.anoPublicacao"
       />
 
-      <label for="image">Upload da imagem do livro</label>
+      <label for="image"
+        >Upload da imagem do livro
+        <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="file"
         name="image"
@@ -60,22 +79,51 @@
       />
 
       <div class="btn">
-        <button type="submit" class="submit">{{ btnSubmit }}</button>
-        <button type="reset" class="reset" @click="backToDashboard()">
-          Cancelar
-        </button>
+        <input class="submit" type="submit" :value="btnSubmit" />
+        <input class="reset" type="reset" value="Cancelar" @click="backToDashboard()"/>
       </div>
     </form>
+    <Message :msg="msg" v-show="msg" />
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useRouter } from "vue-router";
+import Message from "../Message.vue";
 
 const router = useRouter();
+const msg = ref(null);
 
 const title = "Cadastre seus livros";
 const btnSubmit = "Cadastrar";
+
+const form = ref({
+  titulo: "",
+  autor: "",
+  quantPage: "",
+  sinopse: "",
+  anoPublicacao: ""
+})
+
+async function registerBook() {
+  try {
+    // verificar se os campos estão vazios
+    if(
+      !form.value.titulo || !form.value.autor || !form.valuequantPage || !form.value.sinopse || !form.value.anoPublicacao
+      ){
+      msg.value = "Campos vazios! Preencha os campos corretamente!";
+      setTimeout(() => (msg.value = ""), 2000);
+    }
+  } catch (error) {
+    if(error.response) {
+      console.log("Server responded with: ", error.response.data);
+      console.log("HTTP status code: ", error.response.status);
+    } else {
+      console.log("Error details: ", error.message);
+    }
+  }
+}
 
 function backToDashboard() {
   router.push("/book");
@@ -132,6 +180,9 @@ textarea {
 #anoPubli:focus {
   outline: none;
 }
+.campo-obrigatorio {
+  color: #ff0000;
+}
 .btn {
   display: flex;
   justify-content: center;
@@ -179,5 +230,4 @@ textarea {
     width: 80%;
   }
 }
-
 </style>
