@@ -53,18 +53,18 @@
         name="editora"
         id="editora"
         placeholder="Digite a Editora do livro"
-        v-model="form.sinopse"
+        v-model="form.editora"
       />
 
       <label for="anoPubli"
-        >Ano de publicação <span class="campo-obrigatorio">*</span></label
+        >Data de publicação <span class="campo-obrigatorio">*</span></label
       >
       <input
-        type="number"
+        type="date"
         name="anoPubli"
         id="anoPubli"
-        placeholder="Digite o ano de publicação do livro"
-        v-model="form.anoPublicacao"
+        placeholder="Digite a data de publicação do livro"
+        v-model="form.dataPublicacao"
       />
 
       <label for="image"
@@ -76,7 +76,9 @@
         name="image"
         id="image"
         placeholder="Insira uma imagem do livro"
+        @change="uploadImage" accept="image/*"
       />
+      <!-- <img v-if="imageURL" :src="imageURL" alt="Uploaded Image"> enviar a image para a API -->
 
       <div class="btn">
         <input class="submit" type="submit" :value="btnSubmit" />
@@ -91,6 +93,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Message from "../Message.vue";
+import api from "../../../axios";
 
 const router = useRouter();
 const msg = ref(null);
@@ -103,17 +106,55 @@ const form = ref({
   autor: "",
   quantPage: "",
   sinopse: "",
-  anoPublicacao: ""
+  editora: "",
+  dataPublicacao: ""
 })
+
+const imageURL = ref(""); // não está funcionando ainda, pesquisar como tratar image no vue
 
 async function registerBook() {
   try {
     // verificar se os campos estão vazios
     if(
-      !form.value.titulo || !form.value.autor || !form.valuequantPage || !form.value.sinopse || !form.value.anoPublicacao
+      !form.value.titulo || !form.value.autor || !form.value.quantPage || !form.value.sinopse || !form.value.dataPublicacao || !form.value.editora
       ){
       msg.value = "Campos vazios! Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
+    } else {
+      const { data } = await api.get("/book"); // rota sem autorização ainda
+      let bookExits = false; // verificar se o livro já existe
+
+      for(var i = 0;i < data.length; i++) {
+        if(form.value.titulo == data[i].titulo){
+          bookExits = true;
+        }
+      }
+
+      if(bookExits){
+        msg.value = "O livro já existe!";
+        setTimeout(() => (msg.value = ""), 2000);
+      } else {
+        // Criação do Livro
+        const { data } = await api.post("/book", form.value);
+        msg.value = "Livro criado com sucesso!";
+        setTimeout(() => (msg.value = ""), 2000);
+
+        if(imageURL){
+          console.log(imageURL);
+        }
+
+        // limpar os campos 
+        form.value = ""
+
+        // Teste
+        console.log("Cheguei aqui!", data);
+        console.log("Titulo: " + form.value.titulo);
+        console.log("Autor: " + form.value.autor);
+        console.log("Quantidade de Página: " + form.value.quantPage);
+        console.log("Sinopse: " + form.value.sinopse);
+        console.log("Editora: " + form.value.editora);
+        console.log("Data de Publicação do Livro: " + form.value.dataPublicacao);
+      }
     }
   } catch (error) {
     if(error.response) {
@@ -122,6 +163,18 @@ async function registerBook() {
     } else {
       console.log("Error details: ", error.message);
     }
+  }
+}
+
+function uploadImage(event){
+  const file = event.target.files[0];
+
+  if(file){
+    const reader = new FileReader();
+    reader.onload = () => {
+      imageURL.value = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 }
 

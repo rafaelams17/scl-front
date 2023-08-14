@@ -70,6 +70,17 @@ function forgetPassword() {
 async function signIn() {
   try {
     const { data } = await api.get("/user"); // para extrair os dados do formulário
+    // console.log(data.length); verificar o tamanho do array
+
+    if (!form.value.email || !form.value.password) {
+      msg.value = "Campos vazios! Preencha os campos corretamente!";
+      setTimeout(() => (msg.value = ""), 2000);
+    }
+
+    if (data.length === 0) {
+      msg.value = "Se cadastre primeiro!";
+      setTimeout(() => (msg.value = ""), 2000);
+    }
 
     for (var i = 0; i < data.length; i++) {
       if (
@@ -77,10 +88,8 @@ async function signIn() {
         form.value.password === data[i].password
       ) {
         router.push("/"); // realiza o login
-      } else if (!form.value.email || !form.value.password) {
-        msg.value = "Campos vazios! Preencha os campos corretamente!";
-        setTimeout(() => (msg.value = ""), 2000);
       } else {
+        // console.log("caiu aqui!")
         msg.value = "Usuário ou senha inválido!";
         setTimeout(() => (msg.value = ""), 2000);
       }
