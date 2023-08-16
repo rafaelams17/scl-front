@@ -7,6 +7,4 @@ import MainLayout from './layouts/MainLayout.vue';
 
 </script>
 
-<style>
-
-</style>
+<style></style>

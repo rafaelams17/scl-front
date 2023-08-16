@@ -1,24 +1,31 @@
 <template>
   <div class="container">
     <form class="form" @submit.prevent="signIn()">
-      <a href="#" @click="backToHome()" title="Home"
-        ><i id="backHome" class="fa-solid fa-house"></i
-      ></a>
+
+      <!-- Back to home page -->
+      <span>
+        <router-link :to="{ name: 'home' }" title="Home"><i id="backHome" class="fa-solid fa-house"></i
+        ></router-link>
+      </span>
+
       <div class="title-main">
         <i class="fa-brands fa-pushed"></i>
         <h1>Log In</h1>
       </div>
+
+      <!-- cadastrar um usuário -->
       <div class="create-account">
         <p>Don't have account?</p>
-        <a href="#" @click="registerUser()">Create an account</a>
+        <router-link :to="{ name: 'register' }" id="create">Create an account</router-link>
       </div>
+
       <div class="campo-user">
         <i class="fa-solid fa-envelope"></i>
         <input
           type="email"
           name="email"
           id="email"
-          placeholder="Email"
+          placeholder="email@example.com"
           v-model="form.email"
         />
         <i class="fa-solid fa-lock"></i>
@@ -26,13 +33,16 @@
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
+          placeholder="***************"
           v-model="form.password"
         />
       </div>
-      <a class="forget-password" href="#" @click="forgetPassword()"
-        >Forget Password?</a
-      >
+      
+      <!-- Go to forget password page = recuperar a senha de um usuário -->
+      <div class="forget-password">
+        <router-link :to="{ name: 'forget-password' }" id="forget">Forget Password?</router-link>
+      </div>
+
       <input class="btn-submit" type="submit" value="Sign In" />
     </form>
     <Message :msg="msg" v-show="msg" />
@@ -41,30 +51,18 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import api from "../../../axios";
-import { onMounted, ref } from "vue";
+import api from "../boot/axios";
+import { ref } from "vue";
 import Message from "../Message.vue";
 
 const msg = ref(null);
 
 const router = useRouter();
+
 const form = ref({
   email: "",
   password: "",
 });
-
-// voltar para página home
-function backToHome() {
-  router.push("/");
-}
-// cadastrar um usuário
-function registerUser() {
-  router.push("/register");
-}
-// recuperar a senha de um usuário
-function forgetPassword() {
-  router.push("/forget-password");
-}
 
 // realizar o login do usuário
 async function signIn() {
@@ -76,18 +74,16 @@ async function signIn() {
       msg.value = "Campos vazios! Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
     }
-
+    
     if (data.length === 0) {
       msg.value = "Se cadastre primeiro!";
       setTimeout(() => (msg.value = ""), 2000);
     }
-
+    
     for (var i = 0; i < data.length; i++) {
-      if (
-        form.value.email === data[i].email &&
-        form.value.password === data[i].password
+      if (form.value.email === data[i].email
       ) {
-        router.push("/"); // realiza o login
+        router.push("/book"); // realiza o login
       } else {
         // console.log("caiu aqui!")
         msg.value = "Usuário ou senha inválido!";
@@ -96,7 +92,7 @@ async function signIn() {
     }
   } catch (error) {
     if (error.response) {
-      console.log("Server responded with:", error.response.data);
+      console.log("Server responded with:", error?.response?.data);
       console.log("HTTP status code:", error.response.status);
     } else {
       console.log("Error details:", error.message);
@@ -138,7 +134,7 @@ async function signIn() {
   margin-top: 5px;
   margin-bottom: 15px;
 }
-.create-account a:hover {
+.create-account #create:hover {
   color: #fca103;
   transition: 0.5s;
 }
@@ -172,7 +168,7 @@ async function signIn() {
   margin-top: 5px;
   margin-bottom: 20px;
 }
-.forget-password:hover {
+.forget-password #forget:hover {
   color: #fca103;
   transition: 0.5s;
 }

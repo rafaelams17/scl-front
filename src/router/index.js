@@ -1,76 +1,78 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-const routes = [ 
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-    children: [
-      {
-        path: 'section-popular-books', 
-        component: function () {
-          return import(/* webpackChunkName: "section-popular-books" */ '../components/contentWeb/PopularBooks.vue');
-        }
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: function () {
-      return import(/* webpackChunkName: "login" */ '../components/user/LoginPage.vue');
-    }
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: function () {
-      return import(/* webpackChunkName: "register" */ '../components/user/RegisterPage.vue');
-    }
-  },
-  {
-    path: '/forget-password',
-    name: 'forget-password',
-    component: function () {
-      return import(/* webpackChunkName: "forget-password" */ '../components/user/ForgetPassword.vue');
-    }
-  },
-  {
-    path: '/book',
-    name: 'book',
-    component: function () {
-      return import(/* webpackChunkName: "book" */ '../layouts/BookLayout.vue');
-    },
-    children: [
-      {
-        path: '', 
-        name: 'dashboard',
-        component: function () {
-            return import(/* webpackChunkName: "dashboard" */ '../views/DashboardView.vue');
-        }
-      }, 
-      {
-        path: '/register-book', 
-        name: 'register-book',
-        component: function () {
-            return import(/* webpackChunkName: "register-book" */ '../components/book/RegisterBook.vue');
-        }
-      }, 
-      {
-        path: '/edit-book', 
-        name: 'edit-book',
-        component: function () {
-            return import(/* webpackChunkName: "edit-book" */ '../components/book/EditBook.vue');
-        }
-      }
-    ]
-  }
-]
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes: 
+  [ 
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+      children: [
+        {
+          path: 'section-popular-books', 
+          component: () => import('../components/contentWeb/PopularBooks.vue'),
+        }
+      ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../components/user/LoginPage.vue'),
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../components/user/RegisterPage.vue'),
+    },
+    {
+      path: '/forget-password',
+      name: 'forget-password',
+      component: () => import('../components/user/ForgetPassword.vue'),
+    },
+    {
+      path: '/book',
+      name: 'book',
+      component: () => import('../layouts/BookLayout.vue'),
+      meta: { 
+        requiresAuth: true
+      },
+      children: [
+        {
+          path: '', 
+          name: 'dashboard',
+          component: () => import('../views/DashboardView.vue'),
+        }, 
+        {
+          path: '/register-book', 
+          name: 'register-book',
+          component: () => import('../components/book/RegisterBook.vue'),
+        }, 
+        {
+          path: '/edit-book', 
+          name: 'edit-book',
+          component: () => import('../components/book/EditBook.vue'),
+        }
+      ]
+    }
+  ]
+});
+
+router.beforeEach(async (to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    // Authentication check
+    const token = localStorage.getItem('token');
+
+    // if token exists
+    if(token) {
+      // check if token is valid
+      console.log("Auth!")
+      return next();
+    }
+    return next('/book')
+  }
+  next();
 })
 
 export default router

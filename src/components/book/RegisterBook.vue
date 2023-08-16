@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <form class="form" @submit.prevent.stop="registerBook()">
+    <form class="form" @submit.prevent="registerBook()">
       <label for="titulo"
         >Título <span class="campo-obrigatorio">*</span></label
       >
@@ -93,7 +93,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Message from "../Message.vue";
-import api from "../../../axios";
+import api from "../boot/axios";
 
 const router = useRouter();
 const msg = ref(null);
@@ -135,7 +135,7 @@ async function registerBook() {
         setTimeout(() => (msg.value = ""), 2000);
       } else {
         // Criação do Livro
-        const { data } = await api.post("/book", form.value);
+        const { data } = await api.post("/book", form.value + 'Bearer' + localStorage.getItem('token'));
         msg.value = "Livro criado com sucesso!";
         setTimeout(() => (msg.value = ""), 2000);
 

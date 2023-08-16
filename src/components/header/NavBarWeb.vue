@@ -4,7 +4,7 @@
       <img class="logo" alt="Books logo" src="../../assets/logo.svg" />
     </div>
     <div>
-      <router-link to="/" class="links-nav">Home</router-link>
+      <router-link :to="{name: 'home'}" class="links-nav">Home</router-link>
       <router-link
         to="#section-popular-books"
         @click="scrollToSection('#section-popular-books')"

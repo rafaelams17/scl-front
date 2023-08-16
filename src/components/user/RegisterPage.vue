@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <form class="form" @submit.prevent="signUp()">
-      <a href="#" @click="backToLogin()" title="Login"
-        ><i id="backHome" class="fa-solid fa-arrow-left"></i
-      ></a>
+
+      <!-- Back to login page -->
+      <span>
+        <router-link :to="{ name: 'login' }" title="Login"><i id="backLogin" class="fa-solid fa-arrow-left"></i
+        ></router-link>
+      </span>
+
+      <!-- Title main -->
       <div class="title-main">
         <i class="fa-brands fa-pushed"></i>
         <h1>Create Account</h1>
@@ -54,7 +59,7 @@
 <script setup>
 import Message from "../Message.vue";
 import { useRouter } from "vue-router";
-import api from "../../../axios";
+import api from "../boot/axios";
 import { ref } from "vue";
 
 const msg = ref(null);
@@ -130,10 +135,7 @@ async function signUp() {
     }
   }
 }
-// voltar para página login
-function backToLogin() {
-  router.push("/login");
-}
+
 </script>
 
 <style scoped>
@@ -205,7 +207,7 @@ function backToLogin() {
   transition: 0.5s;
   background-color: #fbcd01;
 }
-#backHome {
+#backLogin {
   padding: 20px;
   cursor: pointer;
   font-size: 20px;
