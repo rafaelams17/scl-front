@@ -76,16 +76,22 @@
         name="image"
         id="image"
         placeholder="Insira uma imagem do livro"
-        @change="uploadImage" accept="image/*"
+        @change="uploadImage"
+        accept="image/*"
       />
       <!-- <img v-if="imageURL" :src="imageURL" alt="Uploaded Image"> enviar a image para a API -->
 
       <div class="btn">
         <input class="submit" type="submit" :value="btnSubmit" />
-        <input class="reset" type="reset" value="Cancelar" @click="backToDashboard()"/>
+        <input
+          class="reset"
+          type="reset"
+          value="Cancelar"
+          @click="backToDashboard()"
+        />
       </div>
     </form>
-    <Message :msg="msg" v-show="msg" />
+    <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
 </template>
 
@@ -97,6 +103,7 @@ import api from "../boot/axios";
 
 const router = useRouter();
 const msg = ref(null);
+const type = ref(null);
 
 const title = "Cadastre seus livros";
 const btnSubmit = "Cadastrar";
@@ -107,44 +114,55 @@ const form = ref({
   quantPage: "",
   sinopse: "",
   editora: "",
-  dataPublicacao: ""
-})
+  dataPublicacao: "",
+});
 
 const imageURL = ref(""); // não está funcionando ainda, pesquisar como tratar image no vue
 
 async function registerBook() {
   try {
     // verificar se os campos estão vazios
-    if(
-      !form.value.titulo || !form.value.autor || !form.value.quantPage || !form.value.sinopse || !form.value.dataPublicacao || !form.value.editora
-      ){
-      msg.value = "Campos vazios! Preencha os campos corretamente!";
+    if (
+      !form.value.titulo ||
+      !form.value.autor ||
+      !form.value.quantPage ||
+      !form.value.sinopse ||
+      !form.value.dataPublicacao ||
+      !form.value.editora
+    ) {
+      type.value = "error";
+      msg.value = "Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
     } else {
       const { data } = await api.get("/book"); // rota sem autorização ainda
       let bookExits = false; // verificar se o livro já existe
 
-      for(var i = 0;i < data.length; i++) {
-        if(form.value.titulo == data[i].titulo){
+      for (var i = 0; i < data.length; i++) {
+        if (form.value.titulo == data[i].titulo) {
           bookExits = true;
         }
       }
 
-      if(bookExits){
+      if (bookExits) {
+        type.value = "error";
         msg.value = "O livro já existe!";
         setTimeout(() => (msg.value = ""), 2000);
       } else {
         // Criação do Livro
-        const { data } = await api.post("/book", form.value + 'Bearer' + localStorage.getItem('token'));
+        const { data } = await api.post(
+          "/book",
+          form.value + "Bearer" + localStorage.getItem("token")
+        );
+        type.value = "sucess";
         msg.value = "Livro criado com sucesso!";
         setTimeout(() => (msg.value = ""), 2000);
 
-        if(imageURL){
+        if (imageURL) {
           console.log(imageURL);
         }
 
-        // limpar os campos 
-        form.value = ""
+        // limpar os campos
+        form.value = "";
 
         // Teste
         console.log("Cheguei aqui!", data);
@@ -153,11 +171,13 @@ async function registerBook() {
         console.log("Quantidade de Página: " + form.value.quantPage);
         console.log("Sinopse: " + form.value.sinopse);
         console.log("Editora: " + form.value.editora);
-        console.log("Data de Publicação do Livro: " + form.value.dataPublicacao);
+        console.log(
+          "Data de Publicação do Livro: " + form.value.dataPublicacao
+        );
       }
     }
   } catch (error) {
-    if(error.response) {
+    if (error.response) {
       console.log("Server responded with: ", error.response.data);
       console.log("HTTP status code: ", error.response.status);
     } else {
@@ -166,10 +186,10 @@ async function registerBook() {
   }
 }
 
-function uploadImage(event){
+function uploadImage(event) {
   const file = event.target.files[0];
 
-  if(file){
+  if (file) {
     const reader = new FileReader();
     reader.onload = () => {
       imageURL.value = reader.result;

@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <form class="form" @submit.prevent="signIn()">
-
       <!-- Back to home page -->
       <span>
-        <router-link :to="{ name: 'home' }" title="Home"><i id="backHome" class="fa-solid fa-house"></i
+        <router-link :to="{ name: 'home' }" title="Home"
+          ><i id="backHome" class="fa-solid fa-house"></i
         ></router-link>
       </span>
 
@@ -16,7 +16,9 @@
       <!-- cadastrar um usuário -->
       <div class="create-account">
         <p>Don't have account?</p>
-        <router-link :to="{ name: 'register' }" id="create">Create an account</router-link>
+        <router-link :to="{ name: 'register' }" id="create"
+          >Create an account</router-link
+        >
       </div>
 
       <div class="campo-user">
@@ -37,26 +39,28 @@
           v-model="form.password"
         />
       </div>
-      
+
       <!-- Go to forget password page = recuperar a senha de um usuário -->
       <div class="forget-password">
-        <router-link :to="{ name: 'forget-password' }" id="forget">Forget Password?</router-link>
+        <router-link :to="{ name: 'forget-password' }" id="forget"
+          >Forget Password?</router-link
+        >
       </div>
 
       <input class="btn-submit" type="submit" value="Sign In" />
     </form>
-    <Message :msg="msg" v-show="msg" />
+    <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
 </template>
 
 <script setup>
 import { useRouter } from "vue-router";
 import api from "../boot/axios";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import Message from "../Message.vue";
 
 const msg = ref(null);
-
+const type = ref(null);
 const router = useRouter();
 
 const form = ref({
@@ -67,29 +71,26 @@ const form = ref({
 // realizar o login do usuário
 async function signIn() {
   try {
-    const { data } = await api.get("/user"); // para extrair os dados do formulário
-    // console.log(data.length); verificar o tamanho do array
-
     if (!form.value.email || !form.value.password) {
-      msg.value = "Campos vazios! Preencha os campos corretamente!";
+      type.value = "error";
+      msg.value = "Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
+    }   
+
+    const body = {
+      email: form.value.email,
+	    password: form.value.password
+    }
+
+    const { data } = await api.post("/login", body); // acessa os usuários para fazer a verificação
+
+    if(data.acess_token){
+      type.value = "sucess"
+      msg.value = "Login feito com sucesso!";
+      setTimeout(() => (msg.value = ""), 1000);
+      setTimeout(() => (router.push("/book")), 1000); // realiza o login
     }
     
-    if (data.length === 0) {
-      msg.value = "Se cadastre primeiro!";
-      setTimeout(() => (msg.value = ""), 2000);
-    }
-    
-    for (var i = 0; i < data.length; i++) {
-      if (form.value.email === data[i].email
-      ) {
-        router.push("/book"); // realiza o login
-      } else {
-        // console.log("caiu aqui!")
-        msg.value = "Usuário ou senha inválido!";
-        setTimeout(() => (msg.value = ""), 2000);
-      }
-    }
   } catch (error) {
     if (error.response) {
       console.log("Server responded with:", error?.response?.data);

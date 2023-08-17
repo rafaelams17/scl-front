@@ -52,7 +52,7 @@
       </div>
       <input class="btn-submit" type="submit" value="Sign Up" />
     </form>
-    <Message :msg="msg" v-show="msg" />
+    <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
 </template>
 
@@ -62,6 +62,7 @@ import { useRouter } from "vue-router";
 import api from "../boot/axios";
 import { ref } from "vue";
 
+const type = ref(null);
 const msg = ref(null);
 
 const form = ref({
@@ -83,6 +84,7 @@ async function signUp() {
       !form.value.password ||
       !confirmPassword.value
     ) {
+      type.value = "error";
       msg.value = "Campos vazios! Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
     } else {
@@ -98,6 +100,7 @@ async function signUp() {
       }
 
       if (userExists) {
+        type.value = "error";
         msg.value = "O usuário já existe!";
         setTimeout(() => (msg.value = ""), 2000);
         // se caso o usuário não exista, ele é armazenado no DB
@@ -105,6 +108,7 @@ async function signUp() {
         // Criação do Usuário!
         if (form.value.password === confirmPassword.value) {
           const { data } = await api.post("/user", form.value);
+          type.value = "sucess";
           msg.value = "O usuário criado com sucesso!";
           setTimeout(() => (msg.value = ""), 2000);
 
@@ -119,6 +123,7 @@ async function signUp() {
           form.value.password = "";
           confirmPassword.value = "";
         } else {
+          
           msg.value = "As senhas informadas não coincidem!";
           setTimeout(() => (msg.value = ""), 2000);
           form.value.password = "";
