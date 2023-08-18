@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <form class="form" @submit.prevent="signUp()">
-
-      <!-- Back to login page -->
-      <span>
+      <span> <!-- Back to login page -->
         <router-link :to="{ name: 'login' }" title="Login"><i id="backLogin" class="fa-solid fa-arrow-left"></i
         ></router-link>
       </span>
@@ -58,7 +56,6 @@
 
 <script setup>
 import Message from "../Message.vue";
-import { useRouter } from "vue-router";
 import api from "../boot/axios";
 import { ref } from "vue";
 
@@ -72,8 +69,6 @@ const form = ref({
 });
 const confirmPassword = ref("");
 
-const router = useRouter();
-
 // criar um usuário
 async function signUp() {
   try {
@@ -85,7 +80,7 @@ async function signUp() {
       !confirmPassword.value
     ) {
       type.value = "error";
-      msg.value = "Campos vazios! Preencha os campos corretamente!";
+      msg.value = "Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
     } else {
       // pegar os dados da API
@@ -115,7 +110,6 @@ async function signUp() {
           // retornar para login
           setTimeout(() => (msg.value = "Volte para a tela de login!"), 2500);
           setTimeout(() => (msg.value = ""), 4000);
-          console.log(data);
 
           // limpar os campos
           form.value.name = "";
@@ -123,7 +117,7 @@ async function signUp() {
           form.value.password = "";
           confirmPassword.value = "";
         } else {
-          
+          type.value = "error";
           msg.value = "As senhas informadas não coincidem!";
           setTimeout(() => (msg.value = ""), 2000);
           form.value.password = "";
@@ -140,7 +134,6 @@ async function signUp() {
     }
   }
 }
-
 </script>
 
 <style scoped>
