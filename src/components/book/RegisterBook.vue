@@ -107,6 +107,9 @@ const type = ref(null);
 
 const title = "Cadastre seus livros";
 const btnSubmit = "Cadastrar";
+const id_user = Number(localStorage.getItem("id_user")) ;
+
+console.log(id_user)
 
 const form = ref({
   titulo: "",
@@ -115,6 +118,7 @@ const form = ref({
   sinopse: "",
   editora: "",
   dataPublicacao: "",
+  id_user: id_user,
 });
 
 const imageURL = ref(""); // não está funcionando ainda, pesquisar como tratar image no vue
@@ -149,10 +153,8 @@ async function registerBook() {
         setTimeout(() => (msg.value = ""), 2000);
       } else {
         // Criação do Livro
-        const { data } = await api.post(
-          "/book",
-          form.value + "Bearer" + localStorage.getItem("token")
-        );
+        const { data } = await api.post("/book", form.value);
+        console.log(data), console.log(form.value);
         type.value = "sucess";
         msg.value = "Livro criado com sucesso!";
         setTimeout(() => (msg.value = ""), 2000);

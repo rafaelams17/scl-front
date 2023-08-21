@@ -87,6 +87,8 @@ async function signIn() {
     if(data.acess_token){
       type.value = "sucess"
       msg.value = "Login feito com sucesso!";
+      localStorage.setItem('token', data.acess_token)
+      localStorage.setItem('id_user', data.id_user)
       setTimeout(() => (msg.value = ""), 1000);
       setTimeout(() => (router.push("/book")), 1000); // realiza o login
     }
