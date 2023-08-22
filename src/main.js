@@ -1,6 +1,6 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import { notify } from '@kyvg/vue3-notification'
+// Inicializa a aplicação
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
 
-createApp(App).use(router, notify).mount('#app')
+createApp(App).use(router).mount('#app');

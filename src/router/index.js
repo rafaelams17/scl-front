@@ -35,9 +35,9 @@ const router = createRouter({
       path: '/book',
       name: 'book',
       component: () => import('../layouts/BookLayout.vue'),
-      meta: { 
-        requiresAuth: true
-      },
+      // meta: { 
+      //   requiresAuth: true
+      // },
       children: [
         {
           path: '', 
@@ -59,20 +59,20 @@ const router = createRouter({
   ]
 });
 
-router.beforeEach(async (to, from, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth)) {
-    // Authentication check
-    const token = localStorage.getItem('token');
+// router.beforeEach(async (to, from, next) => {
+//   if(to.matched.some(record => record.meta.requiresAuth)) {
+//     // Authentication check
+//     const token = localStorage.getItem('token');
 
-    // if token exists
-    if(token) {
-      // check if token is valid
-      console.log("Auth!")
-      return next();
-    }
-    return next('/book')
-  }
-  next();
-})
+//     // if token exists
+//     if(token) {
+//       // check if token is valid
+//       console.log("Auth!")
+//       return next();
+//     }
+//     return next('/book')
+//   }
+//   next();
+// })
 
 export default router

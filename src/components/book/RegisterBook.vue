@@ -66,20 +66,41 @@
         placeholder="Digite a data de publicação do livro"
         v-model="form.dataPublicacao"
       />
+      <!-- Image Upload -->
+      <div class="card">
+        <div class="top">
+          <p>Drag & drog images</p>
+        </div>
 
-      <label for="image"
-        >Upload da imagem do livro
-        <span class="campo-obrigatorio">*</span></label
-      >
-      <input
-        type="file"
-        name="image"
-        id="image"
-        placeholder="Insira uma imagem do livro"
-        @change="uploadImage"
-        accept="image/*"
-      />
-      <!-- <img v-if="imageURL" :src="imageURL" alt="Uploaded Image"> enviar a image para a API -->
+        <div class="drag-area">
+          <span v-if="!isDragging"
+            >Drag & drog image here or
+            <span class="select" role="button" @click="selectFiles"
+              >Choose</span
+            ></span
+          >
+          <div v-else class="select">Drop images here</div>
+          <input
+            type="file"
+            name="file"
+            class="file"
+            ref="fileInput"
+            multiple
+            @change="onFileSelect($event)"
+          />
+        </div>
+
+        <div class="container2">
+          <div class="image" v-for="(image, index) in images" :key="index">
+            <span class="delete">&times;</span>
+            <img :src="image.url" />
+          </div>
+        </div>
+
+        <button type="button" name="image" id="image">
+          Upload da imagem do livro
+        </button>
+      </div>
 
       <div class="btn">
         <input class="submit" type="submit" :value="btnSubmit" />
@@ -107,9 +128,9 @@ const type = ref(null);
 
 const title = "Cadastre seus livros";
 const btnSubmit = "Cadastrar";
-const id_user = Number(localStorage.getItem("id_user")) ;
-
-console.log(id_user)
+const images = ref([]);
+const isDragging = false;
+const fileInput = ref(null);
 
 const form = ref({
   titulo: "",
@@ -118,22 +139,13 @@ const form = ref({
   sinopse: "",
   editora: "",
   dataPublicacao: "",
-  id_user: id_user,
 });
 
-const imageURL = ref(""); // não está funcionando ainda, pesquisar como tratar image no vue
-
+// função para criar um livro
 async function registerBook() {
   try {
     // verificar se os campos estão vazios
-    if (
-      !form.value.titulo ||
-      !form.value.autor ||
-      !form.value.quantPage ||
-      !form.value.sinopse ||
-      !form.value.dataPublicacao ||
-      !form.value.editora
-    ) {
+    if (!form.value) {
       type.value = "error";
       msg.value = "Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
@@ -154,28 +166,13 @@ async function registerBook() {
       } else {
         // Criação do Livro
         const { data } = await api.post("/book", form.value);
-        console.log(data), console.log(form.value);
+
         type.value = "sucess";
         msg.value = "Livro criado com sucesso!";
         setTimeout(() => (msg.value = ""), 2000);
 
-        if (imageURL) {
-          console.log(imageURL);
-        }
-
         // limpar os campos
         form.value = "";
-
-        // Teste
-        console.log("Cheguei aqui!", data);
-        console.log("Titulo: " + form.value.titulo);
-        console.log("Autor: " + form.value.autor);
-        console.log("Quantidade de Página: " + form.value.quantPage);
-        console.log("Sinopse: " + form.value.sinopse);
-        console.log("Editora: " + form.value.editora);
-        console.log(
-          "Data de Publicação do Livro: " + form.value.dataPublicacao
-        );
       }
     }
   } catch (error) {
@@ -188,15 +185,23 @@ async function registerBook() {
   }
 }
 
-function uploadImage(event) {
-  const file = event.target.files[0];
+function selectFiles() {
+  fileInput.value.click();
+}
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      imageURL.value = reader.result;
-    };
-    reader.readAsDataURL(file);
+function onFileSelect(event) {
+  const files = event.target.files;
+
+  if (files.length === 0) return;
+
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].type.split("/")[0] != "image") continue;
+    if (!images.value.some((e) => e.name === files[i].name)) {
+      images.value.push({
+        name: files[i].name,
+        url: URL.createObjectURL(files[i]),
+      });
+    }
   }
 }
 
@@ -257,6 +262,97 @@ textarea {
 }
 .campo-obrigatorio {
   color: #ff0000;
+}
+.card {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 0 5px #fbcd0175;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.card .top {
+  text-align: center;
+}
+.card p {
+  font-weight: bold;
+  color: #fcba03;
+}
+.card button {
+  outline: 0;
+  border: 0;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 400;
+  padding: 8px 13px;
+  width: 100%;
+  background: #fcba03;
+}
+.card .drag-area {
+  height: 150px;
+  border-radius: 5px;
+  border: 1px dashed #fcba03;
+  background: #fff;
+  color: #fcba03;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: auto;
+  -webkit-user-select: none;
+  margin-top: 10px;
+}
+.card .drag-area .visible {
+  font-size: 18px;
+}
+.card .select {
+  color: #fcba03;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.card .select:hover {
+  opacity: 0.6;
+}
+.card .container2 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 200px;
+  position: relative;
+  margin-bottom: 8px;
+}
+.card .container2 .image {
+  width: 85px;
+  height: 75px;
+  margin-right: 5px;
+  margin-bottom: 8px;
+  position: relative;
+}
+.card .container2 .image img {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.card .container2 .image span {
+  margin-top: 10px;
+  position: absolute;
+  top: -2px;
+  right: 9px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.card input,
+.card .drag-area .on-drop,
+.card .drag-area.dragover .visible {
+  display: none;
+}
+.delete {
+  z-index: 999;
+  color: #000;
 }
 .btn {
   display: flex;
