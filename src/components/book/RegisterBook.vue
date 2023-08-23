@@ -67,40 +67,10 @@
         v-model="form.dataPublicacao"
       />
       <!-- Image Upload -->
-      <div class="card">
-        <div class="top">
-          <p>Drag & drog images</p>
-        </div>
-
-        <div class="drag-area">
-          <span v-if="!isDragging"
-            >Drag & drog image here or
-            <span class="select" role="button" @click="selectFiles"
-              >Choose</span
-            ></span
-          >
-          <div v-else class="select">Drop images here</div>
-          <input
-            type="file"
-            name="file"
-            class="file"
-            ref="fileInput"
-            multiple
-            @change="onFileSelect($event)"
-          />
-        </div>
-
-        <div class="container2">
-          <div class="image" v-for="(image, index) in images" :key="index">
-            <span class="delete">&times;</span>
-            <img :src="image.url" />
-          </div>
-        </div>
-
-        <button type="button" name="image" id="image">
-          Upload da imagem do livro
-        </button>
-      </div>
+      <label for="image"
+        >Upload da capa do livro <span class="campo-obrigatorio">*</span></label
+      >
+      <input type="file" name="image" id="image" ref="image" />
 
       <div class="btn">
         <input class="submit" type="submit" :value="btnSubmit" />
@@ -128,9 +98,6 @@ const type = ref(null);
 
 const title = "Cadastre seus livros";
 const btnSubmit = "Cadastrar";
-const images = ref([]);
-const isDragging = false;
-const fileInput = ref(null);
 
 const form = ref({
   titulo: "",
@@ -139,19 +106,29 @@ const form = ref({
   sinopse: "",
   editora: "",
   dataPublicacao: "",
+  image: null,
 });
 
 // função para criar um livro
 async function registerBook() {
   try {
     // verificar se os campos estão vazios
-    if (!form.value) {
+    if (
+      !form.value.titulo ||
+      !form.value.autor ||
+      !form.value.quantPage ||
+      !form.value.sinopse ||
+      !form.value.dataPublicacao ||
+      !form.value.editora
+    ) {
       type.value = "error";
       msg.value = "Preencha os campos corretamente!";
       setTimeout(() => (msg.value = ""), 2000);
     } else {
-      const { data } = await api.get("/book"); // rota sem autorização ainda
-      let bookExits = false; // verificar se o livro já existe
+      const { data } = await api.get("/book"); 
+
+      // verificar se o livro já existe
+      let bookExits = false; 
 
       for (var i = 0; i < data.length; i++) {
         if (form.value.titulo == data[i].titulo) {
@@ -181,26 +158,6 @@ async function registerBook() {
       console.log("HTTP status code: ", error.response.status);
     } else {
       console.log("Error details: ", error.message);
-    }
-  }
-}
-
-function selectFiles() {
-  fileInput.value.click();
-}
-
-function onFileSelect(event) {
-  const files = event.target.files;
-
-  if (files.length === 0) return;
-
-  for (let i = 0; i < files.length; i++) {
-    if (files[i].type.split("/")[0] != "image") continue;
-    if (!images.value.some((e) => e.name === files[i].name)) {
-      images.value.push({
-        name: files[i].name,
-        url: URL.createObjectURL(files[i]),
-      });
     }
   }
 }
@@ -323,6 +280,7 @@ textarea {
   max-width: 200px;
   position: relative;
   margin-bottom: 8px;
+  padding-top: 15px;
 }
 .card .container2 .image {
   width: 85px;
@@ -351,8 +309,9 @@ textarea {
   display: none;
 }
 .delete {
+  background: transparent;
   z-index: 999;
-  color: #000;
+  color: #ff0000;
 }
 .btn {
   display: flex;
@@ -367,6 +326,7 @@ textarea {
   padding: 5px 15px 5px 15px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  font-weight: 500;
 }
 .btn .submit:hover {
   transition: 0.5s;
@@ -375,14 +335,15 @@ textarea {
 .btn .reset {
   background-color: #000;
   color: #fcba03;
-  border: 2px solid #fcba03;
+  border: none;
   padding: 5px 15px 5px 15px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  font-weight: 500;
 }
 .btn .reset:hover {
+  background-color: #000000ae;
   transition: 0.5s;
-  border: 2px solid #000;
 }
 @media screen and (max-width: 750px) {
   .container {
