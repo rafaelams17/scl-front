@@ -19,17 +19,17 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../components/user/LoginPage.vue'),
+      component: () => import('../pages/LoginPage.vue'),
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('../components/user/RegisterPage.vue'),
+      component: () => import('../pages/RegisterPage.vue'),
     },
     {
       path: '/forget-password',
       name: 'forget-password',
-      component: () => import('../components/user/ForgetPassword.vue'),
+      component: () => import('../pages/ForgetPassword.vue'),
     },
     {
       path: '/book',

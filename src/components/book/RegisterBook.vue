@@ -90,7 +90,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Message from "../Message.vue";
-import api from "../boot/axios";
+import api from "@/boot/axios";
 
 const router = useRouter();
 const msg = ref(null);

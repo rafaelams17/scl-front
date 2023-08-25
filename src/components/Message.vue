@@ -5,9 +5,7 @@
 </template>
 
 <script scoped>
-import { computed, ref } from 'vue';
-
-let isActionDone = ref(false);
+import { ref } from 'vue';
 
 export default {
   props: {
@@ -27,21 +25,19 @@ export default {
 }
 .sucess {
   border: none;
-  background-color: #cce5ff;
-  border: 1px solid #88daff;
+  background-color: #11D23E;
 }
 .sucess p {
-  background-color: #cce5ff;
-  color: #004085;
+  background-color: #11D23E;
+  color: #FFFFFF;
 }
 
 .error {
   border: none;
-  background-color: #ffcccc;
-  border: 1px solid #ff8888;
+  background-color: #E30000;
 }
 .error p {
-  background-color: #ffcccc;
-  color: #850000;
+  background-color: #E30000;
+  color: #FFFFFF;
 }
 </style>
