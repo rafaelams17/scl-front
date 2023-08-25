@@ -43,7 +43,6 @@ function scrollToSection(sectionId) {
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: solid #fcba03 2px;
 }
 .links-nav {
   font-weight: 500;
@@ -64,7 +63,6 @@ function scrollToSection(sectionId) {
   background-color: #fcba03;
   color: #000;
   font-size: 16px;
-  border-radius: 30px;
   font-weight: 600;
   border: none;
   padding-left: 50px;
