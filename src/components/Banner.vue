@@ -4,9 +4,7 @@
   </div>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 <style scoped>
 .banner {
@@ -17,7 +15,7 @@
   height: 70vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   border-top: 2px solid #fcba03;
   border-bottom: 2px solid #fcba03;
 }
@@ -25,6 +23,7 @@
   background-color: #fcba03;
   color: #000;
   font-size: 40px;
+  width: 50%;
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
@@ -36,8 +35,15 @@
   font-size: 30px;
 }
 @media screen and (max-width: 700px) {
-  #mode-icon {
-    font-size: 20px;
+  .banner h1 {
+    font-size: 30px;
+    width: 100%;
+
   }
+  .banner {
+    display: flex;
+    align-items: end;
+  }
+
 }
 </style>
