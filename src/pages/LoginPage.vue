@@ -6,7 +6,9 @@
     <!-- Form -->
     <div class="container-form">
       <!-- Back to home page -->
-      <i id="backHome" class="fa-solid fa-x" @click="backToHome()" title="Home"></i>
+      <div id="backHome">
+        <i class="fa-solid fa-x" @click="backToHome()" title="Home"></i>
+      </div>
       <form @submit.prevent="signIn()">
 
         <div class="container-title">
@@ -143,6 +145,7 @@ function backToHome() {
 }
 .subtitle {
   display: flex;
+  font-size: 14px;
   gap: 20px;
   justify-content: center;
   margin-bottom: 3%;
@@ -151,8 +154,9 @@ function backToHome() {
 .container-form {
   flex: 1;
 }
-.container-form form {
-  margin: 100px;
+.container-form > form {
+  margin-left: 20%;
+  margin-right: 20%;
 }
 .container-inputs {
   display: flex;
@@ -206,10 +210,12 @@ function backToHome() {
   background-color: #fbcd01;
 }
 #backHome {
-  padding: 20px;
   display: flex;
   justify-content: flex-end;
+  font-size: 18px;
+}
+#backHome i {
+  padding: 20px;
   cursor: pointer;
-  font-size: 20px;
 }
 </style>
