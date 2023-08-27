@@ -121,9 +121,9 @@ async function forgetPassword() {
   text-align: center;
 }
 .container-title h1 {
-  font-size: 50px;
+  font-size: 40px;
 }
-.subtitle {
+.container-title p {
   display: flex;
   gap: 20px;
   justify-content: center;
@@ -133,8 +133,9 @@ async function forgetPassword() {
 .container-form {
   flex: 1;
 }
-.container-form form {
-  margin: 100px;
+.container-form > form {
+  margin-left: 20%;
+  margin-right: 20%;
 }
 .container-inputs {
   display: flex;
@@ -170,6 +171,7 @@ async function forgetPassword() {
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+  margin-top: 10px;
 }
 .btn-submit:hover {
   transition: 0.5s;

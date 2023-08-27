@@ -190,7 +190,7 @@ function backToLogin() {
   text-align: center;
 }
 .container-title h1 {
-  font-size: 50px;
+  font-size: 40px;
 }
 .subtitle {
   display: flex;
@@ -202,8 +202,9 @@ function backToLogin() {
 .container-form {
   flex: 1;
 }
-.container-form form {
-  margin: 100px;
+.container-form > form {
+  margin-left: 20%;
+  margin-right: 20%;
 }
 .container-inputs {
   display: flex;
@@ -241,6 +242,7 @@ function backToLogin() {
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+  margin-top: 5px;
 }
 .btn-submit:hover {
   transition: 0.5s;
