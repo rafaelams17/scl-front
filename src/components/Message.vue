@@ -4,15 +4,11 @@
   </div>
 </template>
 
-<script scoped>
-import { ref } from 'vue';
-
-export default {
-  props: {
-    msg: String, 
+<script setup>
+const props = defineProps({
+  msg: String, 
     backgroundColorClass: String,
-  },
-};
+});
 </script>
 
 <style scoped>

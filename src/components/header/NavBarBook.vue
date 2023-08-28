@@ -1,18 +1,17 @@
 <template>
   <div class="container">
-    <div class="logo">
+    <div class="menu">
+      <i class="fa-solid fa-bars"></i>
       <img src="../../assets/logo.svg" alt="logo" />
-      <p>+knowledge</p>
+      <p>Sistema de Controle Literário</p>
     </div>
 
     <div class="container-second" v-if="route.path == '/book'">
-      <p>Seja bem-vindo, <em>{{ user }}</em>!</p>
-        <i 
-        title="Log Out"
-          id="icon-logout"
-          class="fa-solid fa-right-from-bracket"
-          @click="backToLogin()"
-        ></i>
+      <span>{{ user }}</span>
+      <select name="user" id="user">
+        <option value="">Profile</option>
+        <option value="logout" @change="backToLogin()">Log out</option>
+      </select>
     </div>
   </div>
 </template>
@@ -31,10 +30,6 @@ function backToLogin() {
 </script>
 
 <style scoped>
-* {
-  background-color: #fff;
-  color: black;
-}
 .container {
   display: flex;
   flex-direction: row;
@@ -43,19 +38,7 @@ function backToLogin() {
   gap: 10px;
   padding: 10px 20px 0 50px;
   width: 100%;
-}
-.logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 20px;
-}
-.logo p {
-  padding-left: 5px;
-  font-size: 20px;
-  font-family: "Kaushan Script", cursive;
-}
-.logo i {
+  background-color: #000;
   color: #fcba03;
 }
 .container-second {
@@ -70,6 +53,18 @@ function backToLogin() {
 #icon-logout {
   cursor: pointer;
   font-size: 20px;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.menu p {
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+}
+li {
+  list-style-type: none;
 }
 @media screen and (max-width: 600px) {
   .logo p {
