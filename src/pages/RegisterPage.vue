@@ -1,14 +1,20 @@
 <template>
   <div class="container">
     <!-- Imagem -->
-    <img id="container-img" src="../assets/image-book.svg" alt="books" />
+    <div class="container-image-main">
+      <img id="container-img" src="../assets/books.jpg" alt="books" />
+    </div>
 
     <!-- Form -->
     <div class="container-form">
       <!-- Back to login page -->
-      <i id="backLogin" class="fa-solid fa-arrow-right" @click="backToLogin()" title="Login"></i>
+      <i
+        id="backLogin"
+        class="fa-solid fa-arrow-right"
+        @click="backToLogin()"
+        title="Login"
+      ></i>
       <form @submit.prevent="signUp()">
-
         <div class="container-title">
           <img src="../assets/logo.svg" alt="" />
           <h1>Create Account</h1>
@@ -22,17 +28,17 @@
           <label for="Name">
             Name <span class="campo-obrigatorio">*</span>
           </label>
-            <div class="container-inputs">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter your name"
-                v-model="form.name"
-              />
-              <i class="fa-solid fa-user"></i>
-            </div>
-      
+          <div class="container-inputs">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+              v-model="form.name"
+            />
+            <i class="fa-solid fa-user"></i>
+          </div>
+
           <label for="email"
             >Email <span class="campo-obrigatorio">*</span></label
           >
@@ -185,6 +191,7 @@ function backToLogin() {
 }
 #container-img {
   height: 100vh;
+  width: 130vh;
 }
 .container-title {
   text-align: center;
@@ -203,8 +210,8 @@ function backToLogin() {
   flex: 1;
 }
 .container-form > form {
-  margin-left: 20%;
-  margin-right: 20%;
+  margin: 10%;
+  padding: 10px;
 }
 .container-inputs {
   display: flex;
@@ -254,5 +261,59 @@ function backToLogin() {
   justify-content: flex-end;
   cursor: pointer;
   font-size: 20px;
+}
+/* Tablets, Laptop and Computers */
+@media screen and (max-width: 1600px) {
+  #container-img {
+    width: 80vh;
+    height: 99vh;
+  }
+  .container-form {
+    margin-bottom: 30px;
+    height: 100vh;
+  }
+}
+/* Tablets, Laptop and Computers */
+@media screen and (max-width: 1200px) {
+  #container-img {
+    width: 600px;
+    height: 99vh;
+  }
+  .container-form {
+    margin-bottom: 30px;
+    height: 100vh;
+  }
+}
+/* Tablets, Smartphones Android and Apple*/
+@media screen and (max-width: 900px) {
+  .container-image-main {
+    display: none;
+  }
+  .container-form {
+    margin-bottom: 30px;
+    height: 100vh;
+  }
+}
+/* Smartphones Android and Apple*/
+@media screen and (max-width: 400px) {
+  .container-form {
+    margin-bottom: 30px;
+  }
+  .container-form > form {
+    margin: 5%;
+    padding: 5px;
+  }
+  .container-title {
+    margin-top: -30px;
+  }
+  .container-title h1 {
+    font-size: 30px;
+  }
+  .container-title p {
+    font-size: 12px;
+  }
+  .btn-submit {
+    font-size: 14px;
+  }
 }
 </style>

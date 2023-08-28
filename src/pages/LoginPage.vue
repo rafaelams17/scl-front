@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <!-- Imagem -->
-    <img id="container-img" src="../assets/image-book.svg" alt="books" />
+    <div class="container-image-main">
+      <img id="container-img" src="../assets/books.jpg" alt="books" />
+    </div>
 
     <!-- Form -->
     <div class="container-form">
@@ -10,7 +12,6 @@
         <i class="fa-solid fa-x" @click="backToHome()" title="Home"></i>
       </div>
       <form @submit.prevent="signIn()">
-
         <div class="container-title">
           <img src="../assets/logo.svg" alt="" />
           <h1>Log In</h1>
@@ -135,7 +136,14 @@ function backToHome() {
 }
 #container-img {
   height: 100vh;
+  width: 130vh;
 }
+
+.container-form {
+  flex: 2;
+  box-sizing: border-box;
+}
+
 .container-title {
   text-align: center;
 }
@@ -151,12 +159,9 @@ function backToHome() {
   margin-bottom: 3%;
 }
 
-.container-form {
-  flex: 1;
-}
 .container-form > form {
-  margin-left: 20%;
-  margin-right: 20%;
+  margin: 10%;
+  padding: 10px;
 }
 .container-inputs {
   display: flex;
@@ -217,5 +222,74 @@ function backToHome() {
 #backHome i {
   padding: 20px;
   cursor: pointer;
+}
+/* Tablets, Laptop and Computers */
+@media screen and (max-width: 1600px) {
+  #container-img {
+    width: 80vh;
+    height: 99vh;
+  }
+  .container-form {
+    margin-bottom: 30px;
+    height: 100vh;
+  }
+}
+/* Tablets, Laptop and Computers */
+@media screen and (max-width: 1200px) {
+  #container-img {
+    width: 600px;
+    height: 99vh;
+  }
+  .container-title {
+    margin-top: 50px;
+  }
+  .container-form {
+    margin-bottom: 30px;
+    height: 100vh;
+  }
+  .container-form > form {
+    margin: 2%;
+    padding: 5px;
+  }
+
+
+  .subtitle {
+    display: flex;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+}
+/* Tablets, Smartphones Android and Apple*/
+@media screen and (max-width: 900px) {
+  .container-image-main {
+    display: none;
+  }
+  .container-form {
+    margin-bottom: 30px;
+    height: 100vh;
+  }
+}
+/* Smartphones Android and Apple*/
+@media screen and (max-width: 400px) {
+  .container-form {
+    margin-bottom: 30px;
+  }
+  .container-form > form {
+    margin: 5%;
+    padding: 5px;
+  }
+  .container-title {
+    margin-top: -30px;
+  }
+  .container-title h1 {
+    font-size: 40px;
+  }
+
+  .subtitle {
+    display: flex;
+    font-size: 12px;
+    gap: 5px;
+  }
 }
 </style>
