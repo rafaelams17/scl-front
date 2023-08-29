@@ -1,35 +1,27 @@
 <template>
   <div class="container">
     <!-- Imagem -->
-    <div class="container-image-main">
-      <img id="container-img" src="../assets/books.jpg" alt="books" />
-    </div>
+    <img id="container-img" src="../assets/books.jpg" alt="books" />
 
     <!-- Form -->
     <div class="container-form">
       <!-- Back to login page -->
-      <i
-        id="backLogin"
-        class="fa-solid fa-arrow-right"
-        @click="backToLogin()"
-        title="Login"
-      ></i>
+      <img id="backLogin" src="../assets/back.png" alt="home" @click="backToLogin()" title="Login">
+
+      <!-- Form -->
       <form @submit.prevent="signUp()">
         <div class="container-title">
           <img src="../assets/logo.svg" alt="" />
           <h1>Create Account</h1>
-          <div class="subtitle">
-            <p>WELCOME TO THE WEBSITE</p>
-          </div>
+          <p>WELCOME TO THE WEBSITE</p>
         </div>
 
         <!-- Realizar o cadastro do usuário -->
         <div class="container-input">
-          <label for="Name">
-            Name <span class="campo-obrigatorio">*</span>
-          </label>
-          <div class="container-inputs">
+          <p>Name <span class="campo-obrigatorio">*</span></p>
+          <div class="input-icons">
             <input
+              class="input-field"
               type="text"
               name="name"
               id="name"
@@ -39,46 +31,43 @@
             <i class="fa-solid fa-user"></i>
           </div>
 
-          <label for="email"
-            >Email <span class="campo-obrigatorio">*</span></label
-          >
-          <div class="container-inputs">
+          <p>Email <span class="campo-obrigatorio">*</span></p>
+          <div class="input-icons">
             <input
+              class="input-field"
               type="email"
               name="email"
               id="email"
               placeholder="email@example.com"
               v-model="form.email"
             />
-            <i class="fa-solid fa-envelope"></i>
+            <i class="fa-solid fa-envelope icon"></i>
           </div>
 
-          <label for="password"
-            >Password <span class="campo-obrigatorio">*</span></label
-          >
-          <div class="container-inputs">
+          <p>Password <span class="campo-obrigatorio">*</span></p>
+          <div class="input-icons">
             <input
+              class="input-field"
               type="password"
               name="password"
               id="password"
               placeholder="***************"
               v-model="form.password"
             />
-            <i class="fa-solid fa-lock"></i>
+            <i class="fa-solid fa-lock icon"></i>
           </div>
 
-          <label for="password"
-            >Confirm Password <span class="campo-obrigatorio">*</span></label
-          >
-          <div class="container-inputs">
+          <p>Confirm Password <span class="campo-obrigatorio">*</span></p>
+          <div class="input-icons">
             <input
+              class="input-field"
               type="password"
-              name="password"
-              id="password"
+              name="confirmPassword"
+              id="confirmPassword"
               placeholder="***************"
-              v-model="form.confirmPassword"
+              v-model="form.password"
             />
-            <i class="fa-solid fa-lock"></i>
+            <i class="fa-solid fa-lock icon"></i>
           </div>
 
           <input class="btn-submit" type="submit" value="Sign Up" />
@@ -189,9 +178,17 @@ function backToLogin() {
   flex-direction: row;
   justify-content: space-between;
 }
+/* Image - Tablets, Laptop and Computers */
 #container-img {
   height: 100vh;
-  width: 130vh;
+  width: 120vh;
+}
+.container-form {
+  flex: 1;
+  box-sizing: border-box;
+}
+.container-form > form {
+  margin: 8%;
 }
 .container-title {
   text-align: center;
@@ -199,35 +196,21 @@ function backToLogin() {
 .container-title h1 {
   font-size: 40px;
 }
-.subtitle {
+.container-title p {
   display: flex;
-  gap: 20px;
   justify-content: center;
   margin-bottom: 3%;
 }
-
-.container-form {
-  flex: 1;
-}
-.container-form > form {
-  margin: 10%;
-  padding: 10px;
-}
-.container-inputs {
-  display: flex;
-  flex-direction: row;
-}
-.campo-obrigatorio {
-  color: #ff0000;
-}
-#name,
-#email,
-#password,
-#confirmPassword {
-  display: flex;
-  width: 100%;
+.input-icons input {
   border: none;
-  border-bottom: 2px solid #fcba03;
+}
+.input-icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #fca103;
+  border-radius: 15px;
   margin-top: 2%;
   margin-bottom: 2%;
 }
@@ -236,6 +219,9 @@ function backToLogin() {
 #password:focus,
 #confirmPassword:focus {
   outline: none;
+}
+.campo-obrigatorio {
+  color: #ff0000;
 }
 .btn-submit {
   background-color: #fcba03;
@@ -256,64 +242,36 @@ function backToLogin() {
   background-color: #fbcd01;
 }
 #backLogin {
+  width: 60px;
+  float: right;
   padding: 20px;
-  display: flex;
-  justify-content: flex-end;
   cursor: pointer;
   font-size: 20px;
 }
-/* Tablets, Laptop and Computers */
-@media screen and (max-width: 1600px) {
-  #container-img {
-    width: 80vh;
-    height: 99vh;
+@media screen and (max-width: 1400px) {
+  .input-icons input {
+    width: 50%;
   }
-  .container-form {
-    margin-bottom: 30px;
-    height: 100vh;
+  #container-img {
+    width: 90vh;
   }
 }
-/* Tablets, Laptop and Computers */
+/* Tablets and iPad*/
 @media screen and (max-width: 1200px) {
-  #container-img {
-    width: 600px;
-    height: 99vh;
-  }
-  .container-form {
-    margin-bottom: 30px;
-    height: 100vh;
+  .container-title h1 {
+    font-size: 25px;
   }
 }
-/* Tablets, Smartphones Android and Apple*/
-@media screen and (max-width: 900px) {
-  .container-image-main {
+/* Tablets and iPad*/
+@media screen and (max-width: 1000px) {
+  #container-img {
     display: none;
   }
-  .container-form {
-    margin-bottom: 30px;
+  .container {
     height: 100vh;
   }
-}
-/* Smartphones Android and Apple*/
-@media screen and (max-width: 400px) {
-  .container-form {
-    margin-bottom: 30px;
-  }
-  .container-form > form {
-    margin: 5%;
-    padding: 5px;
-  }
-  .container-title {
-    margin-top: -30px;
-  }
   .container-title h1 {
-    font-size: 30px;
-  }
-  .container-title p {
-    font-size: 12px;
-  }
-  .btn-submit {
-    font-size: 14px;
+    font-size: 35px;
   }
 }
 </style>

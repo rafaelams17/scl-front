@@ -1,68 +1,63 @@
 <template>
   <div class="container">
     <!-- Imagem -->
-    <div class="container-image-main">
-      <img id="container-img" src="../assets/books.jpg" alt="books" />
-    </div>
+    <img id="container-img" src="../assets/books.jpg" alt="books" />
 
     <!-- Form -->
     <div class="container-form">
       <!-- Back to login page -->
-      <i id="backLogin" class="fa-solid fa-arrow-right" @click="backToLogin()" title="Login"></i>
+      <img id="backLogin" src="../assets/back.png" alt="home" @click="backToLogin()" title="Login">
+      
       <form @submit.prevent="forgetPassword()">
-
         <div class="container-title">
           <img src="../assets/logo.svg" alt="" />
           <h1>Reset your password</h1>
           <p>
-            Please Enter Your Email Address To Verification on the database, if you have
-            account.
+            Please Enter Your Email Address To Verification on the database, if
+            you have account.
           </p>
         </div>
 
         <!-- Realizar o login do usuário -->
         <div class="container-input">
-          <label for="email"
-            >Email <span class="campo-obrigatorio">*</span></label
-          >
-          <div class="container-inputs">
+          <p>Email <span class="campo-obrigatorio">*</span></p>
+          <div class="input-icons">
             <input
+              class="input-field"
               type="email"
               name="email"
               id="email"
               placeholder="email@example.com"
               v-model="form.email"
             />
-            <i class="fa-solid fa-envelope"></i>
+            <i class="fa-solid fa-envelope icon"></i>
           </div>
 
           <div v-if="email">
-            <label for="password"
-              >Password <span class="campo-obrigatorio">*</span></label
-            >
-            <div class="container-inputs">
+            <p>Password <span class="campo-obrigatorio">*</span></p>
+            <div class="input-icons">
               <input
+                class="input-field"
                 type="password"
                 name="password"
                 id="password"
                 placeholder="***************"
                 v-model="form.password"
               />
-              <i class="fa-solid fa-lock"></i>
+              <i class="fa-solid fa-lock icon"></i>
             </div>
 
-            <label for="password"
-              >Confirm Password <span class="campo-obrigatorio">*</span></label
-            >
-            <div class="container-inputs">
+            <p>Confirm Password <span class="campo-obrigatorio">*</span></p>
+            <div class="input-icons">
               <input
+                class="input-field"
                 type="password"
-                name="password"
-                id="password"
+                name="confirmPassword"
+                id="confirmPassword"
                 placeholder="***************"
-                v-model="form.confirmPassword"
+                v-model="form.password"
               />
-              <i class="fa-solid fa-lock"></i>
+              <i class="fa-solid fa-lock icon"></i>
             </div>
           </div>
 
@@ -77,7 +72,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import api from "../boot/axios";
+// import api from "../boot/axios";
 import Message from "../components/Message.vue";
 
 const email = false;
@@ -118,7 +113,14 @@ async function forgetPassword() {
 }
 #container-img {
   height: 100vh;
-  width: 130vh;
+  width: 120vh;
+}
+.container-form {
+  flex: 1;
+  box-sizing: border-box;
+}
+.container-form > form {
+  margin: 8%;
 }
 .container-title {
   text-align: center;
@@ -128,39 +130,31 @@ async function forgetPassword() {
 }
 .container-title p {
   display: flex;
-  gap: 20px;
   justify-content: center;
   margin-bottom: 3%;
 }
-.container-form {
-  flex: 1;
-}
-.container-form > form {
-  margin: 10%;
-  padding: 10px;
-}
-.container-inputs {
-  display: flex;
-  flex-direction: row;
-}
-.campo-obrigatorio {
-  color: #ff0000;
-}
-#email,
-#password, 
-#confirmPassword {
-  display: flex;
-  width: 100%;
+.input-icons input {
   border: none;
-  border-bottom: 2px solid #fcba03;
+}
+.input-icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #fca103;
+  border-radius: 15px;
   margin-top: 2%;
   margin-bottom: 2%;
 }
 #email:focus,
-#password:focus, 
+#password:focus,
 #confirmPassword:focus {
   outline: none;
 }
+.campo-obrigatorio {
+  color: #ff0000;
+}
+
 .btn-submit {
   background-color: #fcba03;
   color: #000;
@@ -180,64 +174,40 @@ async function forgetPassword() {
   background-color: #fbcd01;
 }
 #backLogin {
+  width: 60px;
+  float: right;
   padding: 20px;
-  display: flex;
-  justify-content: flex-end;
+  font-size: 50px;
   cursor: pointer;
-  font-size: 20px;
 }
-/* Tablets, Laptop and Computers */
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1400px) {
+  .input-icons input {
+    width: 50%;
+  }
   #container-img {
-    width: 80vh;
-    height: 99vh;
-  }
-  .container-form {
-    margin-bottom: 30px;
-    height: 100vh;
+    width: 90vh;
   }
 }
-/* Tablets, Laptop and Computers */
+
+/* Tablets and iPad*/
 @media screen and (max-width: 1200px) {
-  #container-img {
-    width: 600px;
-    height: 99vh;
-  }
-  .container-form {
-    margin-bottom: 30px;
-    height: 100vh;
-  }
-}
-/* Tablets, Smartphones Android and Apple*/
-@media screen and (max-width: 900px) {
-  .container-image-main {
-    display: none;
-  }
-  .container-form {
-    margin-bottom: 30px;
-    height: 100vh;
-  }
-}
-/* Smartphones Android and Apple*/
-@media screen and (max-width: 400px) {
-  .container-form {
-    margin-bottom: 30px;
-  }
-  .container-form > form {
-    margin: 5%;
-    padding: 5px;
-  }
-  .container-title {
-    margin-top: -30px;
-  }
   .container-title h1 {
-    font-size: 20px;
+    font-size: 25px;
   }
   .container-title p {
-    font-size: 12px;
+    font-size: 15px;
   }
-  .btn-submit {
-    font-size: 14px;
+}
+/* Tablets and iPad*/
+@media screen and (max-width: 1000px) {
+  #container-img {
+    display: none;
+  }
+  .container {
+    height: 100vh;
+  }
+  .container-title h1 {
+    font-size: 35px;
   }
 }
 </style>
