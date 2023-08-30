@@ -129,7 +129,7 @@ function backToHome() {
 /* Image - Tablets, Laptop and Computers */
 #container-img {
   height: 100vh;
-  width: 120vh;
+  width: 130vh;
 }
 .container-form {
   flex: 1;
@@ -215,8 +215,10 @@ function backToHome() {
   .input-icons input {
     width: 50%;
   }
-  #container-img {
-    width: 90vh;
+}
+@media screen and (max-width: 1370px) {
+  .input-icons {
+    width: 100%;
   }
 }
 @media screen and (max-width: 1200px) {

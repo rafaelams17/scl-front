@@ -113,7 +113,7 @@ async function forgetPassword() {
 }
 #container-img {
   height: 100vh;
-  width: 120vh;
+  width: 130vh;
 }
 .container-form {
   flex: 1;
@@ -182,13 +182,15 @@ async function forgetPassword() {
 }
 @media screen and (max-width: 1400px) {
   .input-icons input {
-    width: 50%;
+    width: 100%;
   }
-  #container-img {
-    width: 90vh;
+
+}
+@media screen and (max-width: 1370px) {
+  .input-icons {
+    width: 100%;
   }
 }
-
 /* Tablets and iPad*/
 @media screen and (max-width: 1200px) {
   .container-title h1 {

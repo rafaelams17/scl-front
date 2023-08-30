@@ -211,8 +211,7 @@ function backToLogin() {
   padding: 10px;
   border: 1px solid #fca103;
   border-radius: 15px;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin: 2px;
 }
 #name:focus,
 #email:focus,
@@ -235,7 +234,7 @@ function backToLogin() {
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .btn-submit:hover {
   transition: 0.5s;
@@ -254,6 +253,14 @@ function backToLogin() {
   }
   #container-img {
     width: 90vh;
+  }
+}
+@media screen and (max-width: 1370px) {
+  .input-icons {
+    width: 100%;
+  }
+  #container-img {
+    width: 130vh;
   }
 }
 /* Tablets and iPad*/
