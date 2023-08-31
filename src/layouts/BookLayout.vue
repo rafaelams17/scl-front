@@ -16,18 +16,23 @@ import ItemMenu from "@/components/ItemMenu.vue";
 import NavBarBook from "../components/header/NavBarBook.vue";
 import FooterBook from "../components/footer/FooterBook.vue";
 
+
 const menuItems = [
   {
     label: "Livros",
     route: "/register-book",
-    iconPath: require("@/assets/dashboard.svg"),
+    iconPath: require("@/assets/book.svg"),
   },
   {
     label: "Feedback",
     route: "/book",
-    iconPath: require("@/assets/dashboard.svg"),
+    iconPath: require("@/assets/feedback.svg"),
   },
 ];
+
+function clicou(){
+  console.log("Chegou")
+}
 </script>
 
 <style scoped>
@@ -42,11 +47,12 @@ const menuItems = [
   flex-direction: row;
 }
 .container-menu {
-  flex: 1;
+  width: 20vh;
   background-color: #fcba033d;
   color: #000;
 }
 .container-content {
-  flex: 2;
+  flex: 1;
+  width: 100vh;
 }
 </style>

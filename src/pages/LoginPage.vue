@@ -6,9 +6,11 @@
     <!-- Form -->
     <div class="container-form">
       <!-- Back to home page -->
-      <img id="backHome" src="../assets/x.png" alt="home" @click="backToHome()" title="Home">
+      <i id="backHome" class="fa-solid fa-x" title="home" @click="backToHome()"></i>
 
       <form @submit.prevent="signIn()">
+        
+        <!-- Title -->
         <div class="container-title">
           <img src="../assets/logo.svg" alt="" />
           <h1>Log In</h1>
@@ -22,8 +24,8 @@
 
         <!-- Realizar o login do usuário -->
         <div class="container-input">
-          <p>Email <span class="campo-obrigatorio">*</span></p>
-          <div class="input-icons">
+            <label for="email">Email <span class="campo-obrigatorio">*</span></label>
+            <div class="input-icons">
             <input
               class="input-field"
               type="email"
@@ -35,7 +37,7 @@
             <i class="fa-solid fa-envelope icon"></i>
           </div>
 
-          <p>Password <span class="campo-obrigatorio">*</span></p>
+          <label for="password">Password <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
             <input
               class="input-field"
@@ -161,13 +163,15 @@ function backToHome() {
 .input-icons input {
   border: none;
 }
+.input-icons input, i{
+  background-color: transparent;
+}
 .input-icons {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid #fca103;
-  border-radius: 15px;
+  background-color: #fcba033d;
   margin-top: 2%;
   margin-bottom: 2%;
 }

@@ -1,17 +1,14 @@
 <template>
   <div class="container">
-    <div class="menu">
-      <i class="fa-solid fa-bars"></i>
+    <div class="container-logo">
+      <i class="fa-solid fa-bars icon"></i>
       <img src="../../assets/logo.svg" alt="logo" />
       <p>Sistema de Controle Literário</p>
     </div>
 
-    <div class="container-second" v-if="route.path == '/book'">
-      <span>{{ user }}</span>
-      <select name="user" id="user">
-        <option value="">Profile</option>
-        <option value="logout" @change="backToLogin()">Log out</option>
-      </select>
+    <div class="container-user" v-if="route.path == '/book'">
+      <span>Bem-vindo, {{ user }}!</span>
+      <i class="fa-solid fa-right-from-bracket user" @click="backToLogin()" title="Logout"></i>
     </div>
   </div>
 </template>
@@ -36,32 +33,34 @@ function backToLogin() {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 10px 20px 0 50px;
+  padding: 10px 20px 10px 50px;
   width: 100%;
   background-color: #000;
   color: #fcba03;
 }
-.container-second {
+.container-user {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   gap: 50px;
 }
-.container-second p {
+.container-user p {
   padding-right: 10px;
 }
-#icon-logout {
+.user {
   cursor: pointer;
   font-size: 20px;
+  padding-right: 20px;
 }
-.menu {
+.container-logo {
   display: flex;
   align-items: center;
   gap: 30px;
 }
-.menu p {
+.container-logo p {
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
 }
 li {
   list-style-type: none;
@@ -70,7 +69,7 @@ li {
   .logo p {
     display: none;
   }
-  .container-second p {
+  .container-user p {
     display: none;
   }
 }

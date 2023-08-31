@@ -7,7 +7,7 @@
 <script setup>
 const props = defineProps({
   msg: String, 
-    backgroundColorClass: String,
+  backgroundColorClass: String,
 });
 </script>
 

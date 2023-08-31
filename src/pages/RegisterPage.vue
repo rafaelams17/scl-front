@@ -6,10 +6,12 @@
     <!-- Form -->
     <div class="container-form">
       <!-- Back to login page -->
-      <img id="backLogin" src="../assets/back.png" alt="home" @click="backToLogin()" title="Login">
+      <i id="backLogin" class="fa-solid fa-arrow-right" @click="backToLogin()" title="Login"></i>
 
       <!-- Form -->
       <form @submit.prevent="signUp()">
+
+        <!-- Title -->
         <div class="container-title">
           <img src="../assets/logo.svg" alt="" />
           <h1>Create Account</h1>
@@ -18,7 +20,7 @@
 
         <!-- Realizar o cadastro do usuário -->
         <div class="container-input">
-          <p>Name <span class="campo-obrigatorio">*</span></p>
+          <label for="name">Name <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
             <input
               class="input-field"
@@ -31,7 +33,7 @@
             <i class="fa-solid fa-user"></i>
           </div>
 
-          <p>Email <span class="campo-obrigatorio">*</span></p>
+          <label for="email">Email <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
             <input
               class="input-field"
@@ -44,7 +46,7 @@
             <i class="fa-solid fa-envelope icon"></i>
           </div>
 
-          <p>Password <span class="campo-obrigatorio">*</span></p>
+          <label for="password">Password <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
             <input
               class="input-field"
@@ -57,7 +59,7 @@
             <i class="fa-solid fa-lock icon"></i>
           </div>
 
-          <p>Confirm Password <span class="campo-obrigatorio">*</span></p>
+          <label for="confirmPassword">Confirm Password <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
             <input
               class="input-field"
@@ -181,7 +183,7 @@ function backToLogin() {
 /* Image - Tablets, Laptop and Computers */
 #container-img {
   height: 100vh;
-  width: 120vh;
+  width: 130vh;
 }
 .container-form {
   flex: 1;
@@ -204,14 +206,17 @@ function backToLogin() {
 .input-icons input {
   border: none;
 }
+.input-icons input, i {
+  background-color: transparent;
+}
 .input-icons {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid #fca103;
-  border-radius: 15px;
-  margin: 2px;
+  background-color: #fcba033d;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 #name:focus,
 #email:focus,
@@ -234,7 +239,7 @@ function backToLogin() {
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .btn-submit:hover {
   transition: 0.5s;

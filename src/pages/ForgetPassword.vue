@@ -20,7 +20,7 @@
 
         <!-- Realizar o login do usuário -->
         <div class="container-input">
-          <p>Email <span class="campo-obrigatorio">*</span></p>
+          <label for="email">Email <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
             <input
               class="input-field"
@@ -34,31 +34,31 @@
           </div>
 
           <div v-if="email">
-            <p>Password <span class="campo-obrigatorio">*</span></p>
-            <div class="input-icons">
-              <input
-                class="input-field"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="***************"
-                v-model="form.password"
-              />
-              <i class="fa-solid fa-lock icon"></i>
-            </div>
+          <label for="password">Password <span class="campo-obrigatorio">*</span></label>
+          <div class="input-icons">
+            <input
+              class="input-field"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="***************"
+              v-model="form.password"
+            />
+            <i class="fa-solid fa-lock icon"></i>
+          </div>
 
-            <p>Confirm Password <span class="campo-obrigatorio">*</span></p>
-            <div class="input-icons">
-              <input
-                class="input-field"
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="***************"
-                v-model="form.password"
-              />
-              <i class="fa-solid fa-lock icon"></i>
-            </div>
+          <label for="confirmPassword">Confirm Password <span class="campo-obrigatorio">*</span></label>
+          <div class="input-icons">
+            <input
+              class="input-field"
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="***************"
+              v-model="form.password"
+            />
+            <i class="fa-solid fa-lock icon"></i>
+          </div>
           </div>
 
           <input class="btn-submit" type="submit" value="Send" />
@@ -136,13 +136,15 @@ async function forgetPassword() {
 .input-icons input {
   border: none;
 }
+.input-icons input, i {
+  background-color: transparent;
+}
 .input-icons {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid #fca103;
-  border-radius: 15px;
+  background-color: #fcba033d;
   margin-top: 2%;
   margin-bottom: 2%;
 }
