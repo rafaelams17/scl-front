@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-logo">
-      <i class="fa-solid fa-bars icon"></i>
+      <i class="fa-solid fa-bars icon" @click="btnClick()"></i>
       <img src="../../assets/logo.svg" alt="logo" />
       <p>Sistema de Controle Literário</p>
     </div>
@@ -20,9 +20,15 @@ const router = useRouter();
 const route = useRoute();
 const user = "Rafaela";
 
+// Emite um evento para notificar o componente pai que o ícone foi clicado.
+const emits = defineEmits(['toggleSidebar']);
+
 // voltar para página login
 function backToLogin() {
   router.push("/login");
+}
+function btnClick() {
+  emits('toggleSidebar');
 }
 </script>
 
@@ -61,6 +67,10 @@ function backToLogin() {
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
+}
+.icon {
+  cursor: pointer;
+  font-size: 18px;
 }
 li {
   list-style-type: none;

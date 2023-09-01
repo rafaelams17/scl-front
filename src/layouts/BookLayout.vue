@@ -1,12 +1,12 @@
 <template>
   <div id="container">
-    <div class="container-menu">
+    <div class="container-menu" v-if="showSidebar">
       <ItemMenu :menu-items="menuItems" />
     </div>
     <div class="container-content">
-      <NavBarBook />
+      <NavBarBook @toggle-sidebar="toggleSidebar" />
       <router-view />
-      <FooterBook />
+      <FooterBook :lowerBackground="type" class="teste" />
     </div>
   </div>
 </template>
@@ -15,7 +15,10 @@
 import ItemMenu from "@/components/ItemMenu.vue";
 import NavBarBook from "../components/header/NavBarBook.vue";
 import FooterBook from "../components/footer/FooterBook.vue";
+import { ref } from "vue";
 
+const showSidebar = ref(false);
+const type = ref(null);
 
 const menuItems = [
   {
@@ -25,14 +28,16 @@ const menuItems = [
   },
   {
     label: "Feedback",
-    route: "/book",
+    route: "/feedback",
     iconPath: require("@/assets/feedback.svg"),
   },
 ];
 
-function clicou(){
-  console.log("Chegou")
+function toggleSidebar(){
+  console.log(showSidebar.value);
+  showSidebar.value = !showSidebar.value;
 }
+
 </script>
 
 <style scoped>
@@ -43,19 +48,17 @@ function clicou(){
 }
 #container {
   position: relative;
-  height: 100%;
   display: flex;
   flex-direction: row;
 }
 .container-menu {
   width: 30vh;
-  height: 148vh;
   background-color: #fcba033d;
   color: #000;
 }
 .container-content {
   flex: 1;
   width: 100vh;
-  height: 130vh;
+  height: 100vh;
 }
 </style>

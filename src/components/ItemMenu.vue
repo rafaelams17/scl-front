@@ -14,7 +14,7 @@
 
 <script setup>
 const props = defineProps({
-  menuItems: Array,
+  menuItems: Array
 });
 </script>
 
@@ -37,7 +37,6 @@ p {
 li {
   list-style-type: none;
   margin-left: 10px;
-
 }
 .items {
   display: flex;
@@ -46,5 +45,4 @@ li {
 img {
   margin-right: 5px;
 }
-
 </style>
