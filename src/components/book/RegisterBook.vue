@@ -160,7 +160,7 @@ function backToDashboard() {
 }
 .container {
   margin: 0 auto;
-  width: 80vh;
+  width: 100vh;
   margin-bottom: 5%;
 }
 .container h1 {
@@ -242,9 +242,8 @@ textarea {
   background-color: #000000ae;
   transition: 0.5s;
 }
-@media screen and (max-width: 750px) {
+/* @media screen and (max-width: 750px) {
   .container {
-    width: 100%;
     margin: 20px;
   }
   .container h1 {
@@ -258,5 +257,5 @@ textarea {
   #anoPubli {
     width: 80%;
   }
-}
+} */
 </style>

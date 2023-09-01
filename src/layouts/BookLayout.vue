@@ -42,17 +42,20 @@ function clicou(){
   color: #000;
 }
 #container {
-  height: 100vh;
+  position: relative;
+  height: 100%;
   display: flex;
   flex-direction: row;
 }
 .container-menu {
-  width: 20vh;
+  width: 30vh;
+  height: 148vh;
   background-color: #fcba033d;
   color: #000;
 }
 .container-content {
   flex: 1;
   width: 100vh;
+  height: 130vh;
 }
 </style>

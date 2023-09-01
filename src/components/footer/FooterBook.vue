@@ -1,21 +1,18 @@
 <template>
-  <div class="container">
-    <p>Desenvolvido por Rafaela 2023</p>
-  </div>
+  <footer>Desenvolvido por Rafaela 2023</footer>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 <style scoped>
-.container p{
-  padding-top: 5px;
-  text-align: center;
-  height: 36px;
-  position: fixed;
+footer {
+  position: absolute;
   bottom: 0;
-  left: 50;
-  width: 100%;
+  background-color: #000;
+  color: #fcba03;
+  width: calc(100% - 30vh);
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
 }
 </style>
