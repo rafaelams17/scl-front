@@ -1,19 +1,15 @@
 <template>
   <div v-if="(route.path == '/')" class="footer">
     <div class="text-footer">
-      <p>&copy; 2023 por Rafaela Santos</p>
+      <footer class="social-media">
+        <div>
+          <a href="https://www.instagram.com/rafaa_vs23/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/rafaelasantoss/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/rafaelams17" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+      <p>Desenvolvido por Rafaela &copy; 2023</p>
       <p>Vitória da Conquista, BA</p>
-    </div>
-    <div class="social-media">
-      <a href="https://www.linkedin.com/in/rafaelasantoss/" target="_blank"
-        ><img src="../../assets/linkedin.svg" alt="linkedin"
-      /></a>
-      <a href="https://www.instagram.com/rafaa_vs23/" target="_blank"
-        ><img src="../../assets/instagram.svg" alt="instagram"
-      /></a>
-      <a href="https://github.com/rafaelams17/" target="_blank"
-        ><img src="../../assets/github.svg" alt="github"
-      /></a>
+      </footer>
     </div>
   </div>
 </template>
@@ -40,5 +36,9 @@ const route = useRoute();
 
 .text-footer {
   line-height: 1.3em;
+}
+div i {
+  padding: 10px;
+  font-size: 20px;
 }
 </style>

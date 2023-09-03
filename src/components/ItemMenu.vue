@@ -1,48 +1,40 @@
 <template>
   <div class="container">
-    <ul>
-      <p>Menu</p>
-      <li v-for="(item, index) in menuItems" :key="index">
-        <router-link :to="item.route" class="items">
-          <img :src="item.iconPath" alt="Icon" class="" />
-          {{ item.label }}
-        </router-link>
-      </li>
-    </ul>
+    <p>Menu</p>
+    <div v-for="(item, index) in menuItems" :key="index" class="items1">
+      <router-link :to="item.route" class="items">
+        <img :src="item.iconPath" alt="Icon" class="items-img" />
+        {{ item.label }}
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  menuItems: Array
+  menuItems: Array,
 });
 </script>
 
 <style scoped>
 * {
-  background: transparent;
+  background-color: #fff;
   color: #000;
 }
 .container {
+  background: #fff;
   margin: 10px;
 }
-ul {
-  background-color: #fcba033d;
-}
-p {
-  font-size: 14px;
-  color: #0000009a;
-  margin-bottom: 10px;
-}
-li {
-  list-style-type: none;
-  margin-left: 10px;
-}
 .items {
+  background: transparent;
   display: flex;
   align-items: center;
 }
-img {
-  margin-right: 5px;
+.items-img {
+  background-color: transparent;
+  margin-right: 10px ;
+}
+.items1, p, img {
+  background-color: #fca10382;
 }
 </style>

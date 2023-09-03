@@ -6,7 +6,7 @@
     <div class="container-content">
       <NavBarBook @toggle-sidebar="toggleSidebar" />
       <router-view />
-      <FooterBook :lowerBackground="type" class="teste" />
+      <FooterBook :lowerBackground="type" />
     </div>
   </div>
 </template>
@@ -53,12 +53,11 @@ function toggleSidebar(){
 }
 .container-menu {
   width: 30vh;
-  background-color: #fcba033d;
+  background-color: #fca10382;
   color: #000;
 }
 .container-content {
   flex: 1;
   width: 100vh;
-  height: 100vh;
 }
 </style>
