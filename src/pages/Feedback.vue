@@ -48,6 +48,8 @@ function backToDashboard() {
 }
 .container {
   text-align: center;
+  height: calc(100vh - 22vh);
+
 }
 .container h1 {
   margin-top: 30px;

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <p>Menu</p>
-    <div v-for="(item, index) in menuItems" :key="index" class="items1">
+    <div v-for="(item, index) in menuItems" :key="index" class="container-items">
       <router-link :to="item.route" class="items">
         <img :src="item.iconPath" alt="Icon" class="items-img" />
         {{ item.label }}
@@ -25,16 +25,25 @@ const props = defineProps({
   background: #fff;
   margin: 10px;
 }
+.container p {
+  font-size: 12px;
+  color: #504f4f;
+}
 .items {
   background: transparent;
   display: flex;
   align-items: center;
 }
+.items:hover {
+  transition: .5s;
+  background-color: #ffffff57;
+}
 .items-img {
   background-color: transparent;
-  margin-right: 10px ;
+  margin-right: 10px;
+  padding-left: 10px;
 }
-.items1, p, img {
-  background-color: #fca10382;
+.container-items, p, img {
+  background-color: #FCBA03;
 }
 </style>

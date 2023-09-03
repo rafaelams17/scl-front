@@ -53,7 +53,7 @@ function toggleSidebar(){
 }
 .container-menu {
   width: 30vh;
-  background-color: #fca10382;
+  background-color: #FCBA03;
   color: #000;
 }
 .container-content {
