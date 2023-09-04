@@ -1,5 +1,6 @@
 <template>
   <div id="back">
+    <HeaderHome />
     <Banner />
 
     <!-- O mesmo que <PopularBooks />-->
@@ -8,12 +9,15 @@
     <div id="icon">
       <i class="fa-solid fa-circle-arrow-up" @click="backToStart('#back')"></i>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script setup>
-import Banner from "../components/Banner.vue";
-import PopularBooks from "../components/contentWeb/PopularBooks.vue";
+import HeaderHome from "../components/home/HeaderHome.vue";
+import Footer from "../components/home/FooterHome.vue";
+import Banner from "../components/home/BannerHome.vue";
+import PopularBooks from "../components/home/PopularBookHome.vue";
 
 function backToStart(sectionId) {
   const element = document.querySelector(sectionId);

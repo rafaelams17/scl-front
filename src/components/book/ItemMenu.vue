@@ -33,6 +33,7 @@ const props = defineProps({
   background: transparent;
   display: flex;
   align-items: center;
+  font-size: 14px;
 }
 .items:hover {
   transition: .5s;

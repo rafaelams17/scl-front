@@ -49,7 +49,6 @@ function backToDashboard() {
 .container {
   text-align: center;
   height: calc(100vh - 22vh);
-
 }
 .container h1 {
   margin-top: 30px;
@@ -79,7 +78,6 @@ function backToDashboard() {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-weight: 500;
-
 }
 .btn .submit:hover {
   transition: 0.5s;

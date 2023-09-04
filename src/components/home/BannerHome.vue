@@ -8,7 +8,7 @@
 
 <style scoped>
 .banner {
-  background-image: url("../assets/book-girl.svg");
+  background-image: url("../../assets/book-girl.svg");
   background-position: center;
   background-size: cover;
   width: 100%;

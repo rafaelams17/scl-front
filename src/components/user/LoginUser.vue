@@ -1,73 +1,62 @@
 <template>
-  <div class="container">
-    <!-- Imagem -->
-    <img id="container-img" src="../assets/books.jpg" alt="books" />
-
-    <!-- Form -->
-    <div class="container-form">
-      <!-- Back to home page -->
-      <i id="backHome" class="fa-solid fa-x" title="home" @click="backToHome()"></i>
-
-      <form @submit.prevent="signIn()">
-        
-        <!-- Title -->
-        <div class="container-title">
-          <img src="../assets/logo.svg" alt="" />
-          <h1>Log In</h1>
-          <div class="subtitle">
-            <p>Don't have account?</p>
-            <router-link :to="{ name: 'register' }" id="create">
-              Create an account
-            </router-link>
-          </div>
+  <div class="container-form">
+     <!-- Back to home page -->
+    <i class="fa-solid fa-x backHome" title="home" @click="backToHome()"></i>
+    <form @submit.prevent="signIn()">
+      <!-- Title -->
+      <div class="container-title">
+        <img src="../../assets/logo.svg" alt="" />
+        <h1>Log In</h1>
+        <div class="subtitle">
+          <p>Don't have account?</p>
+          <router-link :to="{ name: 'create-user' }" id="create">
+            Create an account
+          </router-link>
         </div>
-
-        <!-- Realizar o login do usuário -->
-        <div class="container-input">
-            <label for="email">Email <span class="campo-obrigatorio">*</span></label>
-            <div class="input-icons">
-            <input
-              class="input-field"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email@example.com"
-              v-model="form.email"
-            />
-            <i class="fa-solid fa-envelope icon"></i>
-          </div>
-
-          <label for="password">Password <span class="campo-obrigatorio">*</span></label>
+      </div>
+      <!-- Realizar o login do usuário -->
+      <div class="container-input">
+          <label for="email">Email <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
-            <input
-              class="input-field"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="***************"
-              v-model="form.password"
-            />
-            <i class="fa-solid fa-lock icon"></i>
-          </div>
+          <input
+            class="input-field"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email@example.com"
+            v-model="form.email"
+          />
+          <i class="fa-solid fa-envelope icon"></i>
         </div>
-
-        <!-- Go to forget password page = recuperar a senha de um usuário -->
-        <router-link :to="{ name: 'forget-password' }" class="forget-password"
-          >Forget Password?</router-link
-        >
-        
-        <input class="btn-submit" type="submit" value="Sign In" />
-        <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
-      </form>
-    </div>
+        <label for="password">Password <span class="campo-obrigatorio">*</span></label>
+        <div class="input-icons">
+          <input
+            class="input-field"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="***************"
+            v-model="form.password"
+          />
+          <i class="fa-solid fa-lock icon"></i>
+        </div>
+      </div>
+      <!-- Go to forget password page = recuperar a senha de um usuário -->
+      <router-link :to="{ name: 'forget-password' }" class="forget-password"
+        >Forget Password?</router-link
+      >
+    
+      <input class="btn-submit" type="submit" value="Sign In" />
+      <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
+    </form>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import api from "../boot/axios";
-import Message from "../components/Message.vue";
+import api from "../../boot/axios";
+import Message from "../../components/Message.vue";
 
 const router = useRouter();
 const msg = ref(null);
@@ -122,16 +111,6 @@ function backToHome() {
 * {
   background-color: #fff;
   color: #000;
-}
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-/* Image - Tablets, Laptop and Computers */
-#container-img {
-  height: 100vh;
-  width: 130vh;
 }
 .container-form {
   flex: 1;
@@ -208,7 +187,7 @@ function backToHome() {
   transition: 0.5s;
   background-color: #fbcd01;
 }
-#backHome {
+.backHome {
   width: 60px;
   float: right;
   padding: 20px;

@@ -75,7 +75,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import Message from "../Message.vue";
+import Message from "../../components/Message.vue";
 import api from "@/boot/axios";
 
 const router = useRouter();
@@ -161,6 +161,7 @@ function backToDashboard() {
 .container {
   margin: 0 auto;
   width: 100vh;
+  height: 70vh;
   margin-bottom: 5%;
 }
 .container h1 {

@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
+import BookView from '../views/BookView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -12,42 +15,44 @@ const router = createRouter({
       children: [
         {
           path: 'section-popular-books', 
-          component: () => import('../components/contentWeb/PopularBooks.vue'),
+          component: () => import('../components/home/PopularBookHome.vue'),
         }
       ]
     },
     {
       path: '/login',
-      name: 'login',
-      component: () => import('../pages/LoginPage.vue'),
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: () => import('../pages/RegisterPage.vue'),
-    },
-    {
-      path: '/forget-password',
-      name: 'forget-password',
-      component: () => import('../pages/ForgetPassword.vue'),
+      component: LoginView,
+      children: [
+        {
+          path: '',
+          name: 'login',
+          component: () => import('../components/user/LoginUser.vue'),
+        },
+        {
+          path: '/create-user',
+          name: 'create-user',
+          component: () => import('../components/user/CreateUser.vue'),
+        },
+        {
+          path: '/forget-password',
+          name: 'forget-password',
+          component: () => import('../components/user/ForgetPasswordUser.vue'),
+        },
+      ]
     },
     {
       path: '/book',
-      name: 'book',
-      component: () => import('../layouts/BookLayout.vue'),
-      // meta: { 
-      //   requiresAuth: true
-      // },
+      component: BookView,
       children: [
         {
           path: '', 
           name: 'dashboard',
-          component: () => import('../views/DashboardView.vue'),
+          component: () => import('../components/book/Dashboard.vue'),
         }, 
         {
-          path: '/register-book', 
-          name: 'register-book',
-          component: () => import('../components/book/RegisterBook.vue'),
+          path: '/create-book', 
+          name: 'create-book',
+          component: () => import('../components/book/CreateBook.vue'),
         }, 
         {
           path: '/edit-book', 
@@ -57,7 +62,7 @@ const router = createRouter({
         {
           path: '/feedback', 
           name: 'feedback',
-          component: () => import('../pages/Feedback.vue'),
+          component: () => import('../components/Feedback.vue'),
         }
       ]
     }

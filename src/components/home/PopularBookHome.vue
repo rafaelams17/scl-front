@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>Top 3 dos livros mais populares no mundo</h1>
-    <DescBooks :src="hp.src" :alt="hp.alt" :subtitle="hp.subtitle" :description="hp.description" :href="hp.href"/>
-    <DescBooks :src="anne.src" :alt="anne.alt" :subtitle="anne.subtitle" :description="anne.description" :href="anne.href"/>
-    <DescBooks :src="prince.src" :alt="prince.alt" :subtitle="prince.subtitle" :description="prince.description" :href="prince.href"/>
+    <DescBook :src="hp.src" :alt="hp.alt" :subtitle="hp.subtitle" :description="hp.description" :href="hp.href"/>
+    <DescBook :src="anne.src" :alt="anne.alt" :subtitle="anne.subtitle" :description="anne.description" :href="anne.href"/>
+    <DescBook :src="prince.src" :alt="prince.alt" :subtitle="prince.subtitle" :description="prince.description" :href="prince.href"/>
   </div>
 </template>
 
 <script setup>
-import DescBooks from "../contentWeb/DescBooks.vue";
+import DescBook from "./DescBookHome.vue";
 
 const hp = {
   src: "/img/harry-potter.svg", 

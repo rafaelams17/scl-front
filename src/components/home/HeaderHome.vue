@@ -45,7 +45,7 @@ function scrollToSection(sectionId) {
   padding-bottom: 10px;
 }
 .links-nav {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1em;
   text-decoration: none;
   margin-right: 30px;
@@ -65,8 +65,7 @@ function scrollToSection(sectionId) {
   font-size: 16px;
   font-weight: 600;
   border: none;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 5px 40px 5px 40px;
   cursor: pointer;
   margin-right: 10px;
 }

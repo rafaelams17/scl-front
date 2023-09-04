@@ -1,90 +1,87 @@
 <template>
-  <div class="container">
-    <!-- Imagem -->
-    <img id="container-img" src="../assets/books.jpg" alt="books" />
-
+  <div class="container-form">
+    <i class="fa-solid fa-arrow-right backLogin" @click="backToLogin()"></i>
     <!-- Form -->
-    <div class="container-form">
-      <!-- Back to login page -->
-      <i id="backLogin" class="fa-solid fa-arrow-right" @click="backToLogin()" title="Login"></i>
+    <form @submit.prevent="signUp()">
+      <!-- Title -->
+      <div class="container-title">
+        <img src="../../assets/logo.svg" alt="" />
+        <h1>Create Account</h1>
+        <p>Welcome to the Website</p>
+      </div>
 
-      <!-- Form -->
-      <form @submit.prevent="signUp()">
-
-        <!-- Title -->
-        <div class="container-title">
-          <img src="../assets/logo.svg" alt="" />
-          <h1>Create Account</h1>
-          <p>WELCOME TO THE WEBSITE</p>
+      <!-- Realizar o cadastro do usuário -->
+      <div class="container-input">
+        <label for="name">Name <span class="campo-obrigatorio">*</span></label>
+        <div class="input-icons">
+          <input
+            class="input-field"
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter your name"
+            v-model="form.name"
+          />
+          <i class="fa-solid fa-user"></i>
         </div>
 
-        <!-- Realizar o cadastro do usuário -->
-        <div class="container-input">
-          <label for="name">Name <span class="campo-obrigatorio">*</span></label>
-          <div class="input-icons">
-            <input
-              class="input-field"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter your name"
-              v-model="form.name"
-            />
-            <i class="fa-solid fa-user"></i>
-          </div>
-
-          <label for="email">Email <span class="campo-obrigatorio">*</span></label>
-          <div class="input-icons">
-            <input
-              class="input-field"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email@example.com"
-              v-model="form.email"
-            />
-            <i class="fa-solid fa-envelope icon"></i>
-          </div>
-
-          <label for="password">Password <span class="campo-obrigatorio">*</span></label>
-          <div class="input-icons">
-            <input
-              class="input-field"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="***************"
-              v-model="form.password"
-            />
-            <i class="fa-solid fa-lock icon"></i>
-          </div>
-
-          <label for="confirmPassword">Confirm Password <span class="campo-obrigatorio">*</span></label>
-          <div class="input-icons">
-            <input
-              class="input-field"
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="***************"
-              v-model="form.password"
-            />
-            <i class="fa-solid fa-lock icon"></i>
-          </div>
-
-          <input class="btn-submit" type="submit" value="Sign Up" />
+        <label for="email"
+          >Email <span class="campo-obrigatorio">*</span></label
+        >
+        <div class="input-icons">
+          <input
+            class="input-field"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email@example.com"
+            v-model="form.email"
+          />
+          <i class="fa-solid fa-envelope icon"></i>
         </div>
-        <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
-      </form>
-    </div>
+
+        <label for="password"
+          >Password <span class="campo-obrigatorio">*</span></label
+        >
+        <div class="input-icons">
+          <input
+            class="input-field"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="***************"
+            v-model="form.password"
+          />
+          <i class="fa-solid fa-lock icon"></i>
+        </div>
+
+        <label for="confirmPassword"
+          >Confirm Password <span class="campo-obrigatorio">*</span></label
+        >
+        <div class="input-icons">
+          <input
+            class="input-field"
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="***************"
+            v-model="form.password"
+          />
+          <i class="fa-solid fa-lock icon"></i>
+        </div>
+
+        <input class="btn-submit" type="submit" value="Sign Up" />
+      </div>
+      <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
+    </form>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import api from "../boot/axios";
-import Message from "../components/Message.vue";
+import api from "../../boot/axios";
+import Message from "../../components/Message.vue";
 
 const router = useRouter();
 const msg = ref(null);
@@ -206,7 +203,8 @@ function backToLogin() {
 .input-icons input {
   border: none;
 }
-.input-icons input, i {
+.input-icons input,
+i {
   background-color: transparent;
 }
 .input-icons {
@@ -245,7 +243,7 @@ function backToLogin() {
   transition: 0.5s;
   background-color: #fbcd01;
 }
-#backLogin {
+.backLogin {
   width: 60px;
   float: right;
   padding: 20px;

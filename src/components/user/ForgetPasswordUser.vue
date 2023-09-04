@@ -1,40 +1,35 @@
 <template>
-  <div class="container">
-    <!-- Imagem -->
-    <img id="container-img" src="../assets/books.jpg" alt="books" />
+  <div class="container-form">
+    <i class="fa-solid fa-arrow-right backLogin" @click="backToLogin()"></i>
 
-    <!-- Form -->
-    <div class="container-form">
-      <!-- Back to login page -->
-      <img id="backLogin" src="../assets/back.png" alt="home" @click="backToLogin()" title="Login">
-      
-      <form @submit.prevent="forgetPassword()">
-        <div class="container-title">
-          <img src="../assets/logo.svg" alt="" />
-          <h1>Reset your password</h1>
-          <p>
-            Please Enter Your Email Address To Verification on the database, if
-            you have account.
-          </p>
+    <form @submit.prevent="forgetPassword()">
+      <div class="container-title">
+        <img src="../../assets/logo.svg" alt="" />
+        <h1>Reset your password</h1>
+        <p>
+          Please Enter Your Email Address To Verification on the database, if you
+          have account.
+        </p>
+      </div>
+
+      <!-- Realizar o login do usuário -->
+      <div class="container-input">
+        <label for="email">Email <span class="campo-obrigatorio">*</span></label>
+        <div class="input-icons">
+          <input
+            class="input-field"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email@example.com"
+            v-model="form.email"
+          />
+          <i class="fa-solid fa-envelope icon"></i>
         </div>
-
-        <!-- Realizar o login do usuário -->
-        <div class="container-input">
-          <label for="email">Email <span class="campo-obrigatorio">*</span></label>
-          <div class="input-icons">
-            <input
-              class="input-field"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email@example.com"
-              v-model="form.email"
-            />
-            <i class="fa-solid fa-envelope icon"></i>
-          </div>
-
-          <div v-if="email">
-          <label for="password">Password <span class="campo-obrigatorio">*</span></label>
+        <div v-if="email">
+          <label for="password"
+            >Password <span class="campo-obrigatorio">*</span></label
+          >
           <div class="input-icons">
             <input
               class="input-field"
@@ -46,8 +41,9 @@
             />
             <i class="fa-solid fa-lock icon"></i>
           </div>
-
-          <label for="confirmPassword">Confirm Password <span class="campo-obrigatorio">*</span></label>
+          <label for="confirmPassword"
+            >Confirm Password <span class="campo-obrigatorio">*</span></label
+          >
           <div class="input-icons">
             <input
               class="input-field"
@@ -59,21 +55,19 @@
             />
             <i class="fa-solid fa-lock icon"></i>
           </div>
-          </div>
-
-          <input class="btn-submit" type="submit" value="Send" />
         </div>
-        <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
-      </form>
-    </div>
+        <input class="btn-submit" type="submit" value="Send" />
+      </div>
+      <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
+    </form>
   </div>
 </template>
 
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-// import api from "../boot/axios";
-import Message from "../components/Message.vue";
+// import api from "../../boot/axios";
+import Message from "../../components/Message.vue";
 
 const email = false;
 const router = useRouter();
@@ -127,6 +121,7 @@ async function forgetPassword() {
 }
 .container-title h1 {
   font-size: 35px;
+  margin-bottom: 2%;
 }
 .container-title p {
   display: flex;
@@ -136,7 +131,8 @@ async function forgetPassword() {
 .input-icons input {
   border: none;
 }
-.input-icons input, i {
+.input-icons input,
+i {
   background-color: transparent;
 }
 .input-icons {
@@ -175,18 +171,17 @@ async function forgetPassword() {
   transition: 0.5s;
   background-color: #fbcd01;
 }
-#backLogin {
+.backLogin {
   width: 60px;
   float: right;
   padding: 20px;
-  font-size: 50px;
+  font-size: 20px;
   cursor: pointer;
 }
 @media screen and (max-width: 1400px) {
   .input-icons input {
     width: 100%;
   }
-
 }
 @media screen and (max-width: 1370px) {
   .input-icons {
