@@ -160,8 +160,8 @@ function backToDashboard() {
 .container {
   margin: 0 auto;
   width: 100vh;
-  height: 90vh;
-  margin-bottom: 5%;
+  height: 70vh;
+  margin-bottom: 4%;
 }
 .container h1 {
   margin-top: 5%;
@@ -176,8 +176,7 @@ function backToDashboard() {
   display: flex;
   flex-direction: column;
 }
-.form input,
-textarea {
+.form input {
   margin-bottom: 10px;
 }
 .form p {
@@ -224,6 +223,7 @@ textarea {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-weight: 500;
+  font-size: 16px;
 }
 .btn .submit:hover {
   transition: 0.5s;
@@ -237,6 +237,7 @@ textarea {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-weight: 500;
+  font-size: 16px;
 }
 .btn .reset:hover {
   background-color: #000000ae;

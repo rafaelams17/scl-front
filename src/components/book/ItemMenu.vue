@@ -27,13 +27,14 @@ const props = defineProps({
 }
 .container p {
   font-size: 12px;
+  padding-bottom: 10px;
   color: #504f4f;
 }
 .items {
   background: transparent;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 15px;
 }
 .items:hover {
   transition: .5s;

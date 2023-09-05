@@ -13,7 +13,7 @@
     <textarea
       name="feedback"
       id="feedback"
-      cols="60"
+      cols="90"
       rows="10"
       placeholder="Enter your feedback."
     ></textarea>
@@ -48,7 +48,7 @@ function backToDashboard() {
 }
 .container {
   text-align: center;
-  height: calc(100vh - 22vh);
+  height: 78vh;
 }
 .container h1 {
   margin-top: 30px;
@@ -78,6 +78,7 @@ function backToDashboard() {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-weight: 500;
+  font-size: 16px;
 }
 .btn .submit:hover {
   transition: 0.5s;
@@ -91,6 +92,7 @@ function backToDashboard() {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-weight: 500;
+  font-size: 16px;
 }
 .btn .reset:hover {
   background-color: #000000ae;
