@@ -47,7 +47,7 @@
         v-model="form.data_inicio"
       />
 
-      <label for="leitura_atual"><span class="round"><input type="checkbox" class="teste" name="leitura_atual" id="leitura_atual"></span> Lendo no momento</label>
+      <label for="leitura_atual"><span class="round"><input type="checkbox" class="teste" name="leitura_atual" id="leitura_atual" v-model="form.leitura_atual"></span> Lendo no momento</label>
 
       <label for="data_fim">Data de Fim <span class="campo-obrigatorio">*</span></label>
       <input
@@ -82,14 +82,14 @@ const router = useRouter();
 const msg = ref(null);
 const type = ref(null);
 
-const title = "Cadastre seus livros";
+const title = "Cadastre o livro";
 const btnSubmit = "Cadastrar";
 
 const form = ref({
   titulo: "",
   autor: "",
   quantPage: "",
-  sinopse: "",
+  leitura_atual: false,
   genero: "",
   data_inicio: "",
   data_fim: "",
@@ -98,12 +98,16 @@ const form = ref({
 // função para criar um livro
 async function registerBook() {
   try {
+    // verificar se o check está selecionado
+    if(form.value.leitura_atual) {
+      console.log(form.value.leitura_atual);
+    }
+    
     // verificar se os campos estão vazios
     if (
       !form.value.titulo ||
       !form.value.autor ||
       !form.value.quantPage ||
-      !form.value.sinopse ||
       !form.value.data_inicio ||
       !form.value.genero
     ) {
@@ -161,7 +165,7 @@ function backToDashboard() {
 .container {
   margin: 0 auto;
   width: 100vh;
-  height: 70vh;
+  height: 100vh;
   margin-bottom: 5%;
 }
 .container h1 {
@@ -190,7 +194,6 @@ textarea {
 #autor,
 #quantPage,
 #genero,
-#sinopse,
 #data_inicio,
 #data_fim {
   display: flex;
@@ -204,7 +207,6 @@ textarea {
 #autor:focus,
 #quantPage:focus,
 #genero:focus,
-#sinopse:focus,
 #anoPubli:focus {
   outline: none;
 }
@@ -254,7 +256,6 @@ textarea {
   #autor,
   #quantPage,
   #genero,
-  #sinopse,
   #anoPubli {
     width: 80%;
   }
