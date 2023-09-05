@@ -56,6 +56,7 @@ const props = defineProps({
 }
 .container h2 {
   font-size: 20px;
+  margin-bottom: 5px;
 }
 .container-second {
   padding-left: 10px;

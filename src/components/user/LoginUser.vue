@@ -123,7 +123,6 @@ function backToHome() {
   text-align: center;
 }
 .container-title h1 {
-  text-transform: uppercase;
   font-size: 50px;
 }
 .subtitle {
