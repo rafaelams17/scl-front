@@ -180,7 +180,7 @@ function backToDashboard() {
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 70%;
+  /* max-width: 70%; */
   margin: 0 auto;
 }
 .form input {
@@ -248,6 +248,11 @@ function backToDashboard() {
 .btn .reset:hover {
   background-color: #000000ae;
   transition: 0.5s;
+}
+@media screen and (max-width: 1400px) {
+  .container {
+    margin-bottom: 15%;
+  }
 }
 /* @media screen and (max-width: 750px) {
   .container {

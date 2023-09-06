@@ -243,6 +243,11 @@ function backToDashboard() {
   background-color: #000000ae;
   transition: 0.5s;
 }
+@media screen and (max-width: 1400px) {
+  .container {
+    margin-bottom: 15%;
+  }
+}
 /* @media screen and (max-width: 750px) {
   .container {
     margin: 20px;
