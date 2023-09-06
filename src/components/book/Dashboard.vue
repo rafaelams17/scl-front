@@ -5,7 +5,7 @@
       Sua lista está vazia, clique no botão cadastrar para começar a preencher
       sua lista.
     </p>
-    <input class="container-btn" type="button" value="Cadastrar" />
+    <input class="container-btn" type="button" value="Cadastrar" @click="addBook()"/>
   </div>
 </template>
 
@@ -14,11 +14,9 @@ import { useRoute, useRouter } from 'vue-router';
 
 const isEmpty = true;
 const router = useRouter();
-const route = useRoute();
-const id = route.params.id;
 
-function addBook(id){
-  router.push(`/create-book/${id}`);
+function addBook(){
+  router.push("/create-book");
 }
 </script>
 

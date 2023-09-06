@@ -81,11 +81,16 @@ async function signIn() {
       password: form.value.password,
     };
 
-    const { data } = await api.post("/login", body); // acessa os usuários para fazer a verificação
+    const { data} = await api.post("/login", body); // acessa os usuários para fazer a verificação
 
     if (data.acess_token) {
       type.value = "sucess";
       msg.value = "Login feito com sucesso!";
+
+      // Armazenar o token e o id_user no armazenamento local
+      localStorage.setItem('Token: ', data.acess_token);
+      localStorage.setItem('id_user: ', data.id_user);
+      
       setTimeout(() => (msg.value = ""), 1000);
       setTimeout(() => router.push("/book"), 1000); // realiza o login
     }

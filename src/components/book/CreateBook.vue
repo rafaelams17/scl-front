@@ -81,10 +81,10 @@ import api from "@/boot/axios";
 const router = useRouter();
 const msg = ref(null);
 const type = ref(null);
+const id_user = Number(localStorage.getItem("id_user"));
 
 const title = "Cadastre o livro";
 const btnSubmit = "Cadastrar";
-
 
 const form = ref({
   titulo: "",
@@ -94,9 +94,9 @@ const form = ref({
   genero: "",
   data_inicial: "",
   data_fim: "",
+  id_user: id_user,
 });
 
-console.log(form.value.data_inicial);
 // função para criar um livro
 async function registerBook() {
   try {
