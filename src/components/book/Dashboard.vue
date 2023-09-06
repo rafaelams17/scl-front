@@ -5,12 +5,21 @@
       Sua lista está vazia, clique no botão cadastrar para começar a preencher
       sua lista.
     </p>
-    <router-link to="/create-book" class="btn-create">Cadastrar</router-link>
+    <input class="container-btn" type="button" value="Cadastrar" />
   </div>
 </template>
 
 <script setup>
+import { useRoute, useRouter } from 'vue-router';
+
 const isEmpty = true;
+const router = useRouter();
+const route = useRoute();
+const id = route.params.id;
+
+function addBook(id){
+  router.push(`/create-book/${id}`);
+}
 </script>
 
 <style scoped>
@@ -30,16 +39,18 @@ const isEmpty = true;
 #container p {
   margin-bottom: 3%;
 }
-.btn-create {
+.container-btn {
   display: flex;
   justify-content: center;
   padding: 5px 50px 5px 50px;
   background-color: #fcba03;
+  border: none;
+  font-size: 16px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  width: 10%;
+  width: 15%;
   cursor: pointer;
 }
-.btn-create:hover {
+.container-btn:hover {
   transition: 0.5s;
   background-color: #fbcd01;
 }

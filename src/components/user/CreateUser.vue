@@ -65,7 +65,7 @@
             name="confirmPassword"
             id="confirmPassword"
             placeholder="***************"
-            v-model="form.password"
+            v-model="confirmPassword"
           />
           <i class="fa-solid fa-lock icon"></i>
         </div>
@@ -127,7 +127,9 @@ async function signUp() {
       } else {
         // Criação do Usuário!
         if (form.value.password === confirmPassword.value) {
+          console.log("entrou aqui ");
           const { data } = await api.post("/user", form.value);
+          console.log(data);
           type.value = "sucess";
           msg.value = "O usuário criado com sucesso!";
           setTimeout(() => (msg.value = ""), 2000);

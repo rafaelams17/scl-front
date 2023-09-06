@@ -50,7 +50,7 @@ const router = createRouter({
           component: () => import('../components/book/Dashboard.vue'),
         }, 
         {
-          path: '/create-book', 
+          path: '/create-book/:id', 
           name: 'create-book',
           component: () => import('../components/book/CreateBook.vue'),
         }, 

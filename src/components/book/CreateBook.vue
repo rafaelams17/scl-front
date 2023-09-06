@@ -38,13 +38,13 @@
         v-model="form.genero"
       />
 
-      <label for="data_inicio">Data de Início <span class="campo-obrigatorio">*</span></label>
+      <label for="data_inicial">Data de Início <span class="campo-obrigatorio">*</span></label>
       <input
         type="date"
-        name="data_inicio"
-        id="data_inicio"
+        name="data_inicial"
+        id="data_inicial"
         placeholder="Digite a data de início da leitura"
-        v-model="form.data_inicio"
+        v-model="form.data_inicial"
       />
 
       <label for="leitura_atual"><span class="round"><input type="checkbox" class="teste" name="leitura_atual" id="leitura_atual" v-model="form.leitura_atual"></span> Lendo no momento</label>
@@ -85,16 +85,18 @@ const type = ref(null);
 const title = "Cadastre o livro";
 const btnSubmit = "Cadastrar";
 
+
 const form = ref({
   titulo: "",
   autor: "",
   quantPage: "",
   leitura_atual: false,
   genero: "",
-  data_inicio: "",
+  data_inicial: "",
   data_fim: "",
 });
 
+console.log(form.value.data_inicial);
 // função para criar um livro
 async function registerBook() {
   try {
@@ -108,7 +110,7 @@ async function registerBook() {
       !form.value.titulo ||
       !form.value.autor ||
       !form.value.quantPage ||
-      !form.value.data_inicio ||
+      !form.value.data_inicial ||
       !form.value.genero
     ) {
       type.value = "error";
@@ -132,6 +134,17 @@ async function registerBook() {
         setTimeout(() => (msg.value = ""), 2000);
       } else {
         // Criação do Livro
+
+        const data_i = new Date(form.value.data_inicial);
+        const data_f = new Date(form.value.data_fim);
+
+        const dataFormatadaInicial = `${data_i.getFullYear()}-${String(data_i.getMonth() + 1).padStart(2, '0')}-${String(data_i.getDate()).padStart(2, '0')}`;
+        const dataFormatadaFinal = `${data_f.getFullYear()}-${String(data_f.getMonth() + 1).padStart(2, '0')}-${String(data_f.getDate()).padStart(2, '0')}`
+
+        form.value.data_inicial = dataFormatadaInicial;
+        form.value.data_fim = dataFormatadaFinal;
+
+        console.log(form.value);
         const { data } = await api.post("/book", form.value);
 
         type.value = "sucess";
@@ -195,7 +208,7 @@ function backToDashboard() {
 #autor,
 #quantPage,
 #genero,
-#data_inicio,
+#data_inicial,
 #data_fim {
   display: flex;
   width: 100%;
