@@ -15,11 +15,12 @@
       id="feedback"
       cols="90"
       rows="10"
+      v-model="messageDev"
       placeholder="Enter your feedback."
     ></textarea>
 
     <div class="btn">
-      <input class="submit" type="submit" :value="btnSubmit" />
+      <input class="submit" type="button" :value="btnSubmit" @click="send()" />
       <input
         class="reset"
         type="reset"
@@ -27,17 +28,34 @@
         @click="backToDashboard()"
       />
     </div>
+    <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import Message from "./Message.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const btnSubmit = "Enviar ao Dev";
+const msg = ref(null);
+const type = ref(null);
+const messageDev = ref("");
 
 function backToDashboard() {
   router.push("/book");
+}
+
+function send() {
+  console.log("Clicou aqui!")
+  if(!messageDev.value){
+    type.value = "error";
+    msg.value = "Preencha os campos corretamente!";
+    setTimeout(() => (msg.value = ""), 2000);
+  } else {
+    // enviar a message para o servidor
+  }
 }
 </script>
 

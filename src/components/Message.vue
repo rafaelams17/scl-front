@@ -15,7 +15,7 @@ const props = defineProps({
 .msg-container {
   font-size: 14px;
   padding: 5px;
-  max-width: 60%;
+  width: 300px;
   text-align: center;
   margin: 30px auto;
 }
