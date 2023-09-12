@@ -47,16 +47,22 @@
         v-model="form.data_inicio"
       />
 
-      <label for="leitura_atual"><span class="round"><input type="checkbox" class="teste" name="leitura_atual" id="leitura_atual"></span> Lendo no momento</label>
+      <div class="container-switch">
+        <input class="switch switch--shadow" type="checkbox" name="switch-shadow" id="switch-shadow" v-model="form.leitura_atual">
+        <label for="switch-shadow"></label>
+        <p>Lendo no momento</p>
+      </div>
 
-      <label for="data_fim">Data de Fim <span class="campo-obrigatorio">*</span></label>
-      <input
-        type="date"
-        name="data_fim"
-        id="data_fim"
-        placeholder="Digite a data do último dia de leitura"
-        v-model="form.data_fim"
-      />
+      <div v-if="!form.leitura_atual">
+        <label for="data_fim">Data de Fim <span class="campo-obrigatorio">*</span></label>
+        <input
+          type="date"
+          name="data_fim"
+          id="data_fim"
+          placeholder="Digite a data do último dia de leitura"
+          v-model="form.data_fim"
+        />
+      </div>
       
       <div class="btn">
         <input class="submit" type="submit" :value="btnSubmit" />
@@ -208,6 +214,60 @@ function backToDashboard() {
 }
 .campo-obrigatorio {
   color: #ff0000;
+}
+.container-switch {
+  display: flex;
+  /* align-items: center; */
+}
+.container-switch p {
+  font-size: 16px;
+  align-items: center;
+  padding: 2px 0 0 5px;
+}
+.switch {
+  position: absolute;
+  visibility: hidden;
+}
+.switch + label {
+  display: block;
+  position: relative; 
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+.switch--shadow + label {
+  padding: 2px;
+  width: 40px;
+  height: 20px;
+  background-color: #dddddd;
+  border-radius: 30px;
+}
+.switch--shadow + label::before, .switch--shadow + label::after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: "";
+}
+.switch--shadow + label::before {
+  right: 1px;
+  background-color: #f1f1f1;
+  border-radius: 3cm;
+  transition: 0.4s;
+}
+.switch--shadow + label::after {
+  width: 20px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s;
+}
+.switch--shadow:checked + label::before {
+  background-color: #8ce196;
+}
+.switch--shadow:checked + label::after {
+  transform: translateX(20px);
 }
 .btn {
   display: flex;

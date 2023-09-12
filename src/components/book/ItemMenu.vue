@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p>Menu</p>
+    <p>SCL</p>
     <div v-for="(item, index) in menuItems" :key="index" class="container-items">
       <router-link :to="item.route" class="items">
         <img :src="item.iconPath" alt="Icon" class="items-img" />
@@ -26,7 +26,7 @@ const props = defineProps({
   margin: 10px;
 }
 .container p {
-  font-size: 12px;
+  font-size: 14px;
   padding-bottom: 10px;
   color: #504f4f;
 }
@@ -34,7 +34,8 @@ const props = defineProps({
   background: transparent;
   display: flex;
   align-items: center;
-  font-size: 15px;
+  padding: 10px 0 0 10px;
+  font-size: 16px;
 }
 .items:hover {
   transition: .5s;
