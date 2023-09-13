@@ -2,16 +2,18 @@
   <div class="container">
     <h1><img src="../../assets/dashboard.svg" alt="Dashboard" />{{ title }}</h1>
     <form class="form" @submit.prevent="registerBook()">
-      <label for="titulo">Título <span class="campo-obrigatorio">*</span></label>
+      <label for="titulo"
+        >Título <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="text"
         name="titulo"
         id="titulo"
         placeholder="Digite o nome do livro"
         v-model="form.titulo"
-      />   
+      />
 
-      <label for="autor">Autor <span class="campo-obrigatorio">*</span></label>
+      <label for="autor">Autor</label>
       <input
         type="text"
         name="autor"
@@ -20,7 +22,7 @@
         v-model="form.autor"
       />
 
-      <label for="quantPage">Quantidade de página <span class="campo-obrigatorio">*</span></label>
+      <label for="quantPage">Quantidade de página</label>
       <input
         type="number"
         name="quantPage"
@@ -29,7 +31,7 @@
         v-model="form.quantPage"
       />
 
-      <label for="genero">Gênero <span class="campo-obrigatorio">*</span></label>
+      <label for="genero">Gênero</label>
       <input
         type="text"
         name="genero"
@@ -38,7 +40,7 @@
         v-model="form.genero"
       />
 
-      <label for="data_inicial">Data de Início <span class="campo-obrigatorio">*</span></label>
+      <label for="data_inicial">Data de Início</label>
       <input
         type="date"
         name="data_inicial"
@@ -47,13 +49,19 @@
         v-model="form.data_inicial"
       />
       <div class="container-switch">
-        <input class="switch switch--shadow" type="checkbox" name="switch-shadow" id="switch-shadow" v-model="form.leitura_atual">
+        <input
+          class="switch switch--shadow"
+          type="checkbox"
+          name="switch-shadow"
+          id="switch-shadow"
+          v-model="leitura_atual"
+        />
         <label for="switch-shadow"></label>
         <p>Lendo no momento</p>
       </div>
 
-      <div v-if="!form.leitura_atual">
-        <label for="data_fim">Data de Fim <span class="campo-obrigatorio">*</span></label>
+      <div v-if="!leitura_atual">
+        <label for="data_fim">Data de Fim</label>
         <input
           type="date"
           name="data_fim"
@@ -62,7 +70,7 @@
           v-model="form.data_fim"
         />
       </div>
-      
+
       <div class="btn">
         <input class="submit" type="submit" :value="btnSubmit" />
         <input
@@ -90,12 +98,12 @@ const id_user = localStorage.getItem("id_user");
 
 const title = "Cadastre o livro";
 const btnSubmit = "Cadastrar";
+const leitura_atual = ref(false);
 
 const form = ref({
   titulo: "",
   autor: "",
-  quantPage: "",
-  leitura_atual: false,
+  quantPage: null,
   genero: "",
   data_inicial: "",
   data_fim: "",
@@ -105,21 +113,10 @@ const form = ref({
 // função para criar um livro
 async function registerBook() {
   try {
-    // verificar se o check está selecionado
-    if(form.value.leitura_atual) {
-      console.log(form.value.leitura_atual);
-    }
-    
     // verificar se os campos estão vazios
-    if (
-      !form.value.titulo ||
-      !form.value.autor ||
-      !form.value.quantPage ||
-      !form.value.data_inicial ||
-      !form.value.genero
-    ) {
+    if (!form.value.titulo) {
       type.value = "error";
-      msg.value = "Preencha os campos corretamente!";
+      msg.value = "Campo de título obrigatório!";
       setTimeout(() => (msg.value = ""), 2000);
     } else {
       const { data } = await api.get("/book");
@@ -139,15 +136,9 @@ async function registerBook() {
         setTimeout(() => (msg.value = ""), 2000);
       } else {
         // Criação do Livro
-
-        const data_i = new Date(form.value.data_inicial);
-        const data_f = new Date(form.value.data_fim);
-
-        const dataFormatadaInicial = `${data_i.getFullYear()}-${String(data_i.getMonth() + 1).padStart(2, '0')}-${String(data_i.getDate()).padStart(2, '0')}`;
-        const dataFormatadaFinal = `${data_f.getFullYear()}-${String(data_f.getMonth() + 1).padStart(2, '0')}-${String(data_f.getDate()).padStart(2, '0')}`
-
-        form.value.data_inicial = dataFormatadaInicial;
-        form.value.data_fim = dataFormatadaFinal;
+        if(form.value.data_inicial) {
+          formatDate();
+        } 
 
         console.log(form.value);
         const { data } = await api.post("/book", form.value);
@@ -172,6 +163,20 @@ async function registerBook() {
 
 function backToDashboard() {
   router.push("/book");
+}
+function formatDate() {
+  const data_i = new Date(form.value.data_inicial);
+  const data_f = new Date(form.value.data_fim);
+
+  const dataFormatadaInicial = `${data_i.getFullYear()}-${String(
+    data_i.getMonth() + 1
+  ).padStart(2, "0")}-${String(data_i.getDate()).padStart(2, "0")}`;
+  const dataFormatadaFinal = `${data_f.getFullYear()}-${String(
+    data_f.getMonth() + 1
+  ).padStart(2, "0")}-${String(data_f.getDate()).padStart(2, "0")}`;
+
+  form.value.data_inicial = dataFormatadaInicial;
+  form.value.data_fim = dataFormatadaFinal;
 }
 </script>
 
@@ -247,7 +252,7 @@ function backToDashboard() {
 }
 .switch + label {
   display: block;
-  position: relative; 
+  position: relative;
   cursor: pointer;
   outline: none;
   user-select: none;
@@ -259,7 +264,8 @@ function backToDashboard() {
   background-color: #dddddd;
   border-radius: 30px;
 }
-.switch--shadow + label::before, .switch--shadow + label::after {
+.switch--shadow + label::before,
+.switch--shadow + label::after {
   display: block;
   position: absolute;
   top: 1px;
@@ -315,7 +321,6 @@ function backToDashboard() {
   cursor: pointer;
   font-weight: 500;
   font-size: 16px;
-
 }
 .btn .reset:hover {
   background-color: #000000ae;
