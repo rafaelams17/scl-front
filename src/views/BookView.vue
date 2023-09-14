@@ -51,9 +51,9 @@ function cadastro() {
   color: #000;
 }
 #container {
-  position: relative;
   display: flex;
   flex-direction: row;
+  min-height: 100vh;
 }
 .container-menu {
   width: 30vh;
@@ -63,6 +63,5 @@ function cadastro() {
 }
 .container-content {
   flex: 1;
-  
 }
 </style>

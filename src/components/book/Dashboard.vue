@@ -100,8 +100,6 @@ const books = [
   },
 ];
 
-console.log(books)
-
 const opcoes = [
   {
     id: 1, 
@@ -136,7 +134,7 @@ function removeBook(id) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+  height: 100%;
 }
 #container h1 {
   margin: 30px 0 0 0;
@@ -155,7 +153,7 @@ function removeBook(id) {
 }
 /* Estilo geral da tabela */
 .book-table {
-  width: 100%;
+  width: 1600px;
   border-collapse: collapse;
 }
 /* Estilizando o cabeçalho da tabela */
@@ -166,10 +164,11 @@ function removeBook(id) {
   text-align: center;
   padding: 10px;
 }
-/* Estilizando as células da tabela */
+/* Estilizando as linhas da tabela */
 .book-table td {
   border: 1px solid #ccc;
   padding: 10px;
+  text-align: center;
 }
 .icon-acoes a {
   padding-left: 5px;

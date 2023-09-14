@@ -1,10 +1,5 @@
 <template>
   <footer>
-    <div class="social-media">
-      <a href="https://www.instagram.com/rafaa_vs23/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/rafaelasantoss/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://github.com/rafaelams17" target="_blank"><i class="fa-brands fa-github"></i></a>
-    </div>
     <small>Desenvolvido por Rafaela &copy; 2023</small>
   </footer>
 </template>
@@ -18,13 +13,11 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: #000;
-  width: 100%;
-  height: 100px;
+  height: 30px;
+  position: sticky; /* Fixar o rodapé na parte inferior da página */
+  bottom: 0;
 }
-.social-media a {
-  padding: 10px;
-  font-size: 20px;
-}
+
 footer small {
   padding: 5px 0 5px 0;
   font-size: 16px;
