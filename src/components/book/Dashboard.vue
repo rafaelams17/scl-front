@@ -17,34 +17,29 @@
     <!-- Tabela para mostrar os dados -->
     <div v-else>
       <!-- Table -->
-      <!-- Concertar depois com chatgpt -->
-      <div id="book-table">
-        <!-- Área do Cabeçalho -->
-        <div>
-          <!-- Header / Column-->
-          <div id="book-table-col">
-            <div class="order-id">#</div>
-            <div>Título</div>
-            <div>Autor</div>
-            <div>Quant. de Pág.</div>
-            <div>Gênero</div>
-            <div>Data de Início</div>
-            <div>Leitura Atual</div>
-            <div>Data de Fim</div>
-            <div class="acoes">Ações</div>
-          </div>
-        </div>
-
-        <!-- Body / Rows -->
-        <div id="book-table-rows" v-for="n in 2" :key="n">
-          <!-- <div class="book-table-row"> -->
-            <div class="order-id">ID</div>
-            <div>Título</div>
-            <div>Autor</div>
-            <div>Quantidade de Páginas</div>
-            <div>Gênero</div>
-            <div>Data de Início</div>
-            <div>
+      <table class="book-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Quantidade de Páginas</th>
+            <th>Gênero</th>
+            <th>Data de Início</th>
+            <th>Leitura Atual</th>
+            <th>Data de Fim</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="n in 2" :key="n">
+            <td>1</td>
+            <td>Teste</td>
+            <td>Autor Teste</td>
+            <td>200</td>
+            <td>Ficção</td>
+            <td>01/01/2023</td>
+            <td>
               <select
                 name="status"
                 id="status"
@@ -54,15 +49,15 @@
                 <option value="">Sim</option>
                 <option value="">Não</option>
               </select>
-            </div>
-            <div>Data de Fim</div>
-            <div class="icon-acoes">
-              <a href="#"><img src="../../assets/edit.svg" alt="" /></a>
-              <a href="#"><img src="../../assets/remove.svg" alt="" /></a>
-            </div>
-          <!-- </div> -->
-        </div>
-      </div>
+            </td>
+            <td>15/02/2023</td>
+            <td class="icon-acoes">
+              <a href="#" @click="editBook(id)"><img src="../../assets/edit.svg" alt="" /></a>
+              <a href="#" @click="removeBook(id)"><img src="../../assets/remove.svg" alt="" /></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -74,10 +69,19 @@ import { useRoute, useRouter } from "vue-router";
 const isEmpty = false;
 const router = useRouter();
 const n = 1;
-const id = 0;
+const id = 1;
 
 function addBook() {
   router.push("/create-book");
+}
+function updateStatus(id){
+  console.log("atualizar leituras!");
+}
+function editBook(id) {
+  console.log("Editar livro!");
+}
+function removeBook(id) {
+  console.log("Remover livro!");
 }
 </script>
 
@@ -98,46 +102,31 @@ function addBook() {
 #container p {
   margin-bottom: 3%;
 }
-#book-table {
-  max-width: 1300px;
-  margin: 0 auto;
-}
-#book-table-col,
-#book-table-rows,
-.book-table-row {
-  display: flex;
-  flex-wrap: wrap;
-}
-#book-table-col {
-  font-weight: bold;
-  padding: 10px;
-  border-bottom: 1px solid #333;
-}
-#book-table-col div,
-.book-table-row div {
-  width: 9%;
-  text-align: center;
-}
-#book-table-col .order-id,
-.book-table-row .order-id {
-  width: 5%;
-}
-#book-table-col .acoes,
-.book-table-row .icon-acoes {
-  width: 5%;
-}
-.book-table-row {
+/* Estilo geral da tabela */
+.book-table {
   width: 100%;
+  border-collapse: collapse;
+}
+/* Estilizando o cabeçalho da tabela */
+.book-table th {
+  background-color: #fcba03;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+}
+/* Estilizando as células da tabela */
+.book-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.icon-acoes a {
+  padding-left: 5px;
 }
 select {
   padding: 4px 4px;
   margin-right: 10px;
   font-size: 16px;
-}
-.icon-acoes a {
-  padding-left: 5px;
 }
 .container-btn {
   display: flex;
