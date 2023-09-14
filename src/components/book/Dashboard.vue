@@ -7,15 +7,18 @@
         sua lista.
       </p>
       <input
-        class="container-btn"
-        type="button"
-        value="Cadastrar"
-        @click="addBook()"
+      class="container-btn"
+      type="button"
+      value="Cadastrar"
+      @click="addBook()"
       />
     </div>
-
+    
     <!-- Tabela para mostrar os dados -->
     <div v-else>
+      <span class="icon-add">
+        <i class="fa-solid fa-circle-plus" @click="addBook()" title="Adicionar Livro"></i>
+      </span>
       <!-- Table -->
       <table class="book-table">
         <thead>
@@ -32,13 +35,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="n in 2" :key="n">
-            <td>1</td>
-            <td>Teste</td>
-            <td>Autor Teste</td>
-            <td>200</td>
-            <td>Ficção</td>
-            <td>01/01/2023</td>
+          <tr v-for="book in books" :key="book.id">
+            <td>{{ book.id }}</td>
+            <td>{{ book.titulo }}</td>
+            <td>{{ book.autor }}</td>
+            <td>{{ book.quantPag }}</td>
+            <td>{{ book.genero }}</td>
+            <td>{{ book.data_inicial }}</td>
             <td>
               <select
                 name="status"
@@ -46,14 +49,19 @@
                 @change="updateStatus($event, id)"
               >
                 <option value="">Selecione</option>
-                <option value="">Sim</option>
-                <option value="">Não</option>
+                <option v-for="op in opcoes" :key="op.id" :value="op.tipo" :selected="book.leitural_atual == op.tipo">
+                  {{ op.tipo }}
+                </option>
               </select>
             </td>
-            <td>15/02/2023</td>
+            <td>{{ book.data_fim }}</td>
             <td class="icon-acoes">
-              <a href="#" @click="editBook(id)"><img src="../../assets/edit.svg" alt="" /></a>
-              <a href="#" @click="removeBook(id)"><img src="../../assets/remove.svg" alt="" /></a>
+              <a href="#" @click="editBook(book.id)" title="Editar"
+                ><img src="../../assets/edit.svg" alt="Editar"
+              /></a>
+              <a href="#" @click="removeBook(id)" title="Remover"
+                ><img src="../../assets/remove.svg" alt="Remover"
+              /></a>
             </td>
           </tr>
         </tbody>
@@ -63,22 +71,56 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 // import api from "@/boot/axios";
 
 const isEmpty = false;
 const router = useRouter();
-const n = 1;
-const id = 1;
+
+const books = [
+  {
+    id: 1,
+    titulo: "SQL 1",
+    autor: "Teste",
+    quantPag: 200,
+    genero: "Tecnologia",
+    data_inicial: "10/02/2022",
+    leitural_atual: null,
+    data_fim: "20/04/2022",
+  },
+  {
+    id: 2,
+    titulo: "SQL 1",
+    autor: "Teste",
+    quantPag: 200,
+    genero: "Tecnologia",
+    data_inicial: "10/02/2022",
+    leitural_atual: null,
+    data_fim: "20/04/2022",
+  },
+];
+
+console.log(books)
+
+const opcoes = [
+  {
+    id: 1, 
+    tipo: 'Sim'
+  },
+  {
+    id: 2, 
+    tipo: 'Não'
+  }
+]
 
 function addBook() {
   router.push("/create-book");
 }
-function updateStatus(id){
+function updateStatus(id) {
   console.log("atualizar leituras!");
 }
 function editBook(id) {
-  console.log("Editar livro!");
+  console.log("Editar livro!", id);
 }
 function removeBook(id) {
   console.log("Remover livro!");
@@ -97,10 +139,19 @@ function removeBook(id) {
   height: 80vh;
 }
 #container h1 {
-  margin: 2%;
+  margin: 30px 0 0 0;
 }
 #container p {
   margin-bottom: 3%;
+}
+.icon-add {
+  display: flex;
+  justify-content: right;
+  padding: 10px;
+  font-size: 20px;
+}
+.icon-add i {
+  cursor: pointer;
 }
 /* Estilo geral da tabela */
 .book-table {
