@@ -2,16 +2,18 @@
   <div class="container">
     <h1><img src="../../assets/dashboard.svg" alt="Dashboard" />{{ title }}</h1>
     <form class="form" @submit.prevent="registerBook()">
-      <label for="titulo">Título <span class="campo-obrigatorio">*</span></label>
+      <label for="titulo"
+        >Título <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="text"
         name="titulo"
         id="titulo"
         placeholder="Digite o nome do livro"
         v-model="form.titulo"
-      />   
+      />
 
-      <label for="autor">Autor <span class="campo-obrigatorio">*</span></label>
+      <label for="autor">Autor</label>
       <input
         type="text"
         name="autor"
@@ -20,7 +22,7 @@
         v-model="form.autor"
       />
 
-      <label for="quantPage">Quantidade de página <span class="campo-obrigatorio">*</span></label>
+      <label for="quantPage">Quantidade de página</label>
       <input
         type="number"
         name="quantPage"
@@ -29,7 +31,7 @@
         v-model="form.quantPage"
       />
 
-      <label for="genero">Gênero <span class="campo-obrigatorio">*</span></label>
+      <label for="genero">Gênero</label>
       <input
         type="text"
         name="genero"
@@ -38,7 +40,7 @@
         v-model="form.genero"
       />
 
-      <label for="data_inicio">Data de Início <span class="campo-obrigatorio">*</span></label>
+      <label for="data_inicio">Data de Início</label>
       <input
         type="date"
         name="data_inicio"
@@ -48,13 +50,19 @@
       />
 
       <div class="container-switch">
-        <input class="switch switch--shadow" type="checkbox" name="switch-shadow" id="switch-shadow" v-model="form.leitura_atual">
+        <input
+          class="switch switch--shadow"
+          type="checkbox"
+          name="switch-shadow"
+          id="switch-shadow"
+          v-model="form.leitura_atual"
+        />
         <label for="switch-shadow"></label>
         <p>Lendo no momento</p>
       </div>
 
       <div v-if="!form.leitura_atual">
-        <label for="data_fim">Data de Fim <span class="campo-obrigatorio">*</span></label>
+        <label for="data_fim">Data de Fim</label>
         <input
           type="date"
           name="data_fim"
@@ -63,7 +71,7 @@
           v-model="form.data_fim"
         />
       </div>
-      
+
       <div class="btn">
         <input class="submit" type="submit" :value="btnSubmit" />
         <input
@@ -104,16 +112,9 @@ const form = ref({
 async function registerBook() {
   try {
     // verificar se os campos estão vazios
-    if (
-      !form.value.titulo ||
-      !form.value.autor ||
-      !form.value.quantPage ||
-      !form.value.sinopse ||
-      !form.value.data_inicio ||
-      !form.value.genero
-    ) {
+    if (!form.value.titulo) {
       type.value = "error";
-      msg.value = "Preencha os campos corretamente!";
+      msg.value = "Campo de título é obrigatório!";
       setTimeout(() => (msg.value = ""), 2000);
     } else {
       const { data } = await api.get("/book");
@@ -166,7 +167,7 @@ function backToDashboard() {
 .container {
   margin: 0 auto;
   width: 100vh;
-  height: 70vh;
+  height: 80%;
   margin-bottom: 4%;
 }
 .container h1 {
@@ -230,7 +231,7 @@ function backToDashboard() {
 }
 .switch + label {
   display: block;
-  position: relative; 
+  position: relative;
   cursor: pointer;
   outline: none;
   user-select: none;
@@ -242,7 +243,8 @@ function backToDashboard() {
   background-color: #dddddd;
   border-radius: 30px;
 }
-.switch--shadow + label::before, .switch--shadow + label::after {
+.switch--shadow + label::before,
+.switch--shadow + label::after {
   display: block;
   position: absolute;
   top: 1px;

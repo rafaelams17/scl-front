@@ -188,7 +188,7 @@ function formatDate() {
 .container {
   margin: 0 auto;
   width: 100vh;
-  height: 65.8vh;
+  height: 100vh;
   margin-bottom: 5%;
 }
 .container h1 {

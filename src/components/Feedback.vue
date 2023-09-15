@@ -66,7 +66,7 @@ function send() {
 }
 .container {
   text-align: center;
-  height: 78vh;
+  height: 100vh;
 }
 .container h1 {
   margin-top: 30px;

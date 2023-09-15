@@ -15,7 +15,7 @@
     </div>
     
     <!-- Tabela para mostrar os dados -->
-    <div v-else>
+    <div v-else class="container-table">
       <span class="icon-add">
         <i class="fa-solid fa-circle-plus" @click="addBook()" title="Adicionar Livro"></i>
       </span>
@@ -56,7 +56,7 @@
             </td>
             <td>{{ book.data_fim }}</td>
             <td class="icon-acoes">
-              <a href="#" @click="editBook(book.id)" title="Editar"
+              <a href="#" @click="editBook()" title="Editar"
                 ><img src="../../assets/edit.svg" alt="Editar"
               /></a>
               <a href="#" @click="removeBook(id)" title="Remover"
@@ -72,7 +72,8 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-// import api from "@/boot/axios";
+import api from "@/boot/axios";
+import { onMounted } from "vue";
 
 const isEmpty = false;
 const router = useRouter();
@@ -117,12 +118,21 @@ function addBook() {
 function updateStatus(id) {
   console.log("atualizar leituras!");
 }
-function editBook(id) {
-  console.log("Editar livro!", id);
+function editBook() {
+  router.push('/edit-book')
 }
 function removeBook(id) {
   console.log("Remover livro!");
 }
+
+async function buscarDados() {
+  const data = await api.get('/book'); // requisição para pegar todos os dados dos livros cadastrados
+  console.log(data);
+}
+
+onMounted(() => {
+  buscarDados();
+});
 </script>
 
 <style scoped>
@@ -151,14 +161,18 @@ function removeBook(id) {
 .icon-add i {
   cursor: pointer;
 }
+.container-table {
+  width: 1500px;
+}
 /* Estilo geral da tabela */
 .book-table {
-  width: 1600px;
+  width: 100%;
+  margin: 0 auto;
   border-collapse: collapse;
 }
 /* Estilizando o cabeçalho da tabela */
 .book-table th {
-  background-color: #fcba03;
+  background-color: #ffbc03be;
   color: #000;
   font-weight: bold;
   text-align: center;
@@ -166,7 +180,7 @@ function removeBook(id) {
 }
 /* Estilizando as linhas da tabela */
 .book-table td {
-  border: 1px solid #ccc;
+  border: 1px solid #fcba03be;
   padding: 10px;
   text-align: center;
 }
@@ -194,4 +208,9 @@ select {
   transition: 0.5s;
   background-color: #fbcd01;
 }
+/* @media (max-width: 1000px) {
+  .book-table {
+    display: column;
+  }
+} */
 </style>
