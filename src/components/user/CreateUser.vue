@@ -200,6 +200,9 @@ function backToLogin() {
   justify-content: center;
   margin-bottom: 3%;
 }
+.input-field {
+  width: 100%;
+}
 .input-icons input {
   border: none;
 }

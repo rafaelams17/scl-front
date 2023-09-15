@@ -14,8 +14,9 @@
           </router-link>
         </div>
       </div>
+
       <!-- Realizar o login do usuário -->
-      <div class="container-input">
+      <div>
           <label for="email">Email <span class="campo-obrigatorio">*</span></label>
           <div class="input-icons">
           <input
@@ -142,6 +143,9 @@ function backToHome() {
 #create:hover {
   color: #fca10382;
   transition: 0.5s ease;
+}
+.input-field {
+  width: 100%;
 }
 .input-icons input {
   border: none;
