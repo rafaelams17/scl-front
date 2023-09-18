@@ -7,65 +7,76 @@
         sua lista.
       </p>
       <input
-      class="container-btn"
-      type="button"
-      value="Cadastrar"
-      @click="addBook()"
+        class="container-btn"
+        type="button"
+        value="Cadastrar"
+        @click="addBook()"
       />
     </div>
-    
+
     <!-- Tabela para mostrar os dados -->
     <div v-else class="container-table">
       <span class="icon-add">
-        <i class="fa-solid fa-circle-plus" @click="addBook()" title="Adicionar Livro"></i>
+        <i
+          class="fa-solid fa-circle-plus"
+          @click="addBook()"
+          title="Adicionar Livro"
+        ></i>
       </span>
       <!-- Table -->
-      <table class="book-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Quantidade de Páginas</th>
-            <th>Gênero</th>
-            <th>Data de Início</th>
-            <th>Leitura Atual</th>
-            <th>Data de Fim</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="book in books" :key="book.id">
-            <td>{{ book.id }}</td>
-            <td>{{ book.titulo }}</td>
-            <td>{{ book.autor }}</td>
-            <td>{{ book.quantPag }}</td>
-            <td>{{ book.genero }}</td>
-            <td>{{ book.data_inicial }}</td>
-            <td>
-              <select
-                name="status"
-                id="status"
-                @change="updateStatus($event, id)"
-              >
-                <option value="">Selecione</option>
-                <option v-for="op in opcoes" :key="op.id" :value="op.tipo" :selected="book.leitural_atual == op.tipo">
-                  {{ op.tipo }}
-                </option>
-              </select>
-            </td>
-            <td>{{ book.data_fim }}</td>
-            <td class="icon-acoes">
-              <a href="#" @click="editBook()" title="Editar"
-                ><img src="../../assets/edit.svg" alt="Editar"
-              /></a>
-              <a href="#" @click="removeBook(id)" title="Remover"
-                ><img src="../../assets/remove.svg" alt="Remover"
-              /></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Quantidade de Páginas</th>
+              <th>Gênero</th>
+              <th>Data de Início</th>
+              <th>Leitura Atual</th>
+              <th>Data de Fim</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="book in books" :key="book.id">
+              <td>{{ book.id }}</td>
+              <td>{{ book.titulo }}</td>
+              <td>{{ book.autor }}</td>
+              <td>{{ book.quantPag }}</td>
+              <td>{{ book.genero }}</td>
+              <td>{{ book.data_inicial }}</td>
+              <td>
+                <select
+                  name="status"
+                  id="status"
+                  @change="updateStatus($event, id)"
+                >
+                  <option value="">Selecione</option>
+                  <option
+                    v-for="op in opcoes"
+                    :key="op.id"
+                    :value="op.tipo"
+                    :selected="book.leitural_atual == op.tipo"
+                  >
+                    {{ op.tipo }}
+                  </option>
+                </select>
+              </td>
+              <td>{{ book.data_fim }}</td>
+              <td class="icon-acoes">
+                <a href="#" @click="editBook()" title="Editar"
+                  ><img src="../../assets/edit.svg" alt="Editar"
+                /></a>
+                <a href="#" @click="removeBook(id)" title="Remover"
+                  ><img src="../../assets/remove.svg" alt="Remover"
+                /></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -103,14 +114,14 @@ const books = [
 
 const opcoes = [
   {
-    id: 1, 
-    tipo: 'Sim'
+    id: 1,
+    tipo: "Sim",
   },
   {
-    id: 2, 
-    tipo: 'Não'
-  }
-]
+    id: 2,
+    tipo: "Não",
+  },
+];
 
 function addBook() {
   router.push("/create-book");
@@ -119,14 +130,14 @@ function updateStatus(id) {
   console.log("atualizar leituras!");
 }
 function editBook() {
-  router.push('/edit-book')
+  router.push("/edit-book");
 }
 function removeBook(id) {
   console.log("Remover livro!");
 }
 
 async function buscarDados() {
-  const data = await api.get('/book'); // requisição para pegar todos os dados dos livros cadastrados
+  const data = await api.get("/book"); // requisição para pegar todos os dados dos livros cadastrados
   console.log(data);
 }
 
@@ -161,25 +172,37 @@ onMounted(() => {
 .icon-add i {
   cursor: pointer;
 }
+
 .container-table {
   width: 1500px;
 }
 /* Estilo geral da tabela */
-.book-table {
+.table {
   width: 100%;
-  margin: 0 auto;
   border-collapse: collapse;
 }
+.table th,
+.table td {
+  border: 1px solid #ffbc03be;
+  padding: 8px;
+  text-align: left;
+}
 /* Estilizando o cabeçalho da tabela */
-.book-table th {
+.table th {
   background-color: #ffbc03be;
   color: #000;
   font-weight: bold;
   text-align: center;
   padding: 10px;
 }
+.table tr:nth-child(even) {
+  background-color: #fcba03be;
+}
+.table tr:hover {
+  background-color: #ddd;
+}
 /* Estilizando as linhas da tabela */
-.book-table td {
+.table td {
   border: 1px solid #fcba03be;
   padding: 10px;
   text-align: center;
@@ -208,9 +231,19 @@ select {
   transition: 0.5s;
   background-color: #fbcd01;
 }
-/* @media (max-width: 1000px) {
-  .book-table {
-    display: column;
+@media (max-width: 1400px) {
+  .table-scroll {
+    max-width: 100vh;
+    overflow-x: auto;
+    margin: 0 auto;
   }
-} */
+  #container {
+    height: 100%;
+  }
+}
+@media (max-width: 400px) {
+  #container {
+    height: 100%;
+  }
+}
 </style>
