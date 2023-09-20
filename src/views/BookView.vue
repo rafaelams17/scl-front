@@ -26,11 +26,6 @@ const menuItems = [
     route: "/create-book",
     iconPath: require("@/assets/book.svg"),
   },
-  {
-    label: "Feedback",
-    route: "/feedback",
-    iconPath: require("@/assets/feedback.svg"),
-  },
 ];
 
 function toggleSidebar(){
@@ -57,7 +52,6 @@ function cadastro() {
 }
 .container-menu {
   width: 30vh;
-  /* height: calc(100vh - 2.5vh); */
   background-color: #FCBA03;
   color: #000;
 }

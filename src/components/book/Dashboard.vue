@@ -49,9 +49,9 @@
               <td>{{ book.data_inicial }}</td>
               <td>
                 <select
-                  name="status"
-                  id="status"
-                  @change="updateStatus($event, id)"
+                  name="opcos"
+                  id="opcoes"
+                  @change="updateStatus($event, books.id)"
                 >
                   <option value="">Selecione</option>
                   <option
@@ -86,7 +86,7 @@ import { useRouter } from "vue-router";
 import api from "@/boot/axios";
 import { onMounted } from "vue";
 
-const isEmpty = false;
+const isEmpty = true;
 const router = useRouter();
 
 const books = [
@@ -126,8 +126,10 @@ const opcoes = [
 function addBook() {
   router.push("/create-book");
 }
-function updateStatus(id) {
-  console.log("atualizar leituras!");
+function updateStatus(event, id) {
+  const option = event.target.value; // para pegar o valor do select
+
+  console.log(option);
 }
 function editBook() {
   router.push("/edit-book");
@@ -137,7 +139,7 @@ function removeBook(id) {
 }
 
 async function buscarDados() {
-  const data = await api.get("/book"); // requisição para pegar todos os dados dos livros cadastrados
+  const { data } = await api.get("/book"); // requisição para pegar todos os dados dos livros cadastrados
   console.log(data);
 }
 
@@ -161,7 +163,7 @@ onMounted(() => {
   margin: 30px 0 0 0;
 }
 #container p {
-  margin-bottom: 3%;
+  margin: 15px 0 15px 0;
 }
 .icon-add {
   display: flex;
@@ -172,7 +174,6 @@ onMounted(() => {
 .icon-add i {
   cursor: pointer;
 }
-
 .container-table {
   width: 1500px;
 }

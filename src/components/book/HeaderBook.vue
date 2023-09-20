@@ -3,7 +3,7 @@
     <div class="container-logo">
       <i class="fa-solid fa-bars icon" @click="btnClick()"></i>
       <img src="../../assets/logo.svg" alt="logo" />
-      <p>Sistema de Controle Literário</p>
+      <p>Sistema de Gerenciamento de Leituras</p>
     </div>
 
     <div class="container-user" v-if="route.path == '/book'">

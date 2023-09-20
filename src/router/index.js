@@ -58,11 +58,6 @@ const router = createRouter({
           path: '/edit-book', 
           name: 'edit-book',
           component: () => import('../components/book/EditBook.vue'),
-        }, 
-        {
-          path: '/feedback', 
-          name: 'feedback',
-          component: () => import('../components/Feedback.vue'),
         }
       ]
     }

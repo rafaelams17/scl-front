@@ -34,7 +34,7 @@ const props = defineProps({
   background: transparent;
   display: flex;
   align-items: center;
-  padding: 10px 0 0 10px;
+  padding: 10px;
   font-size: 16px;
 }
 .items:hover {

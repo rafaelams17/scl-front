@@ -56,7 +56,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import api from "../../boot/axios";
+import api from "@/boot/axios";
 import Message from "../../components/Message.vue";
 
 const router = useRouter();
@@ -64,8 +64,8 @@ const msg = ref(null);
 const type = ref(null);
 
 const form = ref({
-  email: "",
-  password: "",
+  email: "rafaela@example.com",
+  password: "123@mudaR",
 });
 
 // realizar o login do usuário
@@ -77,12 +77,8 @@ async function signIn() {
       setTimeout(() => (msg.value = ""), 2000);
     }
 
-    const body = {
-      email: form.value.email,
-      password: form.value.password,
-    };
-
-    const { data} = await api.post("/login", body); // acessa os usuários para fazer a verificação
+    const { data } = await api.post("/login", form.value); // acessa os usuários para fazer a verificação
+    console.log(data);
 
     if (data.acess_token) {
       type.value = "sucess";
