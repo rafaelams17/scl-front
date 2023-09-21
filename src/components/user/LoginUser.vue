@@ -1,6 +1,6 @@
 <template>
   <div class="container-form">
-     <!-- Back to home page -->
+    <!-- Back to home page -->
     <i class="fa-solid fa-x backHome" title="home" @click="backToHome()"></i>
     <form @submit.prevent="signIn()">
       <!-- Title -->
@@ -17,8 +17,10 @@
 
       <!-- Realizar o login do usuário -->
       <div>
-          <label for="email">Email <span class="campo-obrigatorio">*</span></label>
-          <div class="input-icons">
+        <label for="email"
+          >Email <span class="campo-obrigatorio">*</span></label
+        >
+        <div class="input-icons">
           <input
             class="input-field"
             type="email"
@@ -29,7 +31,9 @@
           />
           <i class="fa-solid fa-envelope icon"></i>
         </div>
-        <label for="password">Password <span class="campo-obrigatorio">*</span></label>
+        <label for="password"
+          >Password <span class="campo-obrigatorio">*</span></label
+        >
         <div class="input-icons">
           <input
             class="input-field"
@@ -46,7 +50,7 @@
       <router-link :to="{ name: 'forget-password' }" class="forget-password"
         >Forget Password?</router-link
       >
-    
+
       <input class="btn-submit" type="submit" value="Sign In" />
       <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
     </form>
@@ -58,13 +62,15 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 import api from "@/boot/axios";
 import Message from "../../components/Message.vue";
+import { useAuthStore } from "@/stores/auth";
 
 const router = useRouter();
 const msg = ref(null);
 const type = ref(null);
+const auth = useAuthStore();
 
 const form = ref({
-  email: "rafaela@example.com",
+  email: "rafaela@example.com", // passando para facilitar, depois remover
   password: "123@mudaR",
 });
 
@@ -78,16 +84,15 @@ async function signIn() {
     }
 
     const { data } = await api.post("/login", form.value); // acessa os usuários para fazer a verificação
-    console.log(data);
+
+    // Armazenar o token e o id_user no armazenamento local
+    auth.setToken(data.acess_token);
+    auth.setUser(data.id_user);
 
     if (data.acess_token) {
       type.value = "sucess";
       msg.value = "Login feito com sucesso!";
 
-      // Armazenar o token e o id_user no armazenamento local
-      localStorage.setItem('Token: ', data.acess_token);
-      localStorage.setItem('id_user: ', data.id_user);
-      
       setTimeout(() => (msg.value = ""), 1000);
       setTimeout(() => router.push("/book"), 1000); // realiza o login
     }
@@ -146,7 +151,8 @@ function backToHome() {
 .input-icons input {
   border: none;
 }
-.input-icons input, i{
+.input-icons input,
+i {
   background-color: transparent;
 }
 .input-icons {

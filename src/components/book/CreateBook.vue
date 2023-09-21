@@ -45,7 +45,6 @@
         type="date"
         name="data_inicial"
         id="data_inicial"
-        placeholder="Digite a data de início da leitura"
         v-model="form.data_inicial"
       />
       <div class="container-switch">
@@ -66,7 +65,6 @@
           type="date"
           name="data_fim"
           id="data_fim"
-          placeholder="Digite a data do último dia de leitura"
           v-model="form.data_fim"
         />
       </div>

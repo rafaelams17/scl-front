@@ -33,11 +33,6 @@ function toggleSidebar(){
   showSidebar.value = !showSidebar.value;
 }
 
-
-// funcão para cadastrar os livros
-function cadastro() {
-  console.log("Teste");
-}
 </script>
 
 <style scoped>

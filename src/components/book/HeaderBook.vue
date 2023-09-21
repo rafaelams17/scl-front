@@ -15,18 +15,24 @@
 
 <script setup>
 import { useRouter, useRoute } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 
 const router = useRouter();
 const route = useRoute();
 const user = "Rafaela";
+const auth = useAuthStore();
 
 // Emite um evento para notificar o componente pai que o ícone foi clicado.
 const emits = defineEmits(['toggleSidebar']);
 
 // voltar para página login
 function backToLogin() {
-  router.push("/login");
+  // localStorage.clear();
+  auth.clear();
+  
+  setTimeout(() => router.push("/login"), 1000); // realizar logout
 }
+
 function btnClick() {
   emits('toggleSidebar');
 }
