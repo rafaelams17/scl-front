@@ -31,9 +31,15 @@
     width: 110vh;
   }
 }
-@media (max-width: 1400px) {
+/* Não mudar esse tamanho de tela */
+@media (max-width: 1400px) { 
   #container-img {
-    width: 90vh;
+    width: 140vh;
+  }
+}
+@media (max-width: 1350px) {
+  #container-img {
+    width: 120vh;
   }
 }
 @media (max-width: 1200px) {

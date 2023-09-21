@@ -98,6 +98,10 @@ async function signIn() {
     }
   } catch (error) {
     if (error.response) {
+      type.value = "error";
+      msg.value = "Preencha os campos corretamente!";
+      setTimeout(() => (msg.value = ""), 2000);
+      
       console.log("Server responded with:", error?.response?.data);
       console.log("HTTP status code:", error.response.status);
     } else {
