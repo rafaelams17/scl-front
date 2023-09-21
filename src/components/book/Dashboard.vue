@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <h1>Livros</h1>
-    <div v-if="isEmpty">
+    <div v-if="isEmpty" class="container-text">
       <p>
         Sua lista está vazia, clique no botão cadastrar para começar a preencher
         sua lista.
@@ -240,6 +240,12 @@ select {
   }
   #container {
     height: 100%;
+  }
+}
+@media (max-width: 800px) {
+  .container-text {
+    margin: 10px;
+    text-align: center;
   }
 }
 @media (max-width: 400px) {

@@ -4,7 +4,7 @@
     <img id="container-img" src="../assets/books.jpg" alt="books" />
 
     <!-- Renderização das telas para autenticação do usuário -->
-    <router-view />
+    <router-view class="container-form"/>
   </div>
 </template>
 
@@ -26,4 +26,22 @@
   width: 130vh;
 }
 
+@media (max-width: 1800px) {
+  #container-img {
+    width: 110vh;
+  }
+}
+@media (max-width: 1400px) {
+  #container-img {
+    width: 90vh;
+  }
+}
+@media (max-width: 1200px) {
+  img {
+    display: none;
+  }
+  .container-form {
+    height: 100vh;
+  }
+}
 </style>

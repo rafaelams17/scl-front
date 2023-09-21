@@ -8,7 +8,11 @@
 
     <div class="container-user" v-if="route.path == '/book'">
       <span>Bem-vindo, {{ user }}!</span>
-      <i class="fa-solid fa-right-from-bracket user" @click="backToLogin()" title="Logout"></i>
+      <i
+        class="fa-solid fa-right-from-bracket user"
+        @click="backToLogin()"
+        title="Logout"
+      ></i>
     </div>
   </div>
 </template>
@@ -19,22 +23,22 @@ import { useAuthStore } from "@/stores/auth";
 
 const router = useRouter();
 const route = useRoute();
-const user = "Rafaela";
+const user = "Admin";
 const auth = useAuthStore();
 
 // Emite um evento para notificar o componente pai que o ícone foi clicado.
-const emits = defineEmits(['toggleSidebar']);
+const emits = defineEmits(["toggleSidebar"]);
 
 // voltar para página login
 function backToLogin() {
   // localStorage.clear();
   auth.clear();
-  
+
   setTimeout(() => router.push("/login"), 1000); // realizar logout
 }
 
 function btnClick() {
-  emits('toggleSidebar');
+  emits("toggleSidebar");
 }
 </script>
 
@@ -81,11 +85,11 @@ function btnClick() {
 li {
   list-style-type: none;
 }
-@media screen and (max-width: 600px) {
-  .logo p {
+@media screen and (max-width: 800px) {
+  .container-logo p {
     display: none;
   }
-  .container-user p {
+  .container-user span {
     display: none;
   }
 }

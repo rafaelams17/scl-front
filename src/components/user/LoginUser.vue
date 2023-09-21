@@ -131,6 +131,7 @@ function backToHome() {
 }
 .container-title h1 {
   font-size: 50px;
+  padding-bottom: 10px;
 }
 .subtitle {
   display: flex;
