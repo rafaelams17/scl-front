@@ -52,7 +52,8 @@
                   name="opcos"
                   id="opcoes"
                   @change="updateStatus($event, books.id)"
-                >
+                > 
+                <!-- Mudar esse select esse será o status que vira do back -->
                   <option value="">Selecione</option>
                   <option
                     v-for="op in opcoes"
@@ -86,7 +87,7 @@ import { useRouter } from "vue-router";
 import api from "@/boot/axios";
 import { onMounted } from "vue";
 
-const isEmpty = true;
+const isEmpty = false;
 const router = useRouter();
 
 const books = [
@@ -115,11 +116,15 @@ const books = [
 const opcoes = [
   {
     id: 1,
-    tipo: "Sim",
+    tipo: "Estou lendo",
   },
   {
     id: 2,
-    tipo: "Não",
+    tipo: "Já li",
+  },
+  {
+    id: 3,
+    tipo: "Vou ler",
   },
 ];
 
@@ -233,13 +238,51 @@ select {
   background-color: #fbcd01;
 }
 @media (max-width: 1400px) {
-  .table-scroll {
-    max-width: 100vh;
-    overflow-x: auto;
-    margin: 0 auto;
-  }
   #container {
-    height: 100%;
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 1200px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 1200px;
+  }
+}
+@media (max-width: 1300px) {
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 1200px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 1200px;
+  }
+}
+@media (max-width: 1200px) {
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 1000px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 1000px;
+  }
+}
+@media (max-width: 900px) {
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 800px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 800px;
   }
 }
 @media (max-width: 800px) {
@@ -247,10 +290,76 @@ select {
     margin: 10px;
     text-align: center;
   }
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 700px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 700px;
+  }
+}
+@media (max-width: 700px) {
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 600px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 600px;
+  }
+}
+@media (max-width: 600px) {
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 600px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 550px;
+  }
+}
+@media (max-width: 500px) {
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 600px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 400px;
+  }
 }
 @media (max-width: 400px) {
   #container {
-    height: 100%;
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 400px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 400px;
+    margin-left: 5px;
+  }
+}
+@media (max-width: 350px) {
+  #container {
+    height: 100vh;
+  }
+  .table-scroll {
+    max-width: 400px;
+    overflow-x: auto;
+  }
+  .container-table {
+    width: 300px;
   }
 }
 </style>

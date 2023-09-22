@@ -134,9 +134,9 @@ async function registerBook() {
         setTimeout(() => (msg.value = ""), 2000);
       } else {
         // Criação do Livro
-        if(form.value.data_inicial) {
+        if (form.value.data_inicial) {
           formatDate();
-        } 
+        }
 
         console.log(form.value);
         const { data } = await api.post("/book", form.value);
@@ -185,12 +185,11 @@ function formatDate() {
 }
 .container {
   margin: 0 auto;
-  width: 100vh;
+  width: 800px;
   height: 100vh;
-  margin-bottom: 5%;
 }
 .container h1 {
-  margin-top: 5%;
+  margin-top: 15px;
   text-align: center;
   font-size: 35px;
 }
@@ -198,11 +197,9 @@ function formatDate() {
   padding-right: 10px;
   width: 40px;
 }
-.form {
+.container form {
   display: flex;
   flex-direction: column;
-  /* max-width: 70%; */
-  margin: 0 auto;
 }
 .form input {
   margin-bottom: 10px;
@@ -222,7 +219,6 @@ function formatDate() {
   width: 100%;
   background-color: #fcba033d;
   border: none;
-  margin-left: 10px;
   padding: 10px;
 }
 #titulo:focus,
@@ -237,7 +233,6 @@ function formatDate() {
 }
 .container-switch {
   display: flex;
-  /* align-items: center; */
 }
 .container-switch p {
   font-size: 16px;
@@ -325,23 +320,76 @@ function formatDate() {
   transition: 0.5s;
 }
 @media screen and (max-width: 1400px) {
-  .container {
-    margin-bottom: 15%;
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 700px;
+    margin: 0 auto;
   }
 }
-/* @media screen and (max-width: 750px) {
-  .container {
-    margin: 20px;
+@media (max-width: 900px) {
+  #container {
+    margin: 0 auto;
   }
-  .container h1 {
-    font-size: 1.5em;
+  .container form {
+    width: 500px;
+    margin: 0 auto;
   }
-  #titulo,
-  #autor,
-  #quantPage,
-  #genero,
-  #anoPubli {
-    width: 80%;
+}
+@media (max-width: 700px) {
+  #container {
+    margin: 0 auto;
   }
-} */
+  .container form {
+    width: 450px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 600px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 500px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 350px;
+    margin: 0 auto;
+  }
+}
+/* Não mexer */
+@media (max-width: 400px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 350px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 2500px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 250px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 200px;
+    margin: 0 auto;
+  }
+}
 </style>
