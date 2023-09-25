@@ -22,51 +22,35 @@
         v-model="form.autor"
       />
 
-      <label for="quantPage">Quantidade de página</label>
-      <input
-        type="number"
-        name="quantPage"
-        id="quantPage"
-        placeholder="Digite a quantidade de página do livro"
-        v-model="form.quantPage"
-      />
-
-      <label for="genero">Gênero</label>
-      <input
-        type="text"
-        name="genero"
-        id="genero"
-        placeholder="Digite o gênero do livro"
-        v-model="form.genero"
-      />
-
-      <label for="data_inicial">Data de Início</label>
+      <label for="data_inicial">Data inicial da leitura</label>
       <input
         type="date"
         name="data_inicial"
         id="data_inicial"
+        placeholder="Digite a data inicial da leitura do livro"
         v-model="form.data_inicial"
       />
+
       <div class="container-switch">
         <input
           class="switch switch--shadow"
           type="checkbox"
           name="switch-shadow"
           id="switch-shadow"
-          v-model="leitura_atual"
+          v-model="form.status"
         />
         <label for="switch-shadow"></label>
         <p>Lendo no momento</p>
       </div>
 
-      <div v-if="!leitura_atual">
-        <label for="data_fim">Data de Fim</label>
-        <input
-          type="date"
-          name="data_fim"
-          id="data_fim"
-          v-model="form.data_fim"
-        />
+      <div v-if="!form.status">
+        <label for="data_final">Data final da leitura</label>
+      <input
+        type="date"
+        name="data_final"
+        id="data_final"
+        v-model="form.data_final"
+      />
       </div>
 
       <div class="btn">
@@ -94,17 +78,15 @@ const msg = ref(null);
 const type = ref(null);
 const id_user = localStorage.getItem("id_user");
 
-const title = "Cadastre o livro";
+const title = "Cadastrar livro";
 const btnSubmit = "Cadastrar";
-const leitura_atual = ref(false);
 
 const form = ref({
   titulo: "",
   autor: "",
-  quantPage: null,
-  genero: "",
   data_inicial: "",
-  data_fim: "",
+  data_final: "",
+  status: "",
   id_user: id_user,
 });
 
@@ -164,7 +146,7 @@ function backToDashboard() {
 }
 function formatDate() {
   const data_i = new Date(form.value.data_inicial);
-  const data_f = new Date(form.value.data_fim);
+  const data_f = new Date(form.value.data_final);
 
   const dataFormatadaInicial = `${data_i.getFullYear()}-${String(
     data_i.getMonth() + 1
@@ -174,7 +156,7 @@ function formatDate() {
   ).padStart(2, "0")}-${String(data_f.getDate()).padStart(2, "0")}`;
 
   form.value.data_inicial = dataFormatadaInicial;
-  form.value.data_fim = dataFormatadaFinal;
+  form.value.data_final = dataFormatadaFinal;
 }
 </script>
 
@@ -211,10 +193,8 @@ function formatDate() {
 }
 #titulo,
 #autor,
-#quantPage,
-#genero,
 #data_inicial,
-#data_fim {
+#data_final {
   display: flex;
   width: 100%;
   background-color: #fcba033d;
@@ -223,9 +203,8 @@ function formatDate() {
 }
 #titulo:focus,
 #autor:focus,
-#quantPage:focus,
-#genero:focus,
-#anoPubli:focus {
+#data_inicial:focus,
+#data_final:focus {
   outline: none;
 }
 .campo-obrigatorio {

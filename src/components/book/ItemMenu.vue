@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p>SCL</p>
+    <p>SGL</p>
     <div v-for="(item, index) in menuItems" :key="index" class="container-items">
       <router-link :to="item.route" class="items">
         <img :src="item.iconPath" alt="Icon" class="items-img" />

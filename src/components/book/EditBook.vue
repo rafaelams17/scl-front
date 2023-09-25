@@ -22,31 +22,13 @@
         v-model="form.autor"
       />
 
-      <label for="quantPage">Quantidade de página</label>
-      <input
-        type="number"
-        name="quantPage"
-        id="quantPage"
-        placeholder="Digite a quantidade de página do livro"
-        v-model="form.quantPage"
-      />
-
-      <label for="genero">Gênero</label>
-      <input
-        type="text"
-        name="genero"
-        id="genero"
-        placeholder="Digite o gênero do livro"
-        v-model="form.genero"
-      />
-
-      <label for="data_inicio">Data de Início</label>
+      <label for="data_inicial">Data inicial da leitura</label>
       <input
         type="date"
-        name="data_inicio"
-        id="data_inicio"
-        placeholder="Digite a data de início da leitura"
-        v-model="form.data_inicio"
+        name="data_inicial"
+        id="data_inicial"
+        placeholder="Digite a data inicial da leitura do livro"
+        v-model="form.data_inicial"
       />
 
       <div class="container-switch">
@@ -55,21 +37,20 @@
           type="checkbox"
           name="switch-shadow"
           id="switch-shadow"
-          v-model="form.leitura_atual"
+          v-model="form.status"
         />
         <label for="switch-shadow"></label>
         <p>Lendo no momento</p>
       </div>
 
-      <div v-if="!form.leitura_atual">
-        <label for="data_fim">Data de Fim</label>
-        <input
-          type="date"
-          name="data_fim"
-          id="data_fim"
-          placeholder="Digite a data do último dia de leitura"
-          v-model="form.data_fim"
-        />
+      <div v-if="!form.status">
+        <label for="data_final">Data final da leitura</label>
+      <input
+        type="date"
+        name="data_final"
+        id="data_final"
+        v-model="form.data_final"
+      />
       </div>
 
       <div class="btn">
@@ -101,11 +82,9 @@ const btnSubmit = "Atualizar";
 const form = ref({
   titulo: "",
   autor: "",
-  quantPage: "",
-  sinopse: "",
-  genero: "",
-  data_inicio: "",
-  data_fim: "",
+  data_inicial: "",
+  data_final: "",
+  status: "",
 });
 
 // função para criar um livro
@@ -193,11 +172,8 @@ function backToDashboard() {
 }
 #titulo,
 #autor,
-#quantPage,
-#genero,
-#sinopse,
-#data_inicio,
-#data_fim {
+#data_inicial,
+#data_final {
   display: flex;
   width: 100%;
   background-color: #fcba033d;
@@ -207,10 +183,8 @@ function backToDashboard() {
 }
 #titulo:focus,
 #autor:focus,
-#quantPage:focus,
-#genero:focus,
-#sinopse:focus,
-#anoPubli:focus {
+#data_inicial:focus,
+#data_final:focus  {
   outline: none;
 }
 .campo-obrigatorio {
