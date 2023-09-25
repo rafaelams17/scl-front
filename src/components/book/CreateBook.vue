@@ -2,12 +2,9 @@
   <div class="container">
     <h1><img src="../../assets/dashboard.svg" alt="Dashboard" />{{ title }}</h1>
     <form class="form" @submit.prevent="registerBook()">
-      <label for="titulo"
-        >Título <span class="campo-obrigatorio">*</span></label
-      >
+      <label for="titulo">Título <span class="campo-obrigatorio">*</span></label>
       <input
         type="text"
-        name="titulo"
         id="titulo"
         placeholder="Digite o nome do livro"
         v-model="form.titulo"
@@ -37,13 +34,13 @@
           type="checkbox"
           name="switch-shadow"
           id="switch-shadow"
-          v-model="form.status"
+          v-model="form.leitura_atual"
         />
         <label for="switch-shadow"></label>
         <p>Lendo no momento</p>
       </div>
 
-      <div v-if="!form.status">
+      <div v-if="!form.leitura_atual">
         <label for="data_final">Data final da leitura</label>
       <input
         type="date"
@@ -76,7 +73,7 @@ import api from "@/boot/axios";
 const router = useRouter();
 const msg = ref(null);
 const type = ref(null);
-const id_user = localStorage.getItem("id_user");
+const id_user = Number(localStorage.getItem('id_user')+1);
 
 const title = "Cadastrar livro";
 const btnSubmit = "Cadastrar";
@@ -86,7 +83,7 @@ const form = ref({
   autor: "",
   data_inicial: "",
   data_final: "",
-  status: "",
+  leitura_atual: null,
   id_user: id_user,
 });
 
