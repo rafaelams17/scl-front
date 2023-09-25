@@ -73,7 +73,7 @@ import api from "@/boot/axios";
 const router = useRouter();
 const msg = ref(null);
 const type = ref(null);
-const id_user = Number(localStorage.getItem('id_user')+1);
+const id_user = Number(localStorage.getItem('id_user') + 1);
 
 const title = "Cadastrar livro";
 const btnSubmit = "Cadastrar";
