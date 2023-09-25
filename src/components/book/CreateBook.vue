@@ -2,7 +2,9 @@
   <div class="container">
     <h1><img src="../../assets/dashboard.svg" alt="Dashboard" />{{ title }}</h1>
     <form class="form" @submit.prevent="registerBook()">
-      <label for="titulo">Título <span class="campo-obrigatorio">*</span></label>
+      <label for="titulo"
+        >Título <span class="campo-obrigatorio">*</span></label
+      >
       <input
         type="text"
         id="titulo"
@@ -42,12 +44,12 @@
 
       <div v-if="!form.leitura_atual">
         <label for="data_final">Data final da leitura</label>
-      <input
-        type="date"
-        name="data_final"
-        id="data_final"
-        v-model="form.data_final"
-      />
+        <input
+          type="date"
+          name="data_final"
+          id="data_final"
+          v-model="form.data_final"
+        />
       </div>
 
       <div class="btn">
@@ -65,15 +67,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 import Message from "../../components/Message.vue";
 import api from "@/boot/axios";
 
 const router = useRouter();
 const msg = ref(null);
 const type = ref(null);
-const id_user = Number(localStorage.getItem('id_user') + 1);
+const auth = useAuthStore();
 
 const title = "Cadastrar livro";
 const btnSubmit = "Cadastrar";
@@ -84,9 +87,10 @@ const form = ref({
   data_inicial: "",
   data_final: "",
   leitura_atual: null,
-  id_user: id_user,
+  id_user: auth.id_user,
 });
 
+console.log(form.value.id_user);
 // função para criar um livro
 async function registerBook() {
   try {
@@ -125,7 +129,11 @@ async function registerBook() {
         setTimeout(() => (msg.value = ""), 2000);
 
         // limpar os campos
-        form.value = "";
+        form.value.titulo = '';
+        form.value.autor = '';
+        form.value.data_inicial = '';
+        form.value.data_final = '';
+
       }
     }
   } catch (error) {
@@ -155,6 +163,8 @@ function formatDate() {
   form.value.data_inicial = dataFormatadaInicial;
   form.value.data_final = dataFormatadaFinal;
 }
+
+onMounted(() => {});
 </script>
 
 <style scoped>
