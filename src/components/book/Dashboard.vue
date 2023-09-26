@@ -1,7 +1,7 @@
 <template>
   <div id="container">
-    <h1><i class="fa-solid fa-book-open-reader"></i> Livros</h1>
     <div v-if="isEmpty" class="container-text">
+      <h1><i class="fa-solid fa-book-open-reader"></i> Livros</h1>
       <p>
         Sua lista está vazia, clique no botão cadastrar para começar a preencher
         sua lista.
@@ -16,14 +16,17 @@
 
     <!-- Tabela para mostrar os dados -->
     <div v-else class="container-table">
-      <div class="container-teste">
-        <div class="container-add" @click="addBook()"
-            title="Adicionar Livro" >
-          <span>+ Adicionar</span>
-        </div>
+      <div>
+        <h1 id="titulo-table"><i class="fa-solid fa-book-open-reader"></i> Livros</h1>
+      </div>
+      <div class="container-second">
         <div class="container-search" @click="searchBook()">
           <input type="search" placeholder="Search book ">
           <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="container-add" @click="addBook()"
+            title="Adicionar Livro" >
+          <span>+ Adicionar</span>
         </div>
       </div>
       
@@ -33,24 +36,26 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Título</th>
+              <th class="thead-titulo">Título</th>
               <th>Autor</th>
+              <th>Quantidade de páginas</th>
               <th>Data de Início</th>
               <th>Data de Fim</th>
               <th>Status</th>
-              <th>Avaliação</th>
+              <th>Tipo</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="book in books" :key="book.id">
               <td>{{ book.id }}</td>
-              <td>{{ book.titulo }}</td>
+              <td class="thead-titulo">{{ book.titulo }}</td>
               <td>{{ book.autor }}</td>
+              <td>{{ book.quant_page }}</td>
               <td>{{ book.data_inicial }}</td>
               <td>{{ book.data_final }}</td>
               <td>{{ book.status }} </td>
-              <td>{{ book.avaliacao }}</td>
+              <td>{{ book.tipo }}</td>
               <td class="icon-acoes">
                 <router-link to="/edit-book" title="Editar Livro"><img src="../../assets/edit.svg" alt="Editar"
                 /></router-link>
@@ -69,31 +74,12 @@
 <script setup>
 import { useRouter } from "vue-router";
 import api from "@/boot/axios";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 const isEmpty = false;
 const router = useRouter();
 
-const books = [
-  {
-    id: 1,
-    titulo: "Lógica de Programação e Algoritmos com JavaScript: uma Introdução à Programação de Computadores com Exemplos e Exercícios Para Iniciantes",
-    autor: "Edécio Fernando Iepsen",
-    data_inicial: "10/02/2023",
-    data_final: "20/04/2023",
-    status: "Lido",
-    avaliacao: "Gostei",
-  },
-  {
-    id: 2,
-    titulo: "Introdução à Linguagem SQL: Abordagem Prática Para Iniciantes",
-    autor: "Thomas Nield",
-    data_inicial: "10/09/2023",
-    data_final: "-",
-    status: "Lendo",
-    avaliacao: "-",
-  },
-];
+const books = ref([]); // recebe os valores
 
 function addBook() {
   router.push("/create-book");
@@ -109,7 +95,8 @@ function searchBook() {
 
 async function buscarDados() {
   const { data } = await api.get("/book"); // requisição para pegar todos os dados dos livros cadastrados
-  console.log(data);
+  books.value = data;
+  console.log(books.value)
 }
 
 onMounted(() => {
@@ -130,31 +117,33 @@ onMounted(() => {
 }
 #container h1 {
   margin: 20px 0 20px 0;
-  font-size: 35px;
+  font-size: 25px;
+}
+#titulo-table {
+  text-align: center;
 }
 #container h1 i{
-  font-size: 30px;
+  font-size: 25px;
 }
 #container p {
   margin: 15px 0 15px 0;
 }
-.container-teste {
+.container-second {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: baseline;
-
+  margin: 10px;
 }
 .container-search {
   display: flex;
+  padding-right: 10px;
 }
-
 .container-search input {
   border: none;
   background: #8080801b;
   padding: 10px;
   font-size: 14px;
-  border-top-left-radius: 15px;
-  width: 200px;
+  width: 300px;
 }
 .container-search i {
   background: #8080801b;
@@ -179,6 +168,7 @@ onMounted(() => {
 }
 .container-table {
   width: 1500px;
+  padding: 10px;
 }
 /* Estilo geral da tabela */
 .table {
@@ -192,20 +182,23 @@ onMounted(() => {
 }
 /* Estilizando o cabeçalho da tabela */
 .table th {
-  background-color: #ffe20347;
+  background-color: #FCBA03;
   color: #000;
   font-weight: bold;
   text-align: center;
   padding: 10px;
 }
 .table tr:nth-child(even) {
-  background-color: #fcba03be;
+  background-color: #fcba03;
 }
 /* Estilizando as linhas da tabela */
 .table td {
-  border-bottom: 1px solid #ffbc03be;
+  border-bottom: 1px solid #ffbc03;
   padding: 10px;
   text-align: center;
+}
+.thead-titulo {
+  width: 30%;
 }
 .icon-acoes {
   width: 5%;

@@ -21,6 +21,24 @@
         v-model="form.autor"
       />
 
+      <label for="quant_page">Quantidade de Páginas</label>
+      <input
+        type="number"
+        name="quant_page"
+        id="quant_page"
+        placeholder="Digite a quantidade de páginas do livro"
+        v-model="form.quant_page"
+      />
+
+      <label for="tipo">Formato do livro</label>
+      <input
+        type="text"
+        name="tipo"
+        id="tipo"
+        placeholder="Digite o tipo do livro"
+        v-model="form.tipo"
+      />
+
       <label for="data_inicial">Data inicial da leitura</label>
       <input
         type="date"
@@ -84,9 +102,11 @@ const btnSubmit = "Cadastrar";
 const form = ref({
   titulo: "",
   autor: "",
+  quant_page: null,
   data_inicial: "",
   data_final: "",
   leitura_atual: null,
+  tipo: "",
   id_user: auth.id_user,
 });
 
@@ -131,9 +151,10 @@ async function registerBook() {
         // limpar os campos
         form.value.titulo = '';
         form.value.autor = '';
+        form.value.quant_page = '';
+        form.value.tipo = '';
         form.value.data_inicial = '';
         form.value.data_final = '';
-
       }
     }
   } catch (error) {
@@ -200,8 +221,10 @@ onMounted(() => {});
 }
 #titulo,
 #autor,
+#quant_page,
 #data_inicial,
-#data_final {
+#data_final,
+#tipo {
   display: flex;
   width: 100%;
   background-color: #fcba033d;
@@ -210,8 +233,10 @@ onMounted(() => {});
 }
 #titulo:focus,
 #autor:focus,
+#quant_page:focus,
 #data_inicial:focus,
-#data_final:focus {
+#data_final:focus,
+#tipo:focus {
   outline: none;
 }
 .campo-obrigatorio {
