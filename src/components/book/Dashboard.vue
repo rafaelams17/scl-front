@@ -17,13 +17,13 @@
     <!-- Tabela para mostrar os dados -->
     <div v-else class="container-table">
       <div class="container-teste">
-        <div class="container-search" @click="searchBook()">
-          <input type="search" placeholder="Procurar livro ... ">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
         <div class="container-add" @click="addBook()"
             title="Adicionar Livro" >
           <span>+ Adicionar</span>
+        </div>
+        <div class="container-search" @click="searchBook()">
+          <input type="search" placeholder="Search book ">
+          <i class="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>
       
@@ -52,9 +52,9 @@
               <td>{{ book.status }} </td>
               <td>{{ book.avaliacao }}</td>
               <td class="icon-acoes">
-                <router-link to="/edit-book"><img src="../../assets/edit.svg" alt="Editar"
+                <router-link to="/edit-book" title="Editar Livro"><img src="../../assets/edit.svg" alt="Editar"
                 /></router-link>
-                <a href="#" @click="removeBook(id)" title="Remover"
+                <a href="#" @click="removeBook(id)" title="Remover Livro"
                   ><img src="../../assets/remove.svg" alt="Remover"
                 /></a>
               </td>
@@ -129,7 +129,7 @@ onMounted(() => {
   height: 100%;
 }
 #container h1 {
-  margin: 40px;
+  margin: 20px 0 20px 0;
   font-size: 35px;
 }
 #container h1 i{
@@ -153,8 +153,8 @@ onMounted(() => {
   background: #8080801b;
   padding: 10px;
   font-size: 14px;
-  width: 500px;
-
+  border-top-left-radius: 15px;
+  width: 200px;
 }
 .container-search i {
   background: #8080801b;
