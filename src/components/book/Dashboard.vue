@@ -201,7 +201,7 @@ onMounted(() => {
   width: 30%;
 }
 .icon-acoes {
-  width: 5%;
+  width: 10%;
 }
 .icon-acoes a {
   padding-left: 5px;
