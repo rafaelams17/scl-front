@@ -7,7 +7,6 @@
       >
       <input
         type="text"
-        name="titulo"
         id="titulo"
         placeholder="Digite o nome do livro"
         v-model="form.titulo"
@@ -55,20 +54,20 @@
           type="checkbox"
           name="switch-shadow"
           id="switch-shadow"
-          v-model="form.status"
+          v-model="form.leitura_atual"
         />
         <label for="switch-shadow"></label>
         <p>Lendo no momento</p>
       </div>
 
-      <div v-if="!form.status">
+      <div v-if="!form.leitura_atual">
         <label for="data_final">Data final da leitura</label>
-      <input
-        type="date"
-        name="data_final"
-        id="data_final"
-        v-model="form.data_final"
-      />
+        <input
+          type="date"
+          name="data_final"
+          id="data_final"
+          v-model="form.data_final"
+        />
       </div>
 
       <div class="btn">
@@ -86,16 +85,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import Message from "../../components/Message.vue";
 import { useAuthStore } from "@/stores/auth";
+import Message from "../../components/Message.vue";
+import api from "@/boot/axios";
 
 const router = useRouter();
 const msg = ref(null);
 const type = ref(null);
 const auth = useAuthStore();
-
 
 const title = "Editar livro";
 const btnSubmit = "Atualizar";
@@ -114,39 +113,17 @@ const form = ref({
 // função para criar um livro
 async function registerBook() {
   try {
-    // verificar se os campos estão vazios
-    if (!form.value.titulo) {
-      type.value = "error";
-      msg.value = "Campo de título é obrigatório!";
-      setTimeout(() => (msg.value = ""), 2000);
-    } else {
-      const { data } = await api.get("/book");
+    type.value = "sucess";
+    msg.value = "Livro criado com sucesso!";
+    setTimeout(() => (msg.value = ""), 2000);
 
-      // verificar se o livro já existe
-      let bookExits = false;
-
-      for (var i = 0; i < data.length; i++) {
-        if (form.value.titulo == data[i].titulo) {
-          bookExits = true;
-        }
-      }
-
-      if (bookExits) {
-        type.value = "error";
-        msg.value = "O livro já existe!";
-        setTimeout(() => (msg.value = ""), 2000);
-      } else {
-        // Criação do Livro
-        const { data } = await api.post("/book", form.value);
-
-        type.value = "sucess";
-        msg.value = "Livro criado com sucesso!";
-        setTimeout(() => (msg.value = ""), 2000);
-
-        // limpar os campos
-        form.value = "";
-      }
-    }
+    // limpar os campos
+    form.value.titulo = "";
+    form.value.autor = "";
+    form.value.quant_page = "";
+    form.value.tipo = "";
+    form.value.data_inicial = "";
+    form.value.data_final = "";
   } catch (error) {
     if (error.response) {
       console.log("Server responded with: ", error.response.data);
@@ -160,6 +137,26 @@ async function registerBook() {
 function backToDashboard() {
   router.push("/book");
 }
+function formatDate() {
+  const data_i = new Date(form.value.data_inicial);
+  const data_f = new Date(form.value.data_final);
+
+  const dataFormatadaInicial = `${data_i.getFullYear()}-${String(
+    data_i.getMonth() + 1
+  ).padStart(2, "0")}-${String(data_i.getDate()).padStart(2, "0")}`;
+  const dataFormatadaFinal = `${data_f.getFullYear()}-${String(
+    data_f.getMonth() + 1
+  ).padStart(2, "0")}-${String(data_f.getDate()).padStart(2, "0")}`;
+
+  form.value.data_inicial = dataFormatadaInicial;
+  form.value.data_final = dataFormatadaFinal;
+}
+
+onMounted(async () => {
+  const { data } = await api.get('/book');
+
+  console.log(data);
+});
 </script>
 
 <style scoped>
@@ -169,12 +166,11 @@ function backToDashboard() {
 }
 .container {
   margin: 0 auto;
-  width: 100vh;
-  height: 80%;
-  margin-bottom: 4%;
+  width: 800px;
+  height: 100vh;
 }
 .container h1 {
-  margin-top: 5%;
+  margin-top: 15px;
   text-align: center;
   font-size: 35px;
 }
@@ -182,7 +178,7 @@ function backToDashboard() {
   padding-right: 10px;
   width: 40px;
 }
-.form {
+.container form {
   display: flex;
   flex-direction: column;
 }
@@ -204,7 +200,6 @@ function backToDashboard() {
   width: 100%;
   background-color: #fcba033d;
   border: none;
-  margin-left: 10px;
   padding: 10px;
 }
 #titulo:focus,
@@ -220,7 +215,6 @@ function backToDashboard() {
 }
 .container-switch {
   display: flex;
-  /* align-items: center; */
 }
 .container-switch p {
   font-size: 16px;
@@ -308,24 +302,76 @@ function backToDashboard() {
   transition: 0.5s;
 }
 @media screen and (max-width: 1400px) {
-  .container {
-    margin-bottom: 15%;
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 700px;
+    margin: 0 auto;
   }
 }
-/* @media screen and (max-width: 750px) {
-  .container {
-    margin: 20px;
+@media (max-width: 900px) {
+  #container {
+    margin: 0 auto;
   }
-  .container h1 {
-    font-size: 1.5em;
+  .container form {
+    width: 500px;
+    margin: 0 auto;
   }
-  #titulo,
-  #autor,
-  #quantPage,
-  #genero,
-  #sinopse,
-  #anoPubli {
-    width: 80%;
+}
+@media (max-width: 700px) {
+  #container {
+    margin: 0 auto;
   }
-} */
+  .container form {
+    width: 450px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 600px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 500px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 350px;
+    margin: 0 auto;
+  }
+}
+/* Não mexer */
+@media (max-width: 400px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 350px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 2500px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 250px) {
+  #container {
+    margin: 0 auto;
+  }
+  .container form {
+    width: 200px;
+    margin: 0 auto;
+  }
+}
 </style>
