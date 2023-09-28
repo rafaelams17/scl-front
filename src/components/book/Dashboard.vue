@@ -1,71 +1,75 @@
 <template>
   <div id="container">
-    <div v-if="isEmpty" class="container-text">
-      <h1><i class="fa-solid fa-book-open-reader"></i> Livros</h1>
-      <p>
-        Sua lista está vazia, clique no botão cadastrar para começar a preencher
-        sua lista.
-      </p>
-      <input
-        class="container-btn"
-        type="button"
-        value="Cadastrar"
-        @click="addBook()"
-      />
-    </div>
+    <div id="container-primary">
+      <div v-if="isEmpty" class="container-text">
+        <h1><i class="fa-solid fa-book-open-reader"></i> Livros</h1>
+        <p>
+          Sua lista está vazia, clique no botão cadastrar para começar a
+          preencher sua lista.
+        </p>
+        <input
+          class="container-btn"
+          type="button"
+          value="Cadastrar"
+          @click="addBook()"
+        />
+      </div>
 
-    <!-- Tabela para mostrar os dados -->
-    <div v-else class="container-table">
-      <div>
-        <h1 id="titulo-table"><i class="fa-solid fa-book-open-reader"></i> Livros</h1>
-      </div>
-      <div class="container-second">
-        <div class="container-search" @click="searchBook()">
-          <input type="search" placeholder="Search book ">
-          <i class="fa-solid fa-magnifying-glass"></i>
+      <!-- Tabela para mostrar os dados -->
+      <div v-else class="container-table">
+        <div>
+          <h1 id="titulo-table">
+            <i class="fa-solid fa-book-open-reader"></i> Livros
+          </h1>
         </div>
-        <div class="container-add" @click="addBook()"
-            title="Adicionar Livro" >
-          <span>+ Adicionar</span>
+        <div class="container-second">
+          <div class="container-search" @click="searchBook()">
+            <input type="search" placeholder="Search book " />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div class="container-add" @click="addBook()" title="Adicionar Livro">
+            <span>+ Adicionar</span>
+          </div>
         </div>
-      </div>
-      
-      <!-- Table -->
-      <div class="table-scroll">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th class="thead-titulo">Título</th>
-              <th>Autor</th>
-              <th>Quantidade de páginas</th>
-              <th>Data de Início</th>
-              <th>Data de Fim</th>
-              <th>Status</th>
-              <th>Tipo</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="book in books" :key="book.id">
-              <td>{{ book.id }}</td>
-              <td class="thead-titulo">{{ book.titulo }}</td>
-              <td>{{ book.autor }}</td>
-              <td>{{ book.quant_page }}</td>
-              <td>{{ book.data_inicial }}</td>
-              <td>{{ book.data_final }}</td>
-              <td>{{ book.status }} </td>
-              <td>{{ book.tipo }}</td>
-              <td class="icon-acoes">
-                <router-link to="/edit-book" title="Editar Livro"><img src="../../assets/edit.svg" alt="Editar"
-                /></router-link>
-                <a href="#" @click="removeBook(id)" title="Remover Livro"
-                  ><img src="../../assets/remove.svg" alt="Remover"
-                /></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+        <!-- Table -->
+        <div class="table-scroll">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="thead-titulo">Título</th>
+                <th>Autor</th>
+                <th>Quantidade de páginas</th>
+                <th>Data de Início</th>
+                <th>Data de Fim</th>
+                <th class="thead-status">Status</th>
+                <th>Tipo</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="book in books" :key="book.id">
+                <td>{{ book.id }}</td>
+                <td class="thead-titulo">{{ book.titulo }}</td>
+                <td>{{ book.autor }}</td>
+                <td>{{ book.quant_page }}</td>
+                <td>{{ book.data_inicial }}</td>
+                <td>{{ book.data_final }}</td>
+                <td class="thead-status">{{ book.status }}</td>
+                <td>{{ book.tipo }}</td>
+                <td class="icon-acoes">
+                  <router-link to="/edit-book" title="Editar Livro"
+                    ><img src="../../assets/edit.svg" alt="Editar"
+                  /></router-link>
+                  <a href="#" @click="removeBook(id)" title="Remover Livro"
+                    ><img src="../../assets/remove.svg" alt="Remover"
+                  /></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -96,7 +100,7 @@ function searchBook() {
 async function buscarDados() {
   const { data } = await api.get("/book"); // requisição para pegar todos os dados dos livros cadastrados
   books.value = data;
-  console.log(books.value)
+  console.log(books.value);
 }
 
 onMounted(() => {
@@ -108,6 +112,8 @@ onMounted(() => {
 * {
   background-color: #fff;
   color: #000;
+  margin: 0;
+  padding: 0;
 }
 #container {
   display: flex;
@@ -116,27 +122,37 @@ onMounted(() => {
   height: 100%;
 }
 #container h1 {
-  margin: 20px 0 20px 0;
+  border-bottom: #ccc solid 1px;
   font-size: 25px;
 }
-#titulo-table {
-  text-align: center;
-}
-#container h1 i{
+#container h1 i {
   font-size: 25px;
 }
 #container p {
   margin: 15px 0 15px 0;
 }
+#titulo-table {
+  margin: 0;
+  padding-bottom: 10px;
+  text-align: center;
+}
+#container-primary {
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  margin: 15px 0 15px 0;
+  height: 100%;
+  border-radius: 15px;
+}
 .container-second {
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
-  margin: 10px;
+  margin: 5px 0 10px 0;
 }
 .container-search {
   display: flex;
   padding-right: 10px;
+  margin-top: 10px;
 }
 .container-search input {
   border: none;
@@ -161,7 +177,7 @@ onMounted(() => {
   border: none;
 }
 .container-add span {
-  background-color: #6F5CC3;
+  background-color: #6f5cc3;
   color: #fff;
   padding: 10px;
   cursor: pointer;
@@ -169,6 +185,7 @@ onMounted(() => {
 .container-table {
   width: 1500px;
   padding: 10px;
+  border-radius: 15px;
 }
 /* Estilo geral da tabela */
 .table {
@@ -182,7 +199,7 @@ onMounted(() => {
 }
 /* Estilizando o cabeçalho da tabela */
 .table th {
-  background-color: #FCBA03;
+  background-color: #fcba03;
   color: #000;
   font-weight: bold;
   text-align: center;
@@ -199,6 +216,9 @@ onMounted(() => {
 }
 .thead-titulo {
   width: 30%;
+}
+.thead-status {
+  width: 10%;
 }
 .icon-acoes {
   width: 10%;
