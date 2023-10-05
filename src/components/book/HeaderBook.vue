@@ -6,7 +6,7 @@
       <p>Sistema de Gerenciamento de Leituras</p>
     </div>
 
-    <div class="container-user" v-if="route.path == '/book'">
+    <div class="container-user" v-if="showRoute()">
       <span>Bem-vindo, {{ user }}!</span>
       <i
         class="fa-solid fa-right-from-bracket user"
@@ -39,6 +39,12 @@ function backToLogin() {
 
 function btnClick() {
   emits("toggleSidebar");
+}
+
+function showRoute(){
+  const routes = (route.path == '/book') || (route.path == '/book/listagem');  
+
+  return routes;
 }
 </script>
 
