@@ -22,17 +22,21 @@ const type = ref(null);
 
 const menuItems = [
   {
+    label: "Dashboard",
+    route: "/book",
+    iconPath: require("@/assets/dashboard_menu.svg"),
+  },
+  {
     label: "Livros",
-    route: "/create-book",
+    route: "/book/listagem",
     iconPath: require("@/assets/book.svg"),
   },
 ];
 
-function toggleSidebar(){
+function toggleSidebar() {
   console.log(showSidebar.value);
   showSidebar.value = !showSidebar.value;
 }
-
 </script>
 
 <style scoped>
@@ -47,7 +51,7 @@ function toggleSidebar(){
 }
 .container-menu {
   width: 30vh;
-  background-color: #FCBA03;
+  background-color: #fcba03;
   color: #000;
 }
 .container-content {
