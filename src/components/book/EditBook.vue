@@ -135,7 +135,7 @@ async function registerBook() {
 }
 
 function backToDashboard() {
-  router.push("/book");
+  router.push("/book/listagem");
 }
 function formatDate() {
   const data_i = new Date(form.value.data_inicial);
