@@ -183,7 +183,7 @@ onMounted(() => {
   cursor: pointer;
 }
 .container-table {
-  width: 1500px;
+  width: 1200px;
   padding: 10px;
   border-radius: 15px;
 }
@@ -247,11 +247,11 @@ onMounted(() => {
     height: 100vh;
   }
   .table-scroll {
-    max-width: 1200px;
+    max-width: 1100px;
     overflow-x: auto;
   }
   .container-table {
-    width: 1200px;
+    width: 1100px;
   }
 }
 @media (max-width: 1300px) {
@@ -259,11 +259,11 @@ onMounted(() => {
     height: 100vh;
   }
   .table-scroll {
-    max-width: 1200px;
+    max-width: 900px;
     overflow-x: auto;
   }
   .container-table {
-    width: 1200px;
+    width: 00px;
   }
 }
 @media (max-width: 1200px) {
@@ -271,11 +271,11 @@ onMounted(() => {
     height: 100vh;
   }
   .table-scroll {
-    max-width: 1000px;
+    max-width: 900px;
     overflow-x: auto;
   }
   .container-table {
-    width: 1000px;
+    width: 900px;
   }
 }
 @media (max-width: 900px) {
