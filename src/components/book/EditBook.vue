@@ -1,92 +1,96 @@
 <template>
   <div class="container">
-    <h1><img src="../../assets/dashboard.svg" alt="Dashboard" />{{ title }}</h1>
-    <form class="form" @submit.prevent="registerBook()">
-      <label for="titulo"
-        >Título <span class="campo-obrigatorio">*</span></label
-      >
-      <input
-        type="text"
-        id="titulo"
-        placeholder="Digite o nome do livro"
-        v-model="form.titulo"
-      />
-
-      <label for="autor">Autor</label>
-      <input
-        type="text"
-        name="autor"
-        id="autor"
-        placeholder="Digite o(a) autor(a) do livro"
-        v-model="form.autor"
-      />
-
-      <label for="quant_page">Quantidade de Páginas</label>
-      <input
-        type="number"
-        name="quant_page"
-        id="quant_page"
-        placeholder="Digite a quantidade de páginas do livro"
-        v-model="form.quant_page"
-      />
-
-      <label for="tipo">Formato do livro</label>
-      <input
-        type="text"
-        name="tipo"
-        id="tipo"
-        placeholder="Digite o tipo do livro"
-        v-model="form.tipo"
-      />
-
-      <label for="data_inicial">Data inicial da leitura</label>
-      <input
-        type="date"
-        name="data_inicial"
-        id="data_inicial"
-        placeholder="Digite a data inicial da leitura do livro"
-        v-model="form.data_inicial"
-      />
-
-      <div class="container-switch">
+    <div id="content">
+      <h1>
+        <img src="../../assets/dashboard.svg" alt="Dashboard" />{{ title }}
+      </h1>
+      <form class="form" @submit.prevent="updateBook()">
+        <label for="titulo"
+          >Título <span class="campo-obrigatorio">*</span></label
+        >
         <input
-          class="switch switch--shadow"
-          type="checkbox"
-          name="switch-shadow"
-          id="switch-shadow"
-          v-model="form.leitura_atual"
+          type="text"
+          id="titulo"
+          placeholder="Digite o nome do livro"
+          v-model="form.titulo"
         />
-        <label for="switch-shadow"></label>
-        <p>Lendo no momento</p>
-      </div>
 
-      <div v-if="!form.leitura_atual">
-        <label for="data_final">Data final da leitura</label>
+        <label for="autor">Autor</label>
+        <input
+          type="text"
+          name="autor"
+          id="autor"
+          placeholder="Digite o(a) autor(a) do livro"
+          v-model="form.autor"
+        />
+
+        <label for="quant_page">Quantidade de Páginas</label>
+        <input
+          type="number"
+          name="quant_page"
+          id="quant_page"
+          placeholder="Digite a quantidade de páginas do livro"
+          v-model="form.quant_page"
+        />
+
+        <label for="tipo">Formato do livro</label>
+        <input
+          type="text"
+          name="tipo"
+          id="tipo"
+          placeholder="Digite o tipo do livro"
+          v-model="form.tipo"
+        />
+
+        <label for="data_inicial">Data inicial da leitura</label>
         <input
           type="date"
-          name="data_final"
-          id="data_final"
-          v-model="form.data_final"
+          name="data_inicial"
+          id="data_inicial"
+          placeholder="Digite a data inicial da leitura do livro"
+          v-model="form.data_inicial"
         />
-      </div>
 
-      <div class="btn">
-        <input class="submit" type="submit" :value="btnSubmit" />
-        <input
-          class="reset"
-          type="reset"
-          value="Cancelar"
-          @click="backToDashboard()"
-        />
-      </div>
-    </form>
+        <div class="container-switch">
+          <input
+            class="switch switch--shadow"
+            type="checkbox"
+            name="switch-shadow"
+            id="switch-shadow"
+            v-model="form.leitura_atual"
+          />
+          <label for="switch-shadow"></label>
+          <p>Lendo no momento</p>
+        </div>
+
+        <div v-if="!form.leitura_atual">
+          <label for="data_final">Data final da leitura</label>
+          <input
+            type="date"
+            name="data_final"
+            id="data_final"
+            v-model="form.data_final"
+          />
+        </div>
+
+        <div class="btn">
+          <input class="submit" type="submit" :value="btnSubmit" />
+          <input
+            class="reset"
+            type="reset"
+            value="Cancelar"
+            @click="backToTableBook()"
+          />
+        </div>
+      </form>
+    </div>
     <Message :msg="msg" v-show="msg" :backgroundColorClass="type" />
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import Message from "../../components/Message.vue";
 import api from "@/boot/axios";
@@ -110,20 +114,19 @@ const form = ref({
   id_user: auth.id_user,
 });
 
-// função para criar um livro
-async function registerBook() {
+// função para atualizar o livro selecionado
+async function updateBook() {
   try {
-    type.value = "sucess";
-    msg.value = "Livro criado com sucesso!";
-    setTimeout(() => (msg.value = ""), 2000);
-
-    // limpar os campos
-    form.value.titulo = "";
+    form.value.titulo = data.titulo;
     form.value.autor = "";
     form.value.quant_page = "";
     form.value.tipo = "";
     form.value.data_inicial = "";
     form.value.data_final = "";
+
+    type.value = "sucess";
+    msg.value = "Livro criado com sucesso!";
+    setTimeout(() => (msg.value = ""), 2000);
   } catch (error) {
     if (error.response) {
       console.log("Server responded with: ", error.response.data);
@@ -134,9 +137,10 @@ async function registerBook() {
   }
 }
 
-function backToDashboard() {
+function backToTableBook() {
   router.push("/book/listagem");
 }
+
 function formatDate() {
   const data_i = new Date(form.value.data_inicial);
   const data_f = new Date(form.value.data_final);
@@ -153,9 +157,15 @@ function formatDate() {
 }
 
 onMounted(async () => {
-  const { data } = await api.get('/book');
+  const { data } = await api.get("/book");
 
   console.log(data);
+  form.value.titulo = data.titulo;
+    form.value.autor = "";
+    form.value.quant_page = "";
+    form.value.tipo = "";
+    form.value.data_inicial = "";
+    form.value.data_final = "";
 });
 </script>
 
@@ -165,14 +175,23 @@ onMounted(async () => {
   color: black;
 }
 .container {
-  margin: 0 auto;
   width: 800px;
   height: 100vh;
+  margin: auto;
+  margin-top: 30px;
+}
+#content {
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  margin: 15px 0 15px 0;
+  width: 900px;
 }
 .container h1 {
   margin-top: 15px;
   text-align: center;
   font-size: 35px;
+  border-bottom: 1px solid #ccc;
+
 }
 .container img {
   padding-right: 10px;
@@ -181,11 +200,13 @@ onMounted(async () => {
 .container form {
   display: flex;
   flex-direction: column;
+  padding: 50px;
+
 }
-.form input {
+form input {
   margin-bottom: 10px;
 }
-.form p {
+form p {
   margin-bottom: 5px;
   font-size: 14px;
   font-weight: 500;

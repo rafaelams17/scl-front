@@ -141,7 +141,6 @@ onMounted(() => {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
   margin: 15px 0 15px 0;
   height: 100%;
-  border-radius: 15px;
 }
 .container-second {
   display: flex;
@@ -185,7 +184,6 @@ onMounted(() => {
 .container-table {
   width: 1200px;
   padding: 10px;
-  border-radius: 15px;
 }
 /* Estilo geral da tabela */
 .table {

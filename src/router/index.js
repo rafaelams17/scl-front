@@ -53,7 +53,7 @@ const router = createRouter({
           {
             path: '/book/listagem',
             name: 'book',
-            component: () => import('../components/book/Book.vue'),
+            component: () => import('../components/book/TableBook.vue'),
             meta: { auth: true },
           },
           {
@@ -63,7 +63,7 @@ const router = createRouter({
             meta: { auth: true },
           },
           {
-            path: '/edit-book',
+            path: '/edit-book/:id',
             name: 'edit-book',
             component: () => import('../components/book/EditBook.vue'),
             meta: { auth: true },

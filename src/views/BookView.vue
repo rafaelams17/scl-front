@@ -5,7 +5,7 @@
     </div>
     <div class="container-content">
       <HeaderBook @toggle-sidebar="toggleSidebar" />
-      <router-view />
+      <router-view :class="{ active: classVar }" />
       <FooterBook :lowerBackground="type" />
     </div>
   </div>
@@ -19,6 +19,7 @@ import { ref } from "vue";
 
 const showSidebar = ref(false);
 const type = ref(null);
+let classVar = false;
 
 const menuItems = [
   {
@@ -34,8 +35,13 @@ const menuItems = [
 ];
 
 function toggleSidebar() {
-  console.log(showSidebar.value);
   showSidebar.value = !showSidebar.value;
+
+  if (!showSidebar.value) {
+    classVar = showSidebar.value;
+  } else {
+    classVar = showSidebar.value;
+  }
 }
 </script>
 
@@ -50,11 +56,13 @@ function toggleSidebar() {
   min-height: 100vh;
 }
 .container-menu {
-  width: 30vh;
   background-color: #fcba03;
   color: #000;
 }
 .container-content {
   flex: 1;
+}
+.active {
+  margin: 0 25px 0 25px;
 }
 </style>
